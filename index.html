@@ -23,8 +23,20 @@
   </style>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel" data-presets="react">
+<div id="root">
+  <div id="loading-screen" style="position:fixed;inset:0;background:#080810;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;font-family:serif;">
+    <div style="font-size:56px;margin-bottom:16px;">🔮</div>
+    <p style="color:#a78bfa;font-size:14px;letter-spacing:3px;">載入中...</p>
+  </div>
+</div>
+<script>
+  // React 掛載後隱藏載入畫面
+  window.__hideLoading = function() {
+    var el = document.getElementById("loading-screen");
+    if(el) el.style.display = "none";
+  };
+</script>
+<script type="text/babel" data-presets="react" data-async="true">
 const { useState, useRef, useEffect } = React;
 
 // ═══════════════════════════════
@@ -499,14 +511,21 @@ function Upload({showNotif,data,updateData}){
         setResult(prev => prev ? {...prev, oracle, loading:false} : prev);
       });
        const pts=sel==="place"?20:sel==="creature"?15:10;
+       // 成功（p1>=50）才扣次數、才加點數
+      const isSuccess = p1 >= 50;
+      const earnPts = isSuccess ? pts : 0;
       updateData(prev=>({
         ...prev,
-        uploads:[{id:Date.now(),type:sel,subType:sel==="magic"?magic:null,label:labelMap[sel],preview,points:pts,note,verifiedSuccess:verified,time:new Date().toLocaleString("zh-TW"),timestamp:Date.now(),result:{p1,p2,p3}},...prev.uploads],
-        points:prev.points+pts,
-        dailyUploads:{...(prev.dailyUploads||{magic:0,creature:0,place:0}),[sel]:(prev.dailyUploads?.[sel]||0)+1},
+        uploads:[{id:Date.now(),type:sel,subType:sel==="magic"?magic:null,label:labelMap[sel],locationName:loc||null,preview,points:earnPts,note,verifiedSuccess:verified,isSuccess,time:new Date().toLocaleString("zh-TW"),timestamp:Date.now(),result:{p1,p2,p3}},...prev.uploads],
+        points:prev.points+earnPts,
+        dailyUploads:{...(prev.dailyUploads||{magic:0,creature:0,place:0}),[sel]:isSuccess?(prev.dailyUploads?.[sel]||0)+1:(prev.dailyUploads?.[sel]||0)},
         lastUploadDate:new Date().toDateString()
       }));
-      showNotif(verified?"靈界驗證成功！+"+pts+" 點（已計入探靈任務）":"上傳成功！+"+pts+" 點");
+      if(isSuccess){
+        showNotif(verified?"靈界驗證成功！+"+pts+" 點（已計入任務）":"靈界認可！+"+pts+" 點");
+      } else {
+        showNotif("靈界未回應，此次不計入次數，可重試");
+      }
       setUploading(false);
     },2000);
   };
@@ -596,6 +615,15 @@ function Upload({showNotif,data,updateData}){
                 {result.locationName && <span>📍 {result.locationName}</span>}
               </div>
             )}
+          </div>
+          {/* 成功/失敗大標示 */}
+          <div style={{marginBottom:10,padding:12,borderRadius:12,textAlign:"center",
+            background:result.o1.pct>=50?"rgba(52,211,153,.1)":"rgba(239,68,68,.1)",
+            border:`1px solid ${result.o1.pct>=50?"#34d399":"#ef4444"}`}}>
+            <p style={{fontSize:16,fontWeight:700,color:result.o1.pct>=50?"#34d399":"#ef4444"}}>
+              {result.o1.pct>=50?"✅ 靈界認可 · 次數已計入":"❌ 靈界未回應 · 次數未消耗，可重試"}
+            </p>
+            {result.o1.pct<50 && <p style={{color:"rgba(226,232,240,.5)",fontSize:11,marginTop:4}}>換個時辰或等待更好的靈力環境</p>}
           </div>
           {/* AI 神諭區塊 */}
           <div style={{marginBottom:10,padding:14,background:"linear-gradient(135deg,rgba(139,92,246,.12),rgba(6,182,212,.08))",borderRadius:12,border:"1px solid rgba(139,92,246,.3)"}}>
@@ -1344,6 +1372,7 @@ function Profile({role,data,updateData,onLogout,showNotif}){
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+if(window.__hideLoading) window.__hideLoading();
 </script>
 </body>
 </html>
