@@ -20,23 +20,28 @@
     html,body{background:#080810;height:100%;overflow:hidden;}
     body{font-family:'Raleway',sans-serif;color:#e2e8f0;}
     #root{height:100vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+    /* 載入中畫面 */
+    #root:empty::before{
+      content:"🔮";
+      position:fixed;top:50%;left:50%;
+      transform:translate(-50%,-60%);
+      font-size:56px;
+      animation:pulse-load 1.5s ease-in-out infinite;
+    }
+    #root:empty::after{
+      content:"載入中...";
+      position:fixed;top:50%;left:50%;
+      transform:translate(-50%,40%);
+      color:#a78bfa;font-size:14px;letter-spacing:3px;
+      font-family:'Cinzel',serif;
+      animation:pulse-load 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-load{0%,100%{opacity:.4;}50%{opacity:1;}}
   </style>
 </head>
 <body>
-<div id="root">
-  <div id="loading-screen" style="position:fixed;inset:0;background:#080810;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;font-family:serif;">
-    <div style="font-size:56px;margin-bottom:16px;">🔮</div>
-    <p style="color:#a78bfa;font-size:14px;letter-spacing:3px;">載入中...</p>
-  </div>
-</div>
-<script>
-  // React 掛載後隱藏載入畫面
-  window.__hideLoading = function() {
-    var el = document.getElementById("loading-screen");
-    if(el) el.style.display = "none";
-  };
-</script>
-<script type="text/babel" data-presets="react" data-async="true">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
 const { useState, useRef, useEffect } = React;
 
 // ═══════════════════════════════
@@ -1372,7 +1377,6 @@ function Profile({role,data,updateData,onLogout,showNotif}){
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-if(window.__hideLoading) window.__hideLoading();
 </script>
 </body>
 </html>
