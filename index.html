@@ -60,14 +60,14 @@ input[type=file]{display:none}
 .pts-badge{background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.3);border-radius:10px;padding:6px 12px;display:flex;align-items:center;gap:5px}
 .pts-num{color:#a78bfa;font-family:'Cinzel',serif;font-weight:700;font-size:15px}
 
-/* Tab bar (已修改為 relative 避免遮擋) */
+/* Tab bar */
 .tabbar{padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom,12px));background:rgba(6,6,16,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(139,92,246,.18);display:flex;justify-content:space-around;position:relative;z-index:100;flex-shrink:0;gap:2px}
 .tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px;border-radius:10px;cursor:pointer;transition:all .2s;color:rgba(226,232,240,.4);border:1px solid transparent;flex:1}
 .tab.on{color:#a78bfa;background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.3)}
 .tab-icon{font-size:18px;line-height:1}
 .tab-label{font-size:9px;font-family:'Cinzel',serif}
 
-/* Content (已修改 padding 配合相對定位的 tabbar) */
+/* Content */
 .content{flex:1;overflow-y:auto;padding:16px 14px 20px;-webkit-overflow-scrolling:touch}
 .section-title{font-family:'Cinzel',serif;font-size:17px;letter-spacing:1px;margin-bottom:4px}
 .section-sub{color:rgba(226,232,240,.45);font-size:12px;margin-bottom:16px}
@@ -192,8 +192,9 @@ const OUTCOMES = {
   place:{1:'靈界認可！此處蘊含豐富靈力，探尋獲得深刻體驗。',2:'靈力複雜，存在多層次靈異，需謹慎探索。',3:'靈界沈默，此地靈力被隱蔽封鎖。'}
 };
 
-// ── 商店資料 ──
+// ── 商店資料與條件驗證 ──
 const SHOP = [
+  // 魔法與道具
   {id:8,name:'金內練術',cost:100,icon:'⚙️',desc:'修煉金屬元素之力',type:'magic'},
   {id:9,name:'木內練術',cost:100,icon:'🌿',desc:'感應自然生命之力',type:'magic'},
   {id:10,name:'水內練術',cost:100,icon:'💧',desc:'掌控流動變化之力',type:'magic'},
@@ -207,14 +208,29 @@ const SHOP = [
   {id:20,name:'惡魔召喚',cost:1000,icon:'👿',desc:'與深淵存在締結契約',type:'summon'},
   {id:14,name:'魔法觀認知',cost:200,icon:'📜',desc:'基礎魔法圓陣繪製技巧',type:'item'},
   {id:26,name:'魔藥學',cost:250,icon:'🧪',desc:'探索神秘藥劑的調配奧義',type:'item'},
-  {id:1,name:'尋靈者',cost:500,icon:'👁️',desc:'踏入靈界的初學者',type:'title'},
-  {id:2,name:'定靈師',cost:1000,icon:'🕯️',desc:'能感知並定位靈體的術士',type:'title'},
-  {id:3,name:'靈界行者',cost:2000,icon:'🌀',desc:'自由穿梭於靈界與現世之間',type:'title'},
-  {id:4,name:'黑魔法師',cost:1000,icon:'🌑',desc:'掌握黑暗之力者',type:'title'},
-  {id:5,name:'龍裔獵人',cost:1500,icon:'🐉',desc:'追蹤神龍的傳奇獵手',type:'title'},
-  {id:6,name:'符文學者',cost:1200,icon:'🔮',desc:'精通古老符文之術',type:'title'},
-  {id:7,name:'星辰使者',cost:1800,icon:'⭐',desc:'受星辰指引的旅者',type:'title'},
+  
+  // 需達成條件的稱號（皆為 1000 點）
+  {id:21,name:'白魔法師',cost:1000,icon:'🕊️',desc:'需成功施展白魔法100次',type:'title',req:{type:'magicUse',target:'白魔法',count:100}},
+  {id:4,name:'黑魔法師',cost:1000,icon:'🌑',desc:'需成功施展黑魔法100次',type:'title',req:{type:'magicUse',target:'黑魔法',count:100}},
+  {id:22,name:'盧恩學者',cost:1000,icon:'ᚱ',desc:'需成功繪製盧恩符文100次',type:'title',req:{type:'drawUse',target:'盧恩符文',count:100}},
+  {id:23,name:'符籙繪師',cost:1000,icon:'🧧',desc:'需成功繪製符籙100次',type:'title',req:{type:'drawUse',target:'符籙',count:100}},
+  {id:24,name:'神代術士',cost:1000,icon:'👁️‍🗨️',desc:'需成功施展古老的紗草紙魔法50次',type:'title',req:{type:'magicUse',target:'古老的紗草紙魔法',count:50}}
 ];
+
+function checkReq(req, data) {
+  if (!req) return { ok:true, msg:"" };
+  if (req.type === "magicUse") {
+    // 必須是 magic 分類、指定分支、且占卜通過 (isSuccess === true)
+    const count = data.uploads.filter(u => u.type === 'magic' && u.subType === req.target && u.isSuccess).length;
+    return { ok: count >= req.count, msg: `需成功施展「${req.target}」${req.count}次（目前進度：${count} 次）` };
+  }
+  if (req.type === "drawUse") {
+    // 繪符次數驗證
+    const count = data.drawings.filter(d => d.subType === req.target).length;
+    return { ok: count >= req.count, msg: `需繪製「${req.target}」${req.count}次（目前進度：${count} 次）` };
+  }
+  return { ok:true, msg:"" };
+}
 
 const DAILY_LIMITS = {magic:3, creature:2, place:1};
 const MAGIC_TYPES = ['白魔法','黑魔法','自然魔法','古老的紗草紙魔法','一般魔法'];
@@ -704,7 +720,7 @@ function renderPoints() {
     {icon:'💎',label:'點數收藏家',done:d.points>=1000,desc:`累積1000點（${d.points}/1000）`},
   ];
   
-  const missions=[{name:'探靈者',need:10,icon:'👁️'},{name:'尋靈者',need:50,icon:'🕯️'},{name:'靈界行者',need:100,icon:'🌀'}];
+  const missions=[{name:'尋靈者',need:10,icon:'👁️'},{name:'定靈師',need:50,icon:'🕯️'},{name:'靈界行者',need:100,icon:'🌀'}];
   
   const wrap = E('div',{class:'fade-in'});
   
@@ -761,7 +777,7 @@ function renderPoints() {
   
   // 探靈任務
   const msnDiv = E('div');
-  msnDiv.innerHTML = '<p class="sec-label">✦ 探靈稱號任務</p>';
+  msnDiv.innerHTML = '<p class="sec-label">✦ 探靈專屬稱號任務</p>';
   missions.forEach(m => {
     const prg = Math.min((successN/m.need)*100,100);
     const done = successN>=m.need;
@@ -774,7 +790,7 @@ function renderPoints() {
       <div style="height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:4px">
         <div style="width:${prg}%;height:100%;background:${done?'linear-gradient(to right,#10b981,#34d399)':'linear-gradient(to right,#7c3aed,#0891b2)'}"></div>
       </div>
-      <p style="font-size:10px;color:rgba(226,232,240,.3)">只有靈界驗證成功的探靈才計入次數</p>
+      <p style="font-size:10px;color:rgba(226,232,240,.3)">只有靈界驗證成功的探靈才計入進度（解鎖後在檔案中配戴）</p>
     `;
     msnDiv.appendChild(card);
   });
@@ -807,12 +823,23 @@ function renderShop() {
   items.forEach(item => {
     const owned = state.data.purchased.includes(item.id);
     const isMagic = item.type==='magic';
+    const st = checkReq(item.req, state.data);
+    
+    let tagHtml = '';
+    if (owned && !isMagic) {
+      tagHtml = '<span class="tag" style="background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.3);color:#34d399">✓ 已解鎖</span>';
+    } else if (item.type === 'title' && !st.ok) {
+      tagHtml = '<span class="tag" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#ef4444;font-size:9px">🔒 條件未達</span>';
+    } else {
+      tagHtml = `<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">💎 ${item.cost}</span>`;
+    }
+
     const card = E('div',{class:'shop-item'+(owned&&!isMagic?' owned':'')});
     card.innerHTML = `
       <div style="font-size:26px;margin-bottom:6px">${item.icon}</div>
       <div style="color:#e2e8f0;font-size:11px;font-weight:600;margin-bottom:4px">${item.name}</div>
       <div style="color:rgba(226,232,240,.4);font-size:9px;margin-bottom:6px;min-height:24px;line-height:1.4">${item.desc}</div>
-      ${owned&&!isMagic ? '<span class="tag" style="background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.3);color:#34d399">✓ 已解鎖</span>' : `<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">💎 ${item.cost}</span>`}
+      ${tagHtml}
     `;
     card.onclick = () => showBuyModal(item);
     grid.appendChild(card);
@@ -825,7 +852,19 @@ function showBuyModal(item) {
   const existing = $('buy-modal');
   if (existing) existing.remove();
   
+  const st = checkReq(item.req, state.data);
   const canAfford = state.data.points >= item.cost;
+  
+  const reqHtml = item.req ? `
+    <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(139,92,246,.2)">
+      <p style="color:${st.ok?'#34d399':'#f59e0b'};font-size:11px;margin-bottom:${st.ok?0:4}px">${st.ok?'✅ 條件已達成':'⚠️ 條件未達成'}</p>
+      ${!st.ok ? `<p style="color:rgba(226,232,240,.5);font-size:10px">${st.msg}</p>` : ''}
+    </div>
+  ` : '';
+
+  const disableBtn = !canAfford || !st.ok;
+  const btnText = !st.ok ? '未達條件' : (!canAfford ? '點數不足' : '確認兌換');
+
   const modal = E('div',{class:'modal-bg',id:'buy-modal'});
   modal.innerHTML = `
     <div class="modal">
@@ -833,6 +872,7 @@ function showBuyModal(item) {
       <h3 style="font-size:17px;font-weight:700;margin-bottom:4px">${item.name}</h3>
       <p style="color:rgba(226,232,240,.5);font-size:11px;margin-bottom:14px">${item.desc}</p>
       <div style="background:rgba(139,92,246,.1);border-radius:12px;padding:14px;margin-bottom:14px;text-align:left">
+        ${reqHtml}
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
           <p style="color:rgba(226,232,240,.6);font-size:11px">所需點數</p>
           <p style="color:#fbbf24;font-size:20px;font-weight:900">💎 ${item.cost}</p>
@@ -847,7 +887,7 @@ function showBuyModal(item) {
         </div>
       </div>
       <div style="display:flex;gap:8px">
-        <button class="btn btn-sm" id="buy-confirm" ${!canAfford?'disabled':''} style="flex:1">${!canAfford?'點數不足':'確認兌換'}</button>
+        <button class="btn btn-sm" id="buy-confirm" ${disableBtn?'disabled':''} style="flex:1">${btnText}</button>
         <button class="btn btn-muted btn-sm" id="buy-cancel" style="flex:1">取消</button>
       </div>
     </div>
@@ -855,7 +895,8 @@ function showBuyModal(item) {
   document.body.appendChild(modal);
   $('buy-cancel').onclick = () => modal.remove();
   modal.onclick = e => { if(e.target===modal) modal.remove(); };
-  if (canAfford) {
+  
+  if (!disableBtn) {
     $('buy-confirm').onclick = () => {
       updateData(d=>({...d,points:d.points-item.cost,purchased:[...d.purchased,item.id]}));
       modal.remove();
@@ -1194,8 +1235,8 @@ function renderDraw() {
 function getAutoTitles(data) {
   const n = data.uploads.filter(u=>u.type==='place'&&u.verifiedSuccess).length;
   const out = [];
-  if(n>=10) out.push({id:'auto_1',name:'探靈者',icon:'👁️',desc:'已驗證探靈成功10次',type:'title'});
-  if(n>=50) out.push({id:'auto_2',name:'尋靈者',icon:'🕯️',desc:'已驗證探靈成功50次',type:'title'});
+  if(n>=10) out.push({id:'auto_1',name:'尋靈者',icon:'👁️',desc:'已驗證探靈成功10次',type:'title'});
+  if(n>=50) out.push({id:'auto_2',name:'定靈師',icon:'🕯️',desc:'已驗證探靈成功50次',type:'title'});
   if(n>=100) out.push({id:'auto_3',name:'靈界行者',icon:'🌀',desc:'已驗證探靈成功100次',type:'title'});
   return out;
 }
