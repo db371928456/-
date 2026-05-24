@@ -176,11 +176,51 @@ function checkReq(req, data) {
   return { ok:true, msg:"" };
 }
 
+// ── 月相計算 ──
+function getMoonPhase() {
+  const known = new Date(2000, 0, 6, 18, 14); // 已知新月
+  const diff = (Date.now() - known.getTime()) / (1000*60*60*24);
+  const phase = ((diff % 29.53) + 29.53) % 29.53;
+  if (phase < 1.85)  return { name:"新月",  symbol:"🌑", energy:"起始", modifier:1.1 };
+  if (phase < 7.38)  return { name:"眉月",  symbol:"🌒", energy:"成長", modifier:0.95 };
+  if (phase < 9.22)  return { name:"上弦月",symbol:"🌓", energy:"行動", modifier:1.0 };
+  if (phase < 14.77) return { name:"盈凸月",symbol:"🌔", energy:"積累", modifier:1.05 };
+  if (phase < 16.61) return { name:"滿月",  symbol:"🌕", energy:"巔峰", modifier:1.3 };
+  if (phase < 22.15) return { name:"虧凸月",symbol:"🌖", energy:"釋放", modifier:1.0 };
+  if (phase < 23.99) return { name:"下弦月",symbol:"🌗", energy:"回歸", modifier:0.9 };
+  return                     { name:"殘月",  symbol:"🌘", energy:"沉澱", modifier:0.85 };
+}
+
+// ── 時辰計算 ──
+function getTimeEnergy() {
+  const h = new Date().getHours();
+  if (h >= 23 || h < 1)  return { name:"子時", desc:"陰陽交替，靈力最盛", modifier:1.3 };
+  if (h >= 1  && h < 3)  return { name:"丑時", desc:"靈界通道開啟",       modifier:1.2 };
+  if (h >= 3  && h < 5)  return { name:"寅時", desc:"幽冥氣息濃厚",       modifier:1.15 };
+  if (h >= 5  && h < 7)  return { name:"卯時", desc:"天光初現，靈力平穩", modifier:0.9 };
+  if (h >= 7  && h < 9)  return { name:"辰時", desc:"陽氣上升",           modifier:0.8 };
+  if (h >= 9  && h < 11) return { name:"巳時", desc:"陽氣旺盛，靈力較弱", modifier:0.7 };
+  if (h >= 11 && h < 13) return { name:"午時", desc:"陽極，靈力最弱",     modifier:0.6 };
+  if (h >= 13 && h < 15) return { name:"未時", desc:"陽氣漸收",           modifier:0.75 };
+  if (h >= 15 && h < 17) return { name:"申時", desc:"靈力緩緩回升",       modifier:0.85 };
+  if (h >= 17 && h < 19) return { name:"酉時", desc:"黃昏靈力甦醒",       modifier:1.0 };
+  if (h >= 19 && h < 21) return { name:"戌時", desc:"靈體活躍時分",       modifier:1.1 };
+  return                         { name:"亥時", desc:"靈界完全甦醒",       modifier:1.2 };
+}
+
 function divineCalc(name, q, seed) {
-  const c = name+"夏娃"+q+seed; let h=0;
+  const moon = getMoonPhase();
+  const time = getTimeEnergy();
+  // 月相+時辰納入計算
+  const c = name+"夏娃"+q+seed+moon.name+time.name; let h=0;
   for(let i=0;i<c.length;i++){h=((h<<5)-h)+c.charCodeAt(i);h=h&h;}
-  const a=Math.abs(h), p1=(a%40)+35, p2=((a>>8)%35)+20;
-  return {p1,p2,p3:100-p1-p2};
+  const a=Math.abs(h);
+  // 月相修正係數影響成功率
+  let p1 = Math.round(((a%40)+30) * moon.modifier * time.modifier);
+  p1 = Math.min(Math.max(p1, 15), 80); // 限制在 15~80 之間
+  const p2 = Math.round(((a>>8)%35)+15);
+  const p3 = 100-p1-Math.min(p2, 100-p1-5);
+  return {p1, p2:Math.min(p2,100-p1-5), p3:Math.max(p3,5), moon, time};
 }
 
 function getOutcome(type,num){
@@ -190,6 +230,41 @@ function getOutcome(type,num){
     place:{1:"靈界認可！此處蘊含豐富靈力，探尋將獲得深刻體驗。",2:"靈力複雜，存在多層次靈異現象，需謹慎探索。",3:"靈界沈默，此地靈力被隱蔽或封鎖。"}
   };
   return t[type][num];
+}
+
+// ── AI 神諭生成 ──
+async function generateOracle(name, question, p1, moon, time, type, subType, location) {
+  const typeMap = { magic:"施展魔法", creature:"探查神秘生物", place:"探尋靈異地點" };
+  const locStr = location ? `
+地點：${location}` : "";
+  const prompt = `你是精通 Anzariyah 占卜術的靈界使者，語氣神秘、詩意。
+
+占卜者：${name}（母親：夏娃）
+當前月相：${moon.symbol} ${moon.name}（${moon.energy}）
+時辰：${time.name}（${time.desc}）
+事項：${typeMap[type]}${subType ? "——" + subType : ""}${locStr}
+靈界回應強度：${p1}%
+
+請生成一段 40-60 字的中文神諭，直接回應此次占卜。
+要求：神秘詩意、有靈性感、結合月相、時辰${location?"、地點":""}的能量。
+${location ? "神諭中可隱喻地提及該地點的靈力特質。" : ""}
+只輸出神諭本體，不要標題或解釋。`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 200,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await res.json();
+    return data.content?.[0]?.text || null;
+  } catch(e) {
+    return null;
+  }
 }
 
 // ═══════════════════════════════
@@ -369,6 +444,7 @@ function Main({tab,setTab,showNotif,role,data,updateData,onLogout}){
 function Upload({showNotif,data,updateData}){
   const [sel,setSel]=useState(null);
   const [magic,setMagic]=useState("白魔法");
+  const [locationName,setLocationName]=useState("");
   const [preview,setPreview]=useState(null);
   const [result,setResult]=useState(null);
   const [uploading,setUploading]=useState(false);
@@ -408,14 +484,21 @@ function Upload({showNotif,data,updateData}){
     const labelMap={magic:magic,creature:"靈體探查",place:"靈地探尋"};
     const qMap={magic:"魔法是否成功",creature:"是否拍到生物",place:"是否探到靈地"};
     setTimeout(()=>{
-      const {p1,p2,p3}=divineCalc("術士",qMap[sel],Date.now().toString());
+         const userName = data.customName || "術士";
+      const loc = sel==="place" ? locationName : "";
+      const {p1,p2,p3,moon,time}=divineCalc(userName, qMap[sel]+(loc?"+"+loc:""), Date.now().toString());
       const verified = sel==="place" && p1>=50;
-      setResult({type:sel,label:labelMap[sel],verified,
+      const newResult = {type:sel,label:labelMap[sel],verified,
         o1:{pct:p1,text:getOutcome(sel,1)},
         o2:{pct:p2,text:getOutcome(sel,2)},
-        o3:{pct:p3,text:getOutcome(sel,3)}
+        o3:{pct:p3,text:getOutcome(sel,3)},
+        moon, time, locationName:loc||null, loading:true, oracle:null
+      };
+      setResult(newResult);
+      generateOracle(userName, qMap[sel], p1, moon, time, sel, magic, loc).then(oracle => {
+        setResult(prev => prev ? {...prev, oracle, loading:false} : prev);
       });
-      const pts=sel==="place"?20:sel==="creature"?15:10;
+       const pts=sel==="place"?20:sel==="creature"?15:10;
       updateData(prev=>({
         ...prev,
         uploads:[{id:Date.now(),type:sel,subType:sel==="magic"?magic:null,label:labelMap[sel],preview,points:pts,note,verifiedSuccess:verified,time:new Date().toLocaleString("zh-TW"),timestamp:Date.now(),result:{p1,p2,p3}},...prev.uploads],
@@ -428,7 +511,7 @@ function Upload({showNotif,data,updateData}){
     },2000);
   };
 
-  const reset=()=>{setResult(null);setSel(null);setPreview(null);setNote("");};
+  const reset=()=>{setResult(null);setSel(null);setPreview(null);setNote("");setLocationName("");};
 
   return (
     <div className="tab-in">
@@ -453,7 +536,22 @@ function Upload({showNotif,data,updateData}){
         {sel==="magic" && (
           <div style={{marginBottom:12}}>
             <label style={{display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}}>魔法分支</label>
-            <select value={magic} onChange={e=>setMagic(e.target.value)}>
+            <select value={magic} onChange={e=>setMagic(e.target.value)}
+          {sel==="place" && (
+            <div style={{marginBottom:12}} className="fade-up">
+              <label style={{display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}}>
+                📍 地點名稱（加入占卜計算）
+              </label>
+              <input
+                type="text"
+                placeholder="例：台北大龍峒、九份老街、廢棄醫院..."
+                value={locationName}
+                onChange={e=>setLocationName(e.target.value)}
+                maxLength={30}
+              />
+            </div>
+          )}
+>
               {magicTypes.map(t=><option key={t} value={t}>{t}</option>)}
             </select>
           </div>
@@ -490,7 +588,25 @@ function Upload({showNotif,data,updateData}){
           <img src={preview} alt="" className="upload-preview" style={{marginBottom:12}}/>
           <div style={{padding:12,background:"rgba(139,92,246,.08)",borderRadius:10,textAlign:"center",marginBottom:10}}>
             <p style={{fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:11,marginBottom:4}}>靈界占卜結果</p>
-            <p style={{color:"rgba(226,232,240,.7)",fontSize:12}}>{result.label} 之反饋</p>
+            <p style={{color:"rgba(226,232,240,.7)",fontSize:12,marginBottom:6}}>{result.label} 之反饋</p>
+            {result.moon && (
+              <div style={{display:"flex",justifyContent:"center",gap:12,fontSize:11,color:"rgba(226,232,240,.5)",flexWrap:"wrap"}}>
+                <span>{result.moon.symbol} {result.moon.name} · {result.moon.energy}</span>
+                <span>⏰ {result.time.name}</span>
+                {result.locationName && <span>📍 {result.locationName}</span>}
+              </div>
+            )}
+          </div>
+          {/* AI 神諭區塊 */}
+          <div style={{marginBottom:10,padding:14,background:"linear-gradient(135deg,rgba(139,92,246,.12),rgba(6,182,212,.08))",borderRadius:12,border:"1px solid rgba(139,92,246,.3)"}}>
+            <p style={{fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:11,letterSpacing:1,marginBottom:8,textAlign:"center"}}>✦ 靈界神諭 ✦</p>
+            {result.loading ? (
+              <p style={{color:"rgba(226,232,240,.5)",fontSize:12,textAlign:"center",lineHeight:1.8}}>⏳ 靈界通靈中...</p>
+            ) : result.oracle ? (
+              <p style={{color:"#e2e8f0",fontSize:13,lineHeight:1.9,textAlign:"center",fontStyle:"italic"}}>{result.oracle}</p>
+            ) : (
+              <p style={{color:"rgba(226,232,240,.5)",fontSize:11,textAlign:"center"}}>靈界暫時沉默</p>
+            )}
           </div>
           {result.type==="place" && (
             <div style={{marginBottom:10,padding:10,borderRadius:10,textAlign:"center",
