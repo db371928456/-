@@ -196,13 +196,19 @@ function getOutcome(type,num){
 //  App 根組件
 // ═══════════════════════════════
 function App() {
-  const [stage,setStage] = useState("login");
+  // 自動讀取上次登入狀態
+  const savedRole = (() => { try { return localStorage.getItem("arcane_session"); } catch(e) { return null; } })();
+  const [stage,setStage] = useState(savedRole ? "main" : "login");
   const [tab,setTab] = useState("upload");
   const [u,setU] = useState(""); const [p,setP] = useState("");
   const [notif,setNotif] = useState(null);
-  const [role,setRole] = useState(null);
-  const [data,setData] = useState(defaultData);
-  const [nameModal,setNameModal] = useState(false);
+  const [role,setRole] = useState(savedRole);
+  const [data,setData] = useState(savedRole ? loadData(savedRole) : defaultData);
+  const [nameModal,setNameModal] = useState(() => {
+    if (!savedRole) return false;
+    const d = loadData(savedRole);
+    return !d.customName;
+  });
   const [firstName,setFirstName] = useState("");
 
   const showNotif = m => { setNotif(m); setTimeout(()=>setNotif(null),2500); };
@@ -225,6 +231,8 @@ function App() {
     const d=loadData(r);
     d.loginCount=(d.loginCount||0)+1;
     setData(d); saveData(r,d);
+    // 儲存登入狀態，下次自動登入
+    try { localStorage.setItem("arcane_session", r); } catch(e) {}
     if(!d.customName) setNameModal(true);
     setStage("main"); setU(""); setP("");
   };
@@ -237,7 +245,10 @@ function App() {
     showNotif("歡迎，"+firstName.trim()+"！");
   };
 
-  const logout = () => {setStage("login");setRole(null);setData(defaultData);setTab("upload");};
+  const logout = () => {
+    try { localStorage.removeItem("arcane_session"); } catch(e) {}
+    setStage("login"); setRole(null); setData(defaultData); setTab("upload");
+  };
 
   return (
     <div style={{background:"#080810",minHeight:"100vh",overflow:"hidden",position:"relative"}}>
