@@ -11,7 +11,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=Raleway:wght@400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{background:#080810;height:100%;font-family:'Raleway',sans-serif;color:#e2e8f0;overflow:hidden}
-#app{height:100vh;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative}
+
+/* 修改 #app 加入 100dvh 支援動態高度 */
+#app{height:100vh;height:100dvh;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative}
 
 /* Stars */
 .star{position:fixed;border-radius:50%;pointer-events:none;animation:blink var(--d,3s) ease-in-out infinite;animation-delay:var(--delay,0s)}
@@ -60,15 +62,17 @@ input[type=file]{display:none}
 .pts-badge{background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.3);border-radius:10px;padding:6px 12px;display:flex;align-items:center;gap:5px}
 .pts-num{color:#a78bfa;font-family:'Cinzel',serif;font-weight:700;font-size:15px}
 
-/* Tab bar */
-.tabbar{padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom,12px));background:rgba(6,6,16,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(139,92,246,.18);display:flex;justify-content:space-around;position:relative;z-index:100;flex-shrink:0;gap:2px}
+/* Tab bar — 固定在畫面底部 */
+.tabbar{padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom,12px));background:rgba(6,6,16,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(139,92,246,.18);display:flex;justify-content:space-around;position:fixed;bottom:0;left:0;right:0;z-index:100;max-width:480px;margin:0 auto;gap:2px}
+
 .tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px;border-radius:10px;cursor:pointer;transition:all .2s;color:rgba(226,232,240,.4);border:1px solid transparent;flex:1}
 .tab.on{color:#a78bfa;background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.3)}
 .tab-icon{font-size:18px;line-height:1}
 .tab-label{font-size:9px;font-family:'Cinzel',serif}
 
-/* Content */
-.content{flex:1;overflow-y:auto;padding:16px 14px 20px;-webkit-overflow-scrolling:touch}
+/* Content — 底部 padding 避免被 Tab bar 遮住 */
+.content{flex:1;overflow-y:auto;padding:16px 14px 100px;-webkit-overflow-scrolling:touch}
+
 .section-title{font-family:'Cinzel',serif;font-size:17px;letter-spacing:1px;margin-bottom:4px}
 .section-sub{color:rgba(226,232,240,.45);font-size:12px;margin-bottom:16px}
 .sec-label{font-family:'Cinzel',serif;color:#a78bfa;font-size:12px;letter-spacing:1px;margin-bottom:8px}
@@ -220,12 +224,10 @@ const SHOP = [
 function checkReq(req, data) {
   if (!req) return { ok:true, msg:"" };
   if (req.type === "magicUse") {
-    // 必須是 magic 分類、指定分支、且占卜通過 (isSuccess === true)
     const count = data.uploads.filter(u => u.type === 'magic' && u.subType === req.target && u.isSuccess).length;
     return { ok: count >= req.count, msg: `需成功施展「${req.target}」${req.count}次（目前進度：${count} 次）` };
   }
   if (req.type === "drawUse") {
-    // 繪符次數驗證
     const count = data.drawings.filter(d => d.subType === req.target).length;
     return { ok: count >= req.count, msg: `需繪製「${req.target}」${req.count}次（目前進度：${count} 次）` };
   }
@@ -290,14 +292,12 @@ function updateData(updater) {
 // ── 背景特效 ──
 function initBg() {
   const bg = $('bg');
-  // 星星
   for (let i=0; i<60; i++) {
     const s = document.createElement('div');
     s.className = 'star';
     s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()<0.2?2:1}px;height:${Math.random()<0.2?2:1}px;background:${['#a78bfa','#22d3ee','#fbbf24'][i%3]};--d:${3+Math.random()*4}s;--delay:${Math.random()*4}s`;
     bg.appendChild(s);
   }
-  // 粒子
   for (let i=0; i<15; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
@@ -323,7 +323,6 @@ function renderLogin() {
   let u='', p='';
   const wrap = E('div', {style:{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',padding:'20px',position:'relative'}});
   
-  // 旋轉環
   const r1 = E('div', {class:'ring', style:{width:'360px',height:'360px',top:'50%',left:'50%',marginLeft:'-180px',marginTop:'-180px'}});
   wrap.appendChild(r1);
   
@@ -469,7 +468,6 @@ function renderMain() {
 function renderTabContent() {
   const content = $('tab-content');
   if (!content) return;
-  // Update tabbar active state
   document.querySelectorAll('.tab').forEach((el,i) => {
     el.className = 'tab' + (TABS[i].id === state.tab ? ' on' : '');
   });
@@ -505,7 +503,6 @@ function renderUpload() {
   wrap.innerHTML = `<h2 class="section-title">探險打卡</h2><p class="section-sub">選擇類型，從相簿或相機上傳</p>`;
   
   if (uploadState.result) {
-    // 結果畫面
     const r = uploadState.result;
     wrap.innerHTML += `
       <img src="${uploadState.preview}" class="preview-img">
@@ -541,7 +538,6 @@ function renderUpload() {
     return wrap;
   }
   
-  // 類型選擇
   const grid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px',marginBottom:'12px'}});
   cats.forEach(cat => {
     const used = DAILY[cat.id]||0;
@@ -562,7 +558,6 @@ function renderUpload() {
   });
   wrap.appendChild(grid);
   
-  // 魔法分支
   if (uploadState.sel==='magic') {
     const magicBox = E('div',{style:{marginBottom:'12px'}});
     magicBox.innerHTML = `<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">魔法分支</label>`;
@@ -577,7 +572,6 @@ function renderUpload() {
     wrap.appendChild(magicBox);
   }
   
-  // 地點輸入
   if (uploadState.sel==='place') {
     const locBox = E('div',{style:{marginBottom:'12px'}});
     locBox.innerHTML = `<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">📍 地點名稱（加入占卜計算）</label>`;
@@ -588,7 +582,6 @@ function renderUpload() {
     wrap.appendChild(locBox);
   }
   
-  // 照片選擇
   if (uploadState.preview) {
     wrap.appendChild(E('img',{src:uploadState.preview,class:'preview-img'}));
     const rb = E('button',{class:'btn btn-muted btn-sm',style:{marginBottom:'12px'}},'✕ 重新選擇照片');
@@ -616,7 +609,6 @@ function renderUpload() {
     wrap.appendChild(photoGrid);
   }
   
-  // 備註
   if (uploadState.preview) {
     const ta = E('textarea',{placeholder:'描述探險或儀式紀錄（選填）...',style:{minHeight:'60px',marginBottom:'12px'}});
     ta.value = uploadState.note;
@@ -624,7 +616,6 @@ function renderUpload() {
     wrap.appendChild(ta);
   }
   
-  // 提交按鈕
   const btn = E('button',{class:'btn'},(uploadState.uploading?'⏳ 靈界通靈中...':'🔮 提交上傳'));
   btn.disabled = !uploadState.sel || !uploadState.preview || uploadState.uploading;
   btn.onclick = doUpload;
@@ -664,7 +655,6 @@ function doUpload() {
     const {p1,p2,p3,moon,time} = divineCalc(userName, qMap[uploadState.sel], Date.now()+'');
     const isSuccess = p1 >= 50;
     
-    // 嚴格限制：驗證沒有通過，點數就是 0
     const pts = isSuccess ? (uploadState.sel==='place'?20:uploadState.sel==='creature'?15:10) : 0;
     const sel = uploadState.sel;
     
@@ -724,7 +714,6 @@ function renderPoints() {
   
   const wrap = E('div',{class:'fade-in'});
   
-  // 標題+打卡按鈕
   const hdr = E('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'18px'}});
   hdr.innerHTML = `<h2 class="section-title">我的神秘點數</h2>`;
   const ciBtn = E('button');
@@ -737,7 +726,6 @@ function renderPoints() {
   hdr.appendChild(ciBtn);
   wrap.appendChild(hdr);
   
-  // 點數圓圈
   wrap.innerHTML += `
     <div style="text-align:center;margin-bottom:20px;padding:24px 12px;position:relative;border-radius:18px;overflow:hidden">
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(139,92,246,.14),transparent 70%)"></div>
@@ -763,7 +751,6 @@ function renderPoints() {
     </div>
   `;
   
-  // 成就
   const achDiv = E('div');
   achDiv.innerHTML = '<p class="sec-label">✦ 成就勳章</p>';
   const achGrid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px',marginBottom:'20px'}});
@@ -775,7 +762,6 @@ function renderPoints() {
   achDiv.appendChild(achGrid);
   wrap.appendChild(achDiv);
   
-  // 探靈任務
   const msnDiv = E('div');
   msnDiv.innerHTML = '<p class="sec-label">✦ 探靈專屬稱號任務</p>';
   missions.forEach(m => {
@@ -995,7 +981,6 @@ function renderDiscuss() {
   const wrap = E('div',{class:'fade-in'});
   wrap.innerHTML = `<h2 class="section-title">公共討論區</h2><p class="section-sub">與同道術士們交流</p>`;
   
-  // 發文區
   const postCard = E('div',{class:'card',style:{marginBottom:'16px'}});
   const displayName = state.data.customName||(state.role==='admin'?'管理員':'見習術士');
   postCard.innerHTML = `
@@ -1029,7 +1014,6 @@ function renderDiscuss() {
   postCard.appendChild(postBtn);
   wrap.appendChild(postCard);
   
-  // 貼文列表
   const posts = state.data.posts;
   if (posts.length===0) {
     wrap.innerHTML += `<div style="text-align:center;color:rgba(226,232,240,.4);padding:28px 0;font-size:12px">尚無貼文，來發布第一篇吧！</div>`;
@@ -1115,7 +1099,6 @@ function renderDraw() {
   const wrap = E('div',{class:'fade-in'});
   wrap.innerHTML = `<h2 class="section-title">魔法符陣繪製</h2><p class="section-sub">每日限得5點，可無限繪製累積成就</p>`;
   
-  // 今日進度
   const pct = Math.min((d.todayDrawPts/5)*100,100);
   wrap.innerHTML += `
     <div style="margin-bottom:12px;padding:10px;background:rgba(139,92,246,.1);border-radius:10px">
@@ -1126,7 +1109,6 @@ function renderDraw() {
     </div>
   `;
   
-  // 繪製目標選擇
   const typeBox = E('div',{style:{marginBottom:'10px'}});
   typeBox.innerHTML = `<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">繪符目標</label>`;
   const drawTypeSel = E('select',{id:'draw-type-sel'});
@@ -1137,7 +1119,6 @@ function renderDraw() {
   typeBox.appendChild(drawTypeSel);
   wrap.appendChild(typeBox);
   
-  // 顏色選擇
   const colorRow = E('div',{style:{display:'flex',gap:'6px',marginBottom:'8px',flexWrap:'wrap',alignItems:'center'}});
   COLORS.forEach(c => {
     const sw = E('div',{class:'swatch'+(state.drawColor===c.c?' active':'')});
@@ -1153,7 +1134,6 @@ function renderDraw() {
   colorRow.appendChild(eraser);
   wrap.appendChild(colorRow);
   
-  // 筆刷大小
   const sizeRow = E('div',{style:{display:'flex',alignItems:'center',gap:'10px',marginBottom:'10px'}});
   sizeRow.innerHTML = `<span style="color:rgba(226,232,240,.6);font-family:'Cinzel',serif;font-size:11px;white-space:nowrap">大小</span>`;
   const sizeSlider = E('input',{type:'range',min:'1',max:'40',value:state.drawSize,style:{flex:'1'}});
@@ -1163,11 +1143,9 @@ function renderDraw() {
   sizeRow.appendChild(sizeLabel);
   wrap.appendChild(sizeRow);
   
-  // Canvas
   const canvas = E('canvas',{id:'draw-canvas',width:'800',height:'500'});
   wrap.appendChild(canvas);
   
-  // 按鈕列
   const btnRow = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px',margin:'12px 0 14px'}});
   const clearBtn = E('button',{class:'btn btn-muted btn-sm'},'🗑️ 清除');
   const dlBtn = E('button',{class:'btn btn-muted btn-sm'},'💾 下載');
@@ -1192,7 +1170,6 @@ function renderDraw() {
   btnRow.appendChild(clearBtn); btnRow.appendChild(dlBtn); btnRow.appendChild(submitBtn);
   wrap.appendChild(btnRow);
   
-  // 作品集
   if (d.drawings.length>0) {
     const gallDiv = E('div');
     gallDiv.innerHTML = `<p class="sec-label">✦ 作品集（${d.drawings.length}幅）</p>`;
@@ -1205,7 +1182,6 @@ function renderDraw() {
     wrap.appendChild(gallDiv);
   }
   
-  // 初始化 canvas
   setTimeout(() => {
     const c = $('draw-canvas');
     if (!c) return;
@@ -1256,7 +1232,6 @@ function renderProfile() {
   const wrap = E('div',{class:'fade-in'});
   wrap.innerHTML = `<h2 class="section-title" style="margin-bottom:18px">個人檔案</h2>`;
   
-  // 主卡片
   wrap.innerHTML += `
     <div class="card" style="background:rgba(139,92,246,.08);margin-bottom:12px;text-align:center;padding:20px">
       <div style="font-size:44px;margin-bottom:10px">${state.role==='admin'?'⚔️':'🧙'}</div>
@@ -1270,7 +1245,6 @@ function renderProfile() {
     </div>
   `;
   
-  // 名稱設定
   const nameCard = E('div',{class:'card',style:{marginBottom:'10px'}});
   nameCard.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><p class="sec-label" style="margin-bottom:0">✦ 術士名號</p></div><p style="font-size:13px;color:#e2e8f0">${displayName}</p>`;
   const nameBtn = E('button',{style:{background:'rgba(139,92,246,.2)',border:'1px solid rgba(139,92,246,.3)',color:'#a78bfa',padding:'4px 10px',borderRadius:'6px',fontSize:'10px',cursor:'pointer'}},'更改');
@@ -1278,7 +1252,6 @@ function renderProfile() {
   nameCard.querySelector('div').appendChild(nameBtn);
   wrap.appendChild(nameCard);
   
-  // 稱號
   const titleCard = E('div',{class:'card',style:{marginBottom:'10px'}});
   titleCard.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
@@ -1291,21 +1264,18 @@ function renderProfile() {
   titleCard.querySelector('div').appendChild(switchBtn);
   wrap.appendChild(titleCard);
   
-  // 已學魔法
   if (Object.keys(magicMap).length>0) {
     const mc = E('div',{class:'card',style:{marginBottom:'10px'}});
     mc.innerHTML = `<p class="sec-label">✦ 已學魔法</p><div style="display:flex;gap:6px;flex-wrap:wrap">${Object.entries(magicMap).map(([n,c])=>`<span class="tag" style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#a78bfa;padding:4px 10px">${n}${c>1?' ×'+c:''}</span>`).join('')}</div>`;
     wrap.appendChild(mc);
   }
   
-  // 已解鎖
   if (otherOwned.length>0) {
     const oc = E('div',{class:'card',style:{marginBottom:'10px'}});
     oc.innerHTML = `<p class="sec-label">✦ 已解鎖技能</p><div style="display:flex;gap:6px;flex-wrap:wrap">${otherOwned.map(i=>`<span class="tag" style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#a78bfa">${i.icon} ${i.name}</span>`).join('')}</div>`;
     wrap.appendChild(oc);
   }
   
-  // 帳號資訊
   const ac = E('div',{class:'card',style:{marginBottom:'12px',fontSize:'12px'}});
   ac.innerHTML = `
     <p class="sec-label">✦ 帳號資訊</p>
@@ -1375,7 +1345,7 @@ window.clearTitle = function() {
 document.body.innerHTML = `
   <div id="bg" style="position:fixed;inset:0;pointer-events:none;overflow:hidden"></div>
   <div id="notif" class="notif" style="display:none"></div>
-  <div id="app-content" style="height:100vh;display:flex;flex-direction:column;max-width:480px;margin:0 auto"></div>
+  <div id="app-content" style="height:100vh;height:100dvh;display:flex;flex-direction:column;max-width:480px;margin:0 auto"></div>
 `;
 
 initBg();
