@@ -11,11 +11,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=Raleway:wght@400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{background:#080810;height:100%;font-family:'Raleway',sans-serif;color:#e2e8f0;overflow:hidden}
-
-/* 修改 #app 加入 100dvh 支援動態高度 */
 #app{height:100vh;height:100dvh;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative}
-
-/* Stars */
 .star{position:fixed;border-radius:50%;pointer-events:none;animation:blink var(--d,3s) ease-in-out infinite;animation-delay:var(--delay,0s)}
 @keyframes blink{0%,100%{opacity:.2}50%{opacity:.9}}
 .particle{position:fixed;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.8),transparent);animation:rise var(--d,8s) linear infinite;animation-delay:var(--delay,0s);pointer-events:none}
@@ -24,8 +20,6 @@ html,body{background:#080810;height:100%;font-family:'Raleway',sans-serif;color:
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 .fade-in{animation:fadeIn .5s ease forwards}
-
-/* Inputs */
 input,textarea,select{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);color:#e2e8f0;padding:11px 14px;border-radius:10px;width:100%;font-family:'Raleway',sans-serif;font-size:14px;outline:none;transition:border .2s}
 input:focus,textarea:focus,select:focus{border-color:rgba(139,92,246,.7);box-shadow:0 0 20px rgba(139,92,246,.2)}
 input::placeholder,textarea::placeholder{color:rgba(226,232,240,.35)}
@@ -33,16 +27,12 @@ textarea{resize:none;min-height:80px}
 select option{background:#0d0d1a}
 input[type=range]{padding:0;background:none;border:none;box-shadow:none;accent-color:#8b5cf6}
 input[type=file]{display:none}
-
-/* Buttons */
 .btn{background:linear-gradient(135deg,#7c3aed,#0891b2);border:none;color:#fff;padding:13px;border-radius:10px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;cursor:pointer;width:100%;transition:all .2s;display:block;text-align:center}
 .btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(124,58,237,.5)}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btn-muted{background:rgba(139,92,246,.25)!important;letter-spacing:1px!important}
 .btn-danger{background:linear-gradient(135deg,#dc2626,#991b1b)!important}
 .btn-sm{padding:9px;font-size:12px;letter-spacing:1px}
-
-/* Cards */
 .card{background:rgba(255,255,255,.025);border:1px solid rgba(139,92,246,.18);border-radius:14px;padding:16px}
 .cat-card{border:2px solid rgba(139,92,246,.18);border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.015)}
 .cat-card.sel{border-color:#a78bfa;background:rgba(139,92,246,.12);transform:translateY(-3px)}
@@ -54,79 +44,44 @@ input[type=file]{display:none}
 .disc-card{border:1px solid rgba(139,92,246,.15);border-radius:14px;padding:14px;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.02)}
 .disc-card:hover{border-color:rgba(139,92,246,.35);background:rgba(139,92,246,.05)}
 .tag{display:inline-block;padding:2px 8px;border-radius:100px;font-size:10px;font-family:'Cinzel',serif}
-
-/* Header */
 .header{padding:14px 16px 12px;background:rgba(8,8,20,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,92,246,.15);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .header-title{font-family:'Cinzel Decorative',serif;font-size:15px;background:linear-gradient(135deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .header-sub{color:rgba(167,139,250,.55);font-size:10px;font-family:'Cinzel',serif;margin-top:2px}
 .pts-badge{background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.3);border-radius:10px;padding:6px 12px;display:flex;align-items:center;gap:5px}
 .pts-num{color:#a78bfa;font-family:'Cinzel',serif;font-weight:700;font-size:15px}
-
-/* Tab bar — 固定在畫面底部 */
 .tabbar{padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom,12px));background:rgba(6,6,16,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(139,92,246,.18);display:flex;justify-content:space-around;position:fixed;bottom:0;left:0;right:0;z-index:100;max-width:480px;margin:0 auto;gap:2px}
-
 .tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px;border-radius:10px;cursor:pointer;transition:all .2s;color:rgba(226,232,240,.4);border:1px solid transparent;flex:1}
 .tab.on{color:#a78bfa;background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.3)}
 .tab-icon{font-size:18px;line-height:1}
 .tab-label{font-size:9px;font-family:'Cinzel',serif}
-
-/* Content — 底部 padding 避免被 Tab bar 遮住 */
 .content{flex:1;overflow-y:auto;padding:16px 14px 100px;-webkit-overflow-scrolling:touch}
-
 .section-title{font-family:'Cinzel',serif;font-size:17px;letter-spacing:1px;margin-bottom:4px}
 .section-sub{color:rgba(226,232,240,.45);font-size:12px;margin-bottom:16px}
 .sec-label{font-family:'Cinzel',serif;color:#a78bfa;font-size:12px;letter-spacing:1px;margin-bottom:8px}
 .grad-text{background:linear-gradient(135deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
-/* Modal */
 .modal-bg{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s ease}
 .modal{background:rgba(6,6,18,.97);border:1px solid rgba(139,92,246,.4);border-radius:18px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 0 60px rgba(139,92,246,.2)}
-
-/* Login ring */
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(139,92,246,.12);animation:spin 8s linear infinite;pointer-events:none}
-
-/* Notification */
 .notif{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,rgba(124,58,237,.95),rgba(8,145,178,.95));color:#fff;padding:11px 22px;border-radius:100px;font-size:12px;z-index:9999;backdrop-filter:blur(12px);max-width:90vw;text-align:center;animation:fadeIn .3s ease;white-space:nowrap}
-
-/* Filter pills */
 .filter-bar{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
 .filter-bar::-webkit-scrollbar{display:none}
 .fpill{padding:5px 12px;border-radius:100px;font-size:11px;font-family:'Cinzel',serif;cursor:pointer;border:1px solid;transition:all .2s;white-space:nowrap;flex-shrink:0}
-
-/* Spin ring for points */
 .spin-ring{animation:spin 8s linear infinite;width:110px;height:110px;border-radius:50%;padding:3px;background:conic-gradient(from 0deg,#7c3aed,#0891b2,#a78bfa,#7c3aed);flex-shrink:0}
 .spin-ring-inner{width:100%;height:100%;border-radius:50%;background:#0d0d1a;display:flex;align-items:center;justify-content:center;font-size:30px}
-
-/* Upload preview */
 .preview-img{width:100%;max-height:280px;border-radius:10px;object-fit:contain;background:rgba(0,0,0,.3);display:block;margin-bottom:10px}
-
-/* Canvas */
 #draw-canvas{border:2px solid rgba(139,92,246,.3);border-radius:10px;width:100%;touch-action:none;display:block;cursor:crosshair;background:#0d0d1a}
-
-/* Color swatches */
 .swatch{width:32px;height:32px;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,.2);flex-shrink:0;transition:transform .1s}
 .swatch.active{border:2px solid #fff;transform:scale(1.1)}
-
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(139,92,246,.35);border-radius:2px}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-// ═══ 玄秘紀元 - 純 Vanilla JS 版 ═══
 const STORE_KEY = 'arcane_v4';
-
-// ── 資料 ──
 function defaultData() {
-  return {
-    points:0, uploads:[], purchased:[], currentTitle:null,
-    drawings:[], posts:[], todayDrawPts:0, lastDrawDate:null,
-    lastCheckIn:null, loginCount:0, joinDate:null,
-    customName:null, isFirstLogin:true,
-    dailyUploads:{magic:0,creature:0,place:0}, lastUploadDate:null
-  };
+  return {points:0,uploads:[],purchased:[],currentTitle:null,drawings:[],posts:[],todayDrawPts:0,lastDrawDate:null,lastCheckIn:null,loginCount:0,joinDate:null,customName:null,isFirstLogin:true,dailyUploads:{magic:0,creature:0,place:0},lastUploadDate:null};
 }
-
 function loadData(role) {
   try {
     const raw = localStorage.getItem(STORE_KEY+'_'+role);
@@ -140,43 +95,30 @@ function loadData(role) {
   } catch(e) {}
   return Object.assign(defaultData(), {joinDate:new Date().toLocaleDateString('zh-TW'), lastDrawDate:new Date().toDateString(), lastUploadDate:new Date().toDateString()});
 }
-
 function saveData(role, data) {
   try { localStorage.setItem(STORE_KEY+'_'+role, JSON.stringify(data)); } catch(e) {}
 }
-
-// ── 占卜 ──
 function getMoonPhase() {
   const known = new Date(2000,0,6,18,14);
   const phase = ((((Date.now()-known.getTime())/86400000)%29.53)+29.53)%29.53;
-  const phases = [
-    {name:'新月',symbol:'🌑',modifier:1.1},
-    {name:'眉月',symbol:'🌒',modifier:0.95},
-    {name:'上弦月',symbol:'🌓',modifier:1.0},
-    {name:'盈凸月',symbol:'🌔',modifier:1.05},
-    {name:'滿月',symbol:'🌕',modifier:1.3},
-    {name:'虧凸月',symbol:'🌖',modifier:1.0},
-    {name:'下弦月',symbol:'🌗',modifier:0.9},
-    {name:'殘月',symbol:'🌘',modifier:0.85}
-  ];
-  const idx = Math.floor(phase/3.69);
-  return phases[Math.min(idx,7)];
+  const phases = [{name:'新月',symbol:'🌑',modifier:1.1},{name:'眉月',symbol:'🌒',modifier:0.95},{name:'上弦月',symbol:'🌓',modifier:1.0},{name:'盈凸月',symbol:'🌔',modifier:1.05},{name:'滿月',symbol:'🌕',modifier:1.3},{name:'虧凸月',symbol:'🌖',modifier:1.0},{name:'下弦月',symbol:'🌗',modifier:0.9},{name:'殘月',symbol:'🌘',modifier:0.85}];
+  return phases[Math.min(Math.floor(phase/3.69),7)];
 }
-
 function getTimeEnergy() {
   const h = new Date().getHours();
-  const times = [
-    [23,1,'子時',1.3],[1,3,'丑時',1.2],[3,5,'寅時',1.15],[5,7,'卯時',0.9],
-    [7,9,'辰時',0.8],[9,11,'巳時',0.7],[11,13,'午時',0.6],[13,15,'未時',0.75],
-    [15,17,'申時',0.85],[17,19,'酉時',1.0],[19,21,'戌時',1.1],[21,23,'亥時',1.2]
-  ];
-  for (const [s,e,name,mod] of times) {
-    if (h>=s||h<e||((s>e)&&(h>=s||h<e))) return {name,modifier:mod};
-    if (h>=s&&h<e) return {name,modifier:mod};
-  }
-  return {name:'子時',modifier:1.3};
+  if (h>=23||h<1) return {name:'子時',modifier:1.3};
+  if (h>=1&&h<3)  return {name:'丑時',modifier:1.2};
+  if (h>=3&&h<5)  return {name:'寅時',modifier:1.15};
+  if (h>=5&&h<7)  return {name:'卯時',modifier:0.9};
+  if (h>=7&&h<9)  return {name:'辰時',modifier:0.8};
+  if (h>=9&&h<11) return {name:'巳時',modifier:0.7};
+  if (h>=11&&h<13)return {name:'午時',modifier:0.6};
+  if (h>=13&&h<15)return {name:'未時',modifier:0.75};
+  if (h>=15&&h<17)return {name:'申時',modifier:0.85};
+  if (h>=17&&h<19)return {name:'酉時',modifier:1.0};
+  if (h>=19&&h<21)return {name:'戌時',modifier:1.1};
+  return {name:'亥時',modifier:1.2};
 }
-
 function divineCalc(name, q, seed) {
   const moon = getMoonPhase();
   const time = getTimeEnergy();
@@ -189,1181 +131,74 @@ function divineCalc(name, q, seed) {
   const p2 = Math.min(Math.round(((a>>8)%35)+15), 100-p1-5);
   return {p1, p2, p3:100-p1-p2, moon, time};
 }
-
 const OUTCOMES = {
   magic:{1:'靈界強烈回應！術法順利施展，靈力完美融合。',2:'效果中等，遭遇輕微阻力，需更多修為。',3:'術法施展困難，靈力散亂，建議另尋時機。'},
   creature:{1:'靈體強烈回應！成功拍到神秘生物，獲得靈異證據。',2:'靈體反應模糊，可能為弱靈，需加倍警覺。',3:'此地暫無明顯靈異現象。'},
   place:{1:'靈界認可！此處蘊含豐富靈力，探尋獲得深刻體驗。',2:'靈力複雜，存在多層次靈異，需謹慎探索。',3:'靈界沈默，此地靈力被隱蔽封鎖。'}
 };
-
-// ── 商店資料與條件驗證 ──
 const SHOP = [
-  // 魔法與道具
-  {id:8,name:'金內練術',cost:100,icon:'⚙️',desc:'修煉金屬元素之力',type:'magic'},
-  {id:9,name:'木內練術',cost:100,icon:'🌿',desc:'感應自然生命之力',type:'magic'},
-  {id:10,name:'水內練術',cost:100,icon:'💧',desc:'掌控流動變化之力',type:'magic'},
-  {id:11,name:'雷內練術',cost:100,icon:'⚡',desc:'駕馭天雷霹靂之力',type:'magic'},
-  {id:12,name:'白魔法',cost:100,icon:'🕊️',desc:'淨化治癒的光明術法',type:'magic'},
-  {id:13,name:'黑魔法',cost:100,icon:'☽',desc:'汲取黑暗力量的禁斷術法',type:'magic'},
-  {id:16,name:'古老的紗草紙魔法',cost:150,icon:'📜',desc:'來自埃及與希臘的古老秘術',type:'magic'},
-  {id:17,name:'自然魔法',cost:100,icon:'🌳',desc:'連結大地與精靈的魔法',type:'magic'},
-  {id:18,name:'式神召喚',cost:1000,icon:'🦊',desc:'陰陽道役使的靈體',type:'summon'},
-  {id:19,name:'天使召喚',cost:1000,icon:'👼',desc:'呼喚神聖界域的使者',type:'summon'},
-  {id:20,name:'惡魔召喚',cost:1000,icon:'👿',desc:'與深淵存在締結契約',type:'summon'},
-  {id:14,name:'魔法觀認知',cost:200,icon:'📜',desc:'基礎魔法圓陣繪製技巧',type:'item'},
-  {id:26,name:'魔藥學',cost:250,icon:'🧪',desc:'探索神秘藥劑的調配奧義',type:'item'},
-  
-  // 需達成條件的稱號（皆為 1000 點）
-  {id:21,name:'白魔法師',cost:1000,icon:'🕊️',desc:'需成功施展白魔法100次',type:'title',req:{type:'magicUse',target:'白魔法',count:100}},
-  {id:4,name:'黑魔法師',cost:1000,icon:'🌑',desc:'需成功施展黑魔法100次',type:'title',req:{type:'magicUse',target:'黑魔法',count:100}},
-  {id:22,name:'盧恩學者',cost:1000,icon:'ᚱ',desc:'需成功繪製盧恩符文100次',type:'title',req:{type:'drawUse',target:'盧恩符文',count:100}},
-  {id:23,name:'符籙繪師',cost:1000,icon:'🧧',desc:'需成功繪製符籙100次',type:'title',req:{type:'drawUse',target:'符籙',count:100}},
-  {id:24,name:'神代術士',cost:1000,icon:'👁️‍🗨️',desc:'需成功施展古老的紗草紙魔法50次',type:'title',req:{type:'magicUse',target:'古老的紗草紙魔法',count:50}}
+  {id:8,name:'金內練術',cost:100,icon:'⚙️',desc:'修煉金屬元素之力',type:'magic'},{id:9,name:'木內練術',cost:100,icon:'🌿',desc:'感應自然生命之力',type:'magic'},{id:10,name:'水內練術',cost:100,icon:'💧',desc:'掌控流動變化之力',type:'magic'},{id:11,name:'雷內練術',cost:100,icon:'⚡',desc:'駕馭天雷霹靂之力',type:'magic'},{id:12,name:'白魔法',cost:100,icon:'🕊️',desc:'淨化治癒的光明術法',type:'magic'},{id:13,name:'黑魔法',cost:100,icon:'☽',desc:'汲取黑暗力量的禁斷術法',type:'magic'},{id:16,name:'古老的紗草紙魔法',cost:150,icon:'📜',desc:'來自埃及與希臘的古老秘術',type:'magic'},{id:17,name:'自然魔法',cost:100,icon:'🌳',desc:'連結大地與精靈的魔法',type:'magic'},
+  {id:18,name:'式神召喚',cost:1000,icon:'🦊',desc:'陰陽道役使的靈體',type:'summon'},{id:19,name:'天使召喚',cost:1000,icon:'👼',desc:'呼喚神聖界域的使者',type:'summon'},{id:20,name:'惡魔召喚',cost:1000,icon:'👿',desc:'與深淵存在締結契約',type:'summon'},
+  {id:14,name:'魔法觀認知',cost:200,icon:'📜',desc:'基礎魔法圓陣繪製技巧',type:'item'},{id:26,name:'魔藥學',cost:250,icon:'🧪',desc:'探索神秘藥劑的調配奧義',type:'item'},
+  {id:21,name:'白魔法師',cost:1000,icon:'🕊️',desc:'需成功施展白魔法100次',type:'title',req:{type:'magicUse',target:'白魔法',count:100}},{id:4,name:'黑魔法師',cost:1000,icon:'🌑',desc:'需成功施展黑魔法100次',type:'title',req:{type:'magicUse',target:'黑魔法',count:100}},{id:22,name:'盧恩學者',cost:1000,icon:'ᚱ',desc:'需成功繪製盧恩符文100次',type:'title',req:{type:'drawUse',target:'盧恩符文',count:100}},{id:23,name:'符籙繪師',cost:1000,icon:'🧧',desc:'需成功繪製符籙100次',type:'title',req:{type:'drawUse',target:'符籙',count:100}},{id:24,name:'神代術士',cost:1000,icon:'👁️‍🗨️',desc:'需成功施展古老的紗草紙魔法50次',type:'title',req:{type:'magicUse',target:'古老的紗草紙魔法',count:50}}
 ];
-
 function checkReq(req, data) {
-  if (!req) return { ok:true, msg:"" };
-  if (req.type === "magicUse") {
-    const count = data.uploads.filter(u => u.type === 'magic' && u.subType === req.target && u.isSuccess).length;
-    return { ok: count >= req.count, msg: `需成功施展「${req.target}」${req.count}次（目前進度：${count} 次）` };
-  }
-  if (req.type === "drawUse") {
-    const count = data.drawings.filter(d => d.subType === req.target).length;
-    return { ok: count >= req.count, msg: `需繪製「${req.target}」${req.count}次（目前進度：${count} 次）` };
-  }
-  return { ok:true, msg:"" };
+  if (!req) return {ok:true,msg:""};
+  if (req.type==="magicUse") { const count=data.uploads.filter(u=>u.type==='magic'&&u.subType===req.target&&u.isSuccess).length; return {ok:count>=req.count,msg:`需成功施展「${req.target}」${req.count}次（目前：${count}次）`}; }
+  if (req.type==="drawUse") { const count=data.drawings.filter(d=>d.subType===req.target).length; return {ok:count>=req.count,msg:`需繪製「${req.target}」${req.count}次（目前：${count}次）`}; }
+  return {ok:true,msg:""};
 }
-
-const DAILY_LIMITS = {magic:3, creature:2, place:1};
-const MAGIC_TYPES = ['白魔法','黑魔法','自然魔法','古老的紗草紙魔法','一般魔法'];
-
-// ── 全域狀態 ──
-let state = {
-  stage: localStorage.getItem('arcane_session') ? 'main' : 'login',
-  role: localStorage.getItem('arcane_session') || null,
-  data: null,
-  tab: 'upload',
-  notifTimer: null,
-  drawColor: '#a78bfa',
-  drawSize: 4,
-  drawMode: 'draw',
-  isDrawing: false
-};
-
-if (state.role) {
-  state.data = loadData(state.role);
-  if (!state.data.customName) state.stage = 'name';
-}
-
-// ── 工具 ──
+const DAILY_LIMITS = {magic:3,creature:2,place:1};
+const MAGIC_TYPES = ['白魔法','黑魔法','自然魔法','古老的紗草紙魔法','一般魔法','冥想','內煉','道法'];
+let state = {stage:localStorage.getItem('arcane_session')?'main':'login',role:localStorage.getItem('arcane_session')||null,data:null,tab:'upload',notifTimer:null,drawColor:'#a78bfa',drawSize:4,drawMode:'draw',isDrawing:false};
+if (state.role) { state.data=loadData(state.role); if(!state.data.customName) state.stage='name'; }
 function $(id){ return document.getElementById(id); }
-function q(sel){ return document.querySelector(sel); }
-function E(tag, attrs={}, ...children) {
-  const el = document.createElement(tag);
-  for (const [k,v] of Object.entries(attrs)) {
-    if (k === 'class') el.className = v;
-    else if (k.startsWith('on')) el.addEventListener(k.slice(2).toLowerCase(), v);
-    else if (k === 'style' && typeof v === 'object') Object.assign(el.style, v);
-    else if (k === 'html') el.innerHTML = v;
-    else el.setAttribute(k, v);
-  }
-  for (const c of children) {
-    if (c == null) continue;
-    el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
-  }
+function E(tag,attrs={},...children) {
+  const el=document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)){if(k==='class')el.className=v;else if(k.startsWith('on'))el.addEventListener(k.slice(2).toLowerCase(),v);else if(k==='style'&&typeof v==='object')Object.assign(el.style,v);else if(k==='html')el.innerHTML=v;else el.setAttribute(k,v);}
+  for(const c of children){if(c==null)continue;el.appendChild(typeof c==='string'?document.createTextNode(c):c);}
   return el;
 }
-
-function showNotif(msg) {
-  const el = $('notif');
-  el.textContent = msg;
-  el.style.display = 'block';
-  if (state.notifTimer) clearTimeout(state.notifTimer);
-  state.notifTimer = setTimeout(() => el.style.display='none', 2500);
-}
-
-function updateData(updater) {
-  const prev = state.data;
-  state.data = typeof updater === 'function' ? updater(prev) : Object.assign({}, prev, updater);
-  saveData(state.role, state.data);
-  render();
-}
-
-// ── 背景特效 ──
-function initBg() {
-  const bg = $('bg');
-  for (let i=0; i<60; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()<0.2?2:1}px;height:${Math.random()<0.2?2:1}px;background:${['#a78bfa','#22d3ee','#fbbf24'][i%3]};--d:${3+Math.random()*4}s;--delay:${Math.random()*4}s`;
-    bg.appendChild(s);
-  }
-  for (let i=0; i<15; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = 2+Math.random()*3;
-    p.style.cssText = `left:${Math.random()*100}%;bottom:0;width:${size}px;height:${size}px;--d:${6+Math.random()*8}s;--delay:${Math.random()*8}s`;
-    bg.appendChild(p);
-  }
-}
-
-// ── 渲染 ──
-function render() {
-  const app = $('app-content');
-  if (!app) return;
-  app.innerHTML = '';
-  
-  if (state.stage === 'login') { app.appendChild(renderLogin()); return; }
-  if (state.stage === 'name')  { app.appendChild(renderNameModal()); return; }
-  if (state.stage === 'main')  { app.appendChild(renderMain()); return; }
-}
-
-// ── 登入頁 ──
-function renderLogin() {
-  let u='', p='';
-  const wrap = E('div', {style:{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',padding:'20px',position:'relative'}});
-  
-  const r1 = E('div', {class:'ring', style:{width:'360px',height:'360px',top:'50%',left:'50%',marginLeft:'-180px',marginTop:'-180px'}});
-  wrap.appendChild(r1);
-  
-  const box = E('div', {class:'fade-in', style:{width:'100%',maxWidth:'380px',position:'relative',zIndex:10}});
-  box.innerHTML = `
-    <div style="text-align:center;margin-bottom:28px">
-      <div style="font-size:56px;margin-bottom:10px">🔮</div>
-      <h1 class="header-title" style="font-size:24px;font-weight:900;letter-spacing:2px">玄秘紀元</h1>
-      <p style="color:rgba(167,139,250,.6);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;margin-top:6px">ARCANE CHRONICLES</p>
-    </div>
-    <div style="background:rgba(8,8,20,.85);backdrop-filter:blur(20px);border:1px solid rgba(139,92,246,.3);border-radius:20px;padding:28px 24px">
-      <div style="margin-bottom:16px">
-        <label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;margin-bottom:6px">帳號</label>
-        <input id="l-user" type="text" placeholder="輸入帳號...">
-      </div>
-      <div style="margin-bottom:22px">
-        <label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;margin-bottom:6px">密碼</label>
-        <input id="l-pass" type="password" placeholder="輸入密碼...">
-      </div>
-      <button class="btn" id="login-btn">登入</button>
-      <p style="text-align:center;margin-top:12px;color:rgba(167,139,250,.35);font-size:10px;font-family:'Cinzel',serif">管理員/武者 或 @@/##</p>
-    </div>
-  `;
-  
-  wrap.appendChild(box);
-  
-  setTimeout(() => {
-    const btn = $('login-btn');
-    if (btn) btn.onclick = doLogin;
-    ['l-user','l-pass'].forEach(id => {
-      const el = $(id);
-      if (el) el.onkeydown = e => { if(e.key==='Enter') doLogin(); };
-    });
-  }, 0);
-  
-  return wrap;
-}
-
-function doLogin() {
-  const u = ($('l-user')||{}).value||'';
-  const p = ($('l-pass')||{}).value||'';
-  if (!u||!p) { showNotif('請輸入帳號和密碼'); return; }
-  let r = null;
-  if (u==='管理員'&&p==='武者') r='admin';
-  else if (u==='@@'&&p==='##') r='user';
-  else { showNotif('帳號或密碼錯誤'); return; }
-  
-  state.role = r;
-  localStorage.setItem('arcane_session', r);
-  state.data = loadData(r);
-  state.data.loginCount = (state.data.loginCount||0)+1;
-  saveData(r, state.data);
-  
-  if (!state.data.customName) {
-    state.stage = 'name';
-  } else {
-    state.stage = 'main';
-  }
-  render();
-}
-
-// ── 命名彈窗 ──
-function renderNameModal() {
-  const wrap = E('div', {style:{position:'fixed',inset:'0',display:'flex',alignItems:'center',justifyContent:'center',padding:'20px',background:'#080810',zIndex:9999}});
-  wrap.innerHTML = `
-    <div class="modal fade-in" style="max-width:340px;width:100%">
-      <div style="font-size:50px;margin-bottom:12px">🔮</div>
-      <h3 style="font-size:17px;color:#a78bfa;margin-bottom:8px">歡迎來到玄秘紀元</h3>
-      <p style="color:rgba(226,232,240,.6);font-size:12px;margin-bottom:16px;line-height:1.7">請為自己取一個術士名號<br>日後可在個人檔案中更改</p>
-      <input id="name-input" type="text" placeholder="輸入術士名號（最多12字）" maxlength="12" style="margin-bottom:14px">
-      <button class="btn" id="name-btn">確認名號，開始冒險</button>
-    </div>
-  `;
-  setTimeout(() => {
-    const btn = $('name-btn');
-    if (btn) btn.onclick = confirmName;
-    const inp = $('name-input');
-    if (inp) { inp.onkeydown = e => { if(e.key==='Enter') confirmName(); }; inp.focus(); }
-  }, 0);
-  return wrap;
-}
-
-function confirmName() {
-  const val = ($('name-input')||{}).value||'';
-  if (!val.trim()) { showNotif('請輸入術士名號'); return; }
-  updateData(d => ({...d, customName:val.trim(), isFirstLogin:false}));
-  state.stage = 'main';
-  showNotif('歡迎，' + val.trim() + '！');
-  render();
-}
-
-// ── 主框架 ──
-const TABS = [
-  {id:'upload',icon:'📸',label:'上傳'},
-  {id:'points',icon:'💎',label:'點數'},
-  {id:'shop',icon:'🛍️',label:'商店'},
-  {id:'records',icon:'🗺️',label:'紀錄'},
-  {id:'discuss',icon:'💬',label:'討論'},
-  {id:'draw',icon:'✨',label:'繪符'},
-  {id:'profile',icon:'👤',label:'檔案'},
-];
-
-function renderMain() {
-  const d = state.data;
-  const allItems = SHOP.concat(getAutoTitles(d));
-  const cur = d.currentTitle ? allItems.find(s=>s.id===d.currentTitle) : null;
-  const displayName = d.customName || (state.role==='admin'?'管理員':'見習術士');
-  
-  const wrap = E('div', {class:'fade-in', style:{display:'contents'}});
-  
-  // Header
-  const hdr = E('div', {class:'header'});
-  hdr.innerHTML = `
-    <div>
-      <div class="header-title">玄秘紀元</div>
-      <div class="header-sub">${cur ? cur.icon+' '+cur.name : (state.role==='admin'?'⚔️ 管理員':'✨ 見習術士')}</div>
-    </div>
-    <div class="pts-badge">
-      <span style="font-size:13px">💎</span>
-      <span class="pts-num">${d.points.toLocaleString()}</span>
-    </div>
-  `;
-  wrap.appendChild(hdr);
-  
-  // Content
-  const content = E('div', {class:'content', id:'tab-content'});
-  renderTab(content);
-  wrap.appendChild(content);
-  
-  // Tabbar
-  const bar = E('div', {class:'tabbar'});
-  TABS.forEach(t => {
-    const tab = E('div', {class:'tab'+(state.tab===t.id?' on':'')});
-    tab.innerHTML = `<span class="tab-icon">${t.icon}</span><span class="tab-label">${t.label}</span>`;
-    tab.onclick = () => { state.tab = t.id; renderTabContent(); };
-    bar.appendChild(tab);
-  });
-  wrap.appendChild(bar);
-  
-  return wrap;
-}
-
-function renderTabContent() {
-  const content = $('tab-content');
-  if (!content) return;
-  document.querySelectorAll('.tab').forEach((el,i) => {
-    el.className = 'tab' + (TABS[i].id === state.tab ? ' on' : '');
-  });
-  content.innerHTML = '';
-  renderTab(content);
-  content.scrollTop = 0;
-}
-
-function renderTab(container) {
-  switch(state.tab) {
-    case 'upload':  container.appendChild(renderUpload());  break;
-    case 'points':  container.appendChild(renderPoints());  break;
-    case 'shop':    container.appendChild(renderShop());    break;
-    case 'records': container.appendChild(renderRecords()); break;
-    case 'discuss': container.appendChild(renderDiscuss()); break;
-    case 'draw':    container.appendChild(renderDraw());    break;
-    case 'profile': container.appendChild(renderProfile()); break;
-  }
-}
-
-// ── 上傳 Tab ──
-const uploadState = {sel:null, magic:'白魔法', preview:null, note:'', location:'', uploading:false, result:null};
-
-function renderUpload() {
-  const DAILY = state.data.dailyUploads || {magic:0,creature:0,place:0};
-  const cats = [
-    {id:'magic',icon:'🧙',label:'魔法道法',desc:'施法・符陣',c:'#8b5cf6',r:'139,92,246',pts:10},
-    {id:'creature',icon:'🐉',label:'神秘生物',desc:'奇異生物・靈異',c:'#10b981',r:'16,185,129',pts:15},
-    {id:'place',icon:'🌙',label:'神秘地點',desc:'廟宇・秘境',c:'#3b82f6',r:'59,130,246',pts:20},
-  ];
-  
-  const wrap = E('div',{class:'fade-in'});
-  wrap.innerHTML = `<h2 class="section-title">探險打卡</h2><p class="section-sub">選擇類型，從相簿或相機上傳</p>`;
-  
-  if (uploadState.result) {
-    const r = uploadState.result;
-    wrap.innerHTML += `
-      <img src="${uploadState.preview}" class="preview-img">
-      <div style="padding:12px;background:rgba(139,92,246,.08);border-radius:10px;text-align:center;margin-bottom:10px">
-        <p style="font-family:'Cinzel',serif;color:#a78bfa;font-size:11px;margin-bottom:4px">靈界占卜結果</p>
-        <p style="color:rgba(226,232,240,.7);font-size:12px;margin-bottom:6px">${r.label} 之反饋</p>
-        <div style="display:flex;justify-content:center;gap:12px;font-size:11px;color:rgba(226,232,240,.5)">
-          <span>${r.moon.symbol} ${r.moon.name}</span>
-          <span>⏰ ${r.time.name}</span>
-          ${r.location ? `<span>📍 ${r.location}</span>` : ''}
-        </div>
-      </div>
-      <div style="margin-bottom:10px;padding:10px;border-radius:10px;text-align:center;background:${r.p1>=50?'rgba(52,211,153,.1)':'rgba(239,68,68,.1)'};border:1px solid ${r.p1>=50?'#34d399':'#ef4444'}">
-        <p style="font-size:14px;font-weight:700;color:${r.p1>=50?'#34d399':'#ef4444'}">${r.p1>=50?'✅ 靈界認可 · 次數已計入':'❌ 靈界未回應 · 次數未消耗'}</p>
-        ${r.p1<50?'<p style="color:rgba(226,232,240,.5);font-size:11px;margin-top:4px">換個時辰或等待更好的靈力環境</p>':''}
-      </div>
-      ${[1,2,3].map(i=>`
-        <div class="oracle-box">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-            <span style="font-family:'Cinzel',serif;font-size:11px;color:#a78bfa">可能性 ${i}</span>
-            <span style="color:#22d3ee;font-weight:700;font-size:12px">${r['p'+i]}%</span>
-          </div>
-          <p style="color:rgba(226,232,240,.7);font-size:11px;line-height:1.5">${OUTCOMES[r.type][i]}</p>
-          <div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:6px;overflow:hidden">
-            <div style="width:${r['p'+i]}%;height:100%;background:linear-gradient(to right,#8b5cf6,#22d3ee)"></div>
-          </div>
-        </div>
-      `).join('')}
-    `;
-    const back = E('button',{class:'btn btn-muted',style:{marginTop:'12px'}},'↺ 繼續上傳');
-    back.onclick = () => { uploadState.result=null; uploadState.preview=null; uploadState.note=''; uploadState.location=''; renderTabContent(); };
-    wrap.appendChild(back);
-    return wrap;
-  }
-  
-  const grid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px',marginBottom:'12px'}});
-  cats.forEach(cat => {
-    const used = DAILY[cat.id]||0;
-    const left = DAILY_LIMITS[cat.id]-used;
-    const card = E('div',{class:'cat-card'+(uploadState.sel===cat.id?' sel':'')});
-    card.style.borderColor = uploadState.sel===cat.id ? cat.c : '';
-    card.innerHTML = `
-      <div style="font-size:24px;margin-bottom:4px">${cat.icon}</div>
-      <div style="color:${uploadState.sel===cat.id?cat.c:'rgba(226,232,240,.75)'};font-family:'Cinzel',serif;font-size:11px;font-weight:600;margin-bottom:2px">${cat.label}</div>
-      <div style="color:rgba(226,232,240,.38);font-size:9px;margin-bottom:6px">${cat.desc}</div>
-      <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap">
-        <span style="background:rgba(${cat.r},.18);border-radius:100px;padding:2px 7px;color:${cat.c};font-size:9px">+${cat.pts}</span>
-        <span style="background:${left===0?'rgba(239,68,68,.18)':'rgba(52,211,153,.12)'};border-radius:100px;padding:2px 7px;color:${left===0?'#ef4444':'#34d399'};font-size:9px">${left===0?'今日已滿':'剩'+left+'次'}</span>
-      </div>
-    `;
-    card.onclick = () => { uploadState.sel=cat.id; renderTabContent(); };
-    grid.appendChild(card);
-  });
-  wrap.appendChild(grid);
-  
-  if (uploadState.sel==='magic') {
-    const magicBox = E('div',{style:{marginBottom:'12px'}});
-    magicBox.innerHTML = `<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">魔法分支</label>`;
-    const sel = E('select');
-    MAGIC_TYPES.forEach(t => {
-      const opt = E('option',{value:t},t);
-      if (t===uploadState.magic) opt.selected=true;
-      sel.appendChild(opt);
-    });
-    sel.onchange = e => uploadState.magic = e.target.value;
-    magicBox.appendChild(sel);
-    wrap.appendChild(magicBox);
-  }
-  
-  if (uploadState.sel==='place') {
-    const locBox = E('div',{style:{marginBottom:'12px'}});
-    locBox.innerHTML = `<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">📍 地點名稱（加入占卜計算）</label>`;
-    const inp = E('input',{type:'text',placeholder:'例：台北大龍峒、九份老街、廢棄醫院...',maxlength:'30'});
-    inp.value = uploadState.location;
-    inp.oninput = e => uploadState.location = e.target.value;
-    locBox.appendChild(inp);
-    wrap.appendChild(locBox);
-  }
-  
-  if (uploadState.preview) {
-    wrap.appendChild(E('img',{src:uploadState.preview,class:'preview-img'}));
-    const rb = E('button',{class:'btn btn-muted btn-sm',style:{marginBottom:'12px'}},'✕ 重新選擇照片');
-    rb.onclick = () => { uploadState.preview=null; renderTabContent(); };
-    wrap.appendChild(rb);
-  } else {
-    const photoGrid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'10px',marginBottom:'12px'}});
-    
-    const galleryInp = E('input',{type:'file',accept:'image/*',id:'gallery-inp'});
-    galleryInp.onchange = e => handlePhotoSelect(e);
-    const galleryZone = E('div',{class:'up-zone'});
-    galleryZone.innerHTML = `<div style="font-size:30px;margin-bottom:6px">🖼️</div><p style="color:rgba(167,139,250,.7);font-family:'Cinzel',serif;font-size:11px">從相簿選擇</p>`;
-    galleryZone.onclick = () => galleryInp.click();
-    galleryZone.appendChild(galleryInp);
-    photoGrid.appendChild(galleryZone);
-    
-    const cameraInp = E('input',{type:'file',accept:'image/*',capture:'environment',id:'camera-inp'});
-    cameraInp.onchange = e => handlePhotoSelect(e);
-    const cameraZone = E('div',{class:'up-zone'});
-    cameraZone.innerHTML = `<div style="font-size:30px;margin-bottom:6px">📷</div><p style="color:rgba(167,139,250,.7);font-family:'Cinzel',serif;font-size:11px">拍照上傳</p>`;
-    cameraZone.onclick = () => cameraInp.click();
-    cameraZone.appendChild(cameraInp);
-    photoGrid.appendChild(cameraZone);
-    
-    wrap.appendChild(photoGrid);
-  }
-  
-  if (uploadState.preview) {
-    const ta = E('textarea',{placeholder:'描述探險或儀式紀錄（選填）...',style:{minHeight:'60px',marginBottom:'12px'}});
-    ta.value = uploadState.note;
-    ta.oninput = e => uploadState.note = e.target.value;
-    wrap.appendChild(ta);
-  }
-  
-  const btn = E('button',{class:'btn'},(uploadState.uploading?'⏳ 靈界通靈中...':'🔮 提交上傳'));
-  btn.disabled = !uploadState.sel || !uploadState.preview || uploadState.uploading;
-  btn.onclick = doUpload;
-  wrap.appendChild(btn);
-  
-  return wrap;
-}
-
-function handlePhotoSelect(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  if (file.size > 10*1024*1024) { showNotif('圖片過大（限10MB）'); return; }
-  const reader = new FileReader();
-  reader.onload = ev => { uploadState.preview = ev.target.result; renderTabContent(); };
-  reader.readAsDataURL(file);
-  e.target.value = '';
-}
-
-function doUpload() {
-  if (!uploadState.sel || !uploadState.preview) return;
-  const DAILY = state.data.dailyUploads || {magic:0,creature:0,place:0};
-  const used = DAILY[uploadState.sel]||0;
-  if (used >= DAILY_LIMITS[uploadState.sel]) {
-    const nameMap={magic:'魔法道法',creature:'神秘生物',place:'神秘地點'};
-    showNotif(`今日「${nameMap[uploadState.sel]}」已達上限`);
-    return;
-  }
-  
-  uploadState.uploading = true;
-  renderTabContent();
-  
-  const labelMap = {magic:uploadState.magic, creature:'靈體探查', place:'靈地探尋'};
-  const qMap = {magic:'魔法是否成功',creature:'是否拍到生物',place:'是否探到靈地'+(uploadState.location?'+'+uploadState.location:'')};
-  const userName = state.data.customName || '術士';
-  
-  setTimeout(() => {
-    const {p1,p2,p3,moon,time} = divineCalc(userName, qMap[uploadState.sel], Date.now()+'');
-    const isSuccess = p1 >= 50;
-    
-    const pts = isSuccess ? (uploadState.sel==='place'?20:uploadState.sel==='creature'?15:10) : 0;
-    const sel = uploadState.sel;
-    
-    uploadState.result = {
-      type:sel, label:labelMap[sel], p1, p2, p3, moon, time,
-      location:uploadState.location, isSuccess
-    };
-    uploadState.uploading = false;
-    
-    const newUpload = {
-      id:Date.now(), type:sel,
-      subType:sel==='magic'?uploadState.magic:null,
-      label:labelMap[sel], location:uploadState.location||null,
-      preview:uploadState.preview, points:pts, note:uploadState.note,
-      verifiedSuccess:isSuccess,
-      isSuccess, time:new Date().toLocaleString('zh-TW'), timestamp:Date.now(),
-      result:{p1,p2,p3}
-    };
-    
-    updateData(d => ({
-      ...d,
-      uploads:[newUpload,...d.uploads],
-      points:d.points+pts,
-      dailyUploads:{...(d.dailyUploads||{magic:0,creature:0,place:0}),
-        [sel]:isSuccess?(d.dailyUploads?.[sel]||0)+1:(d.dailyUploads?.[sel]||0)},
-      lastUploadDate:new Date().toDateString()
-    }));
-    
-    showNotif(isSuccess ? '靈界認可！+' + pts + ' 點' : '占卜未通過，未獲得點數');
-  }, 1800);
-}
-
-// ── 點數 Tab ──
-function renderPoints() {
-  const d = state.data;
-  const level = Math.floor(d.points/250)+1;
-  const pct = ((d.points-(level-1)*250)/250)*100;
-  const today = new Date().toDateString();
-  const canCI = d.lastCheckIn !== today;
-  const successN = d.uploads.filter(u=>u.type==='place'&&u.verifiedSuccess).length;
-  
-  const magicN = d.uploads.filter(u=>u.type==='magic').length;
-  const creatureN = d.uploads.filter(u=>u.type==='creature').length;
-  const placeN = d.uploads.filter(u=>u.type==='place').length;
-  const weekPts = d.uploads.filter(u=>Date.now()-u.timestamp<7*86400000).reduce((s,u)=>s+u.points,0);
-  
-  const achs = [
-    {icon:'🌟',label:'首次上傳',done:d.uploads.length>=1,desc:'完成第一次打卡'},
-    {icon:'🔮',label:'魔法使者',done:magicN>=10,desc:`施法10次（${magicN}/10）`},
-    {icon:'🐉',label:'生物學者',done:creatureN>=5,desc:`拍攝5次（${creatureN}/5）`},
-    {icon:'🗺️',label:'地點探索',done:placeN>=3,desc:`探尋3個（${placeN}/3）`},
-    {icon:'✨',label:'繪符大師',done:d.drawings.length>=5,desc:`繪製5幅（${d.drawings.length}/5）`},
-    {icon:'💎',label:'點數收藏家',done:d.points>=1000,desc:`累積1000點（${d.points}/1000）`},
-  ];
-  
-  const missions=[{name:'尋靈者',need:10,icon:'👁️'},{name:'定靈師',need:50,icon:'🕯️'},{name:'靈界行者',need:100,icon:'🌀'}];
-  
-  const wrap = E('div',{class:'fade-in'});
-  
-  const hdr = E('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'18px'}});
-  hdr.innerHTML = `<h2 class="section-title">我的神秘點數</h2>`;
-  const ciBtn = E('button');
-  ciBtn.style.cssText = `background:${canCI?'linear-gradient(135deg,#7c3aed,#0891b2)':'rgba(139,92,246,.15)'};color:${canCI?'#fff':'rgba(226,232,240,.4)'};border:none;padding:6px 14px;border-radius:100px;font-size:11px;cursor:${canCI?'pointer':'default'};font-family:'Cinzel',serif`;
-  ciBtn.textContent = canCI?'每日打卡 +1':'今日已打卡';
-  if (canCI) ciBtn.onclick = () => {
-    updateData(d=>({...d,points:d.points+1,lastCheckIn:today}));
-    showNotif('每日打卡！+1 點');
-  };
-  hdr.appendChild(ciBtn);
-  wrap.appendChild(hdr);
-  
-  wrap.innerHTML += `
-    <div style="text-align:center;margin-bottom:20px;padding:24px 12px;position:relative;border-radius:18px;overflow:hidden">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(139,92,246,.14),transparent 70%)"></div>
-      <div style="position:relative;display:flex;flex-direction:column;align-items:center">
-        <div class="spin-ring" style="margin-bottom:14px"><div class="spin-ring-inner">💎</div></div>
-        <div class="grad-text" style="font-family:'Cinzel Decorative',serif;font-size:38px;font-weight:900;line-height:1;margin-bottom:4px">${d.points.toLocaleString()}</div>
-        <p style="color:rgba(167,139,250,.65);font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px">Lv.${level} 術士</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px">
-      <div class="card" style="text-align:center;padding:12px"><div style="font-size:18px;margin-bottom:4px">⚡</div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:15px;font-weight:700">Lv.${level}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">等級</div></div>
-      <div class="card" style="text-align:center;padding:12px"><div style="font-size:18px;margin-bottom:4px">📸</div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:15px;font-weight:700">${d.uploads.length}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">任務</div></div>
-      <div class="card" style="text-align:center;padding:12px"><div style="font-size:18px;margin-bottom:4px">📈</div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:15px;font-weight:700">+${weekPts}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">本週</div></div>
-    </div>
-    <div class="card" style="margin-bottom:16px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-        <span style="color:#a78bfa;font-size:12px;font-family:'Cinzel',serif">升至 Lv.${level+1}</span>
-        <span style="color:rgba(226,232,240,.4);font-size:11px">${d.points} / ${level*250}</span>
-      </div>
-      <div style="height:6px;background:rgba(139,92,246,.18);border-radius:3px;overflow:hidden">
-        <div style="width:${Math.min(pct,100)}%;height:100%;background:linear-gradient(to right,#7c3aed,#0891b2)"></div>
-      </div>
-    </div>
-  `;
-  
-  const achDiv = E('div');
-  achDiv.innerHTML = '<p class="sec-label">✦ 成就勳章</p>';
-  const achGrid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px',marginBottom:'20px'}});
-  achs.forEach(a => {
-    const card = E('div',{class:'card',style:{display:'flex',alignItems:'center',gap:'8px',padding:'12px',opacity:a.done?'1':'0.55'}});
-    card.innerHTML = `<span style="font-size:20px;filter:${a.done?'none':'grayscale(1)'}">${a.icon}</span><div><div style="font-family:'Cinzel',serif;color:${a.done?'#a78bfa':'rgba(226,232,240,.5)'};font-size:11px;margin-bottom:1px">${a.label}${a.done?' ✓':''}</div><div style="color:rgba(226,232,240,.35);font-size:9px">${a.desc}</div></div>`;
-    achGrid.appendChild(card);
-  });
-  achDiv.appendChild(achGrid);
-  wrap.appendChild(achDiv);
-  
-  const msnDiv = E('div');
-  msnDiv.innerHTML = '<p class="sec-label">✦ 探靈專屬稱號任務</p>';
-  missions.forEach(m => {
-    const prg = Math.min((successN/m.need)*100,100);
-    const done = successN>=m.need;
-    const card = E('div',{class:'card',style:{padding:'12px',marginBottom:'10px'}});
-    card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">${m.icon}</span><span style="font-size:13px;font-weight:700;color:${done?'#22d3ee':'#e2e8f0'}">${m.name}${done?' ✓':''}</span></div>
-        <span style="font-size:11px;color:rgba(226,232,240,.45)">${successN}/${m.need}</span>
-      </div>
-      <div style="height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:4px">
-        <div style="width:${prg}%;height:100%;background:${done?'linear-gradient(to right,#10b981,#34d399)':'linear-gradient(to right,#7c3aed,#0891b2)'}"></div>
-      </div>
-      <p style="font-size:10px;color:rgba(226,232,240,.3)">只有靈界驗證成功的探靈才計入進度（解鎖後在檔案中配戴）</p>
-    `;
-    msnDiv.appendChild(card);
-  });
-  wrap.appendChild(msnDiv);
-  
-  return wrap;
-}
-
-// ── 商店 Tab ──
-let shopFilter = 'all';
-const FILTERS = [{id:'all',label:'全部',icon:'✦'},{id:'magic',label:'魔法',icon:'✨'},{id:'summon',label:'召喚',icon:'🦊'},{id:'item',label:'道具',icon:'📜'},{id:'title',label:'稱號',icon:'👑'}];
-
-function renderShop() {
-  const wrap = E('div',{class:'fade-in'});
-  wrap.innerHTML = `<h2 class="section-title">神秘兌換商店</h2><p class="section-sub">消耗點數兌換，購買後聯繫管理員</p>`;
-  
-  const filterBar = E('div',{class:'filter-bar',style:{marginBottom:'14px'}});
-  FILTERS.forEach(f => {
-    const pill = E('span',{class:'fpill'});
-    pill.style.cssText = `border-color:${shopFilter===f.id?'rgba(167,139,250,.7)':'rgba(139,92,246,.2)'};background:${shopFilter===f.id?'rgba(139,92,246,.2)':'transparent'};color:${shopFilter===f.id?'#a78bfa':'rgba(226,232,240,.45)'}`;
-    pill.textContent = f.icon+' '+f.label;
-    pill.onclick = () => { shopFilter=f.id; renderTabContent(); };
-    filterBar.appendChild(pill);
-  });
-  wrap.appendChild(filterBar);
-  
-  const items = shopFilter==='all' ? SHOP : SHOP.filter(i=>i.type===shopFilter);
-  const grid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'10px'}});
-  
-  items.forEach(item => {
-    const owned = state.data.purchased.includes(item.id);
-    const isMagic = item.type==='magic';
-    const st = checkReq(item.req, state.data);
-    
-    let tagHtml = '';
-    if (owned && !isMagic) {
-      tagHtml = '<span class="tag" style="background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.3);color:#34d399">✓ 已解鎖</span>';
-    } else if (item.type === 'title' && !st.ok) {
-      tagHtml = '<span class="tag" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#ef4444;font-size:9px">🔒 條件未達</span>';
-    } else {
-      tagHtml = `<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">💎 ${item.cost}</span>`;
-    }
-
-    const card = E('div',{class:'shop-item'+(owned&&!isMagic?' owned':'')});
-    card.innerHTML = `
-      <div style="font-size:26px;margin-bottom:6px">${item.icon}</div>
-      <div style="color:#e2e8f0;font-size:11px;font-weight:600;margin-bottom:4px">${item.name}</div>
-      <div style="color:rgba(226,232,240,.4);font-size:9px;margin-bottom:6px;min-height:24px;line-height:1.4">${item.desc}</div>
-      ${tagHtml}
-    `;
-    card.onclick = () => showBuyModal(item);
-    grid.appendChild(card);
-  });
-  wrap.appendChild(grid);
-  return wrap;
-}
-
-function showBuyModal(item) {
-  const existing = $('buy-modal');
-  if (existing) existing.remove();
-  
-  const st = checkReq(item.req, state.data);
-  const canAfford = state.data.points >= item.cost;
-  
-  const reqHtml = item.req ? `
-    <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(139,92,246,.2)">
-      <p style="color:${st.ok?'#34d399':'#f59e0b'};font-size:11px;margin-bottom:${st.ok?0:4}px">${st.ok?'✅ 條件已達成':'⚠️ 條件未達成'}</p>
-      ${!st.ok ? `<p style="color:rgba(226,232,240,.5);font-size:10px">${st.msg}</p>` : ''}
-    </div>
-  ` : '';
-
-  const disableBtn = !canAfford || !st.ok;
-  const btnText = !st.ok ? '未達條件' : (!canAfford ? '點數不足' : '確認兌換');
-
-  const modal = E('div',{class:'modal-bg',id:'buy-modal'});
-  modal.innerHTML = `
-    <div class="modal">
-      <div style="font-size:50px;margin-bottom:10px">${item.icon}</div>
-      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px">${item.name}</h3>
-      <p style="color:rgba(226,232,240,.5);font-size:11px;margin-bottom:14px">${item.desc}</p>
-      <div style="background:rgba(139,92,246,.1);border-radius:12px;padding:14px;margin-bottom:14px;text-align:left">
-        ${reqHtml}
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <p style="color:rgba(226,232,240,.6);font-size:11px">所需點數</p>
-          <p style="color:#fbbf24;font-size:20px;font-weight:900">💎 ${item.cost}</p>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-          <p style="color:rgba(226,232,240,.6);font-size:11px">目前擁有</p>
-          <p style="color:${canAfford?'#34d399':'#ef4444'};font-size:14px;font-weight:700">💎 ${state.data.points}</p>
-        </div>
-        <div style="border-top:1px solid rgba(139,92,246,.2);padding-top:10px;text-align:center">
-          <p style="color:rgba(226,232,240,.5);font-size:11px;font-family:'Cinzel',serif;margin-bottom:4px">購買後聯繫管理員微信</p>
-          <p style="color:#fbbf24;font-family:'Cinzel',serif;font-size:15px;font-weight:700;letter-spacing:1px">db371928356</p>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-sm" id="buy-confirm" ${disableBtn?'disabled':''} style="flex:1">${btnText}</button>
-        <button class="btn btn-muted btn-sm" id="buy-cancel" style="flex:1">取消</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-  $('buy-cancel').onclick = () => modal.remove();
-  modal.onclick = e => { if(e.target===modal) modal.remove(); };
-  
-  if (!disableBtn) {
-    $('buy-confirm').onclick = () => {
-      updateData(d=>({...d,points:d.points-item.cost,purchased:[...d.purchased,item.id]}));
-      modal.remove();
-      showNotif('已解鎖「'+item.name+'」！');
-    };
-  }
-}
-
-// ── 紀錄 Tab ──
-function renderRecords() {
-  const recs = state.data.uploads;
-  const wrap = E('div',{class:'fade-in'});
-  wrap.innerHTML = `<h2 class="section-title" style="margin-bottom:14px">探險紀錄</h2>`;
-  
-  const stats = E('div',{class:'card',style:{background:'rgba(139,92,246,.04)',marginBottom:'14px',display:'flex',justifyContent:'space-around',textAlign:'center',padding:'14px'}});
-  const totalPts = recs.reduce((s,u)=>s+u.points,0);
-  const days = new Set(recs.map(u=>new Date(u.timestamp).toDateString())).size;
-  stats.innerHTML = `
-    <div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:20px;font-weight:700">${recs.length}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">總任務</div></div>
-    <div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:20px;font-weight:700">${totalPts}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">總點數</div></div>
-    <div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:20px;font-weight:700">${days}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">活躍天</div></div>
-  `;
-  wrap.appendChild(stats);
-  
-  if (recs.length===0) {
-    wrap.innerHTML += `<div style="text-align:center;color:rgba(226,232,240,.4);padding:40px 0"><div style="font-size:40px;margin-bottom:12px;opacity:.4">📭</div><p>尚無探險紀錄</p></div>`;
-    return wrap;
-  }
-  
-  recs.forEach(rec => {
-    const card = E('div',{class:'card',style:{display:'flex',gap:'12px',alignItems:'center',padding:'12px',cursor:'pointer',marginBottom:'10px'}});
-    card.innerHTML = `
-      <img src="${rec.preview}" style="width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0">
-      <div style="flex:1;min-width:0">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
-          <span class="tag" style="background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.3);color:#a78bfa">${rec.subType||rec.label}</span>
-          <div style="display:flex;align-items:center;gap:6px">
-            ${rec.isSuccess 
-              ? '<span style="color:#34d399;font-size:10px">✓ 通過</span><span style="color:#34d399;font-size:12px;font-weight:700">+' + rec.points + '</span>' 
-              : '<span style="color:#ef4444;font-size:10px">✗ 未通過</span><span style="color:rgba(226,232,240,.4);font-size:12px;font-weight:700">+0</span>'
-            }
-          </div>
-        </div>
-        <p style="color:rgba(226,232,240,.8);font-size:12px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${rec.note||'探索紀錄'}</p>
-        <p style="color:rgba(226,232,240,.32);font-size:10px">${rec.time}</p>
-      </div>
-    `;
-    card.onclick = () => showRecordModal(rec);
-    wrap.appendChild(card);
-  });
-  return wrap;
-}
-
-function showRecordModal(rec) {
-  const existing = $('rec-modal');
-  if (existing) existing.remove();
-  const modal = E('div',{class:'modal-bg',id:'rec-modal'});
-  modal.innerHTML = `
-    <div class="modal" style="text-align:left;max-width:380px">
-      <img src="${rec.preview}" style="width:100%;max-height:280px;object-fit:contain;border-radius:10px;margin-bottom:12px;background:rgba(0,0,0,.3)">
-      <div style="margin-bottom:12px">
-        <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
-          <span class="tag" style="background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.3);color:#a78bfa">${rec.subType||rec.label}</span>
-          ${rec.isSuccess
-            ?'<span class="tag" style="background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.3);color:#34d399">✓ 通過</span>'
-            :'<span class="tag" style="background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.3);color:#ef4444">✗ 未通過</span>'
-          }
-        </div>
-        <p style="font-size:14px;color:#e2e8f0;margin-bottom:6px">${rec.note||'探索紀錄'}</p>
-        <p style="color:rgba(226,232,240,.45);font-size:11px;margin-bottom:4px">${rec.time}</p>
-        <p style="color:${rec.isSuccess?'#34d399':'rgba(226,232,240,.4)'};font-size:13px;font-weight:700">獲得 +${rec.points} 點</p>
-      </div>
-      ${rec.result?`<div class="oracle-box" style="margin-bottom:12px"><p style="color:#a78bfa;font-family:'Cinzel',serif;font-size:11px;margin-bottom:4px">占卜結果</p><p style="color:rgba(226,232,240,.55);font-size:11px">成功 ${rec.result.p1}% · 中等 ${rec.result.p2}% · 困難 ${rec.result.p3}%</p></div>`:''}
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-muted btn-sm" id="rec-close" style="flex:1">關閉</button>
-        <button class="btn btn-danger btn-sm" id="rec-del" style="flex:1">刪除</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-  $('rec-close').onclick = () => modal.remove();
-  modal.onclick = e => { if(e.target===modal) modal.remove(); };
-  $('rec-del').onclick = () => {
-    if (!confirm('確定刪除？')) return;
-    updateData(d=>({...d,uploads:d.uploads.filter(u=>u.id!==rec.id)}));
-    modal.remove();
-    showNotif('已刪除');
-  };
-}
-
-// ── 討論 Tab ──
-let discussTag = '魔法道法';
-const DISC_TAGS = [{name:'魔法道法',c:'#8b5cf6'},{name:'神秘生物',c:'#10b981'},{name:'神秘地點',c:'#3b82f6'},{name:'攻略',c:'#f59e0b'}];
-
-function renderDiscuss() {
-  const wrap = E('div',{class:'fade-in'});
-  wrap.innerHTML = `<h2 class="section-title">公共討論區</h2><p class="section-sub">與同道術士們交流</p>`;
-  
-  const postCard = E('div',{class:'card',style:{marginBottom:'16px'}});
-  const displayName = state.data.customName||(state.role==='admin'?'管理員':'見習術士');
-  postCard.innerHTML = `
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-      <span style="font-size:20px">${state.role==='admin'?'⚔️':'🧙'}</span>
-      <span style="font-family:'Cinzel',serif;color:#a78bfa;font-size:12px">${displayName}</span>
-    </div>
-  `;
-  const ta = E('textarea',{placeholder:'分享你的探險心得或提問...',style:{marginBottom:'10px'}});
-  postCard.appendChild(ta);
-  
-  const tagBar = E('div',{style:{display:'flex',gap:'6px',marginBottom:'10px',flexWrap:'wrap'}});
-  DISC_TAGS.forEach(t => {
-    const pill = E('span',{class:'fpill'});
-    pill.style.cssText = `border-color:${discussTag===t.name?t.c:'rgba(139,92,246,.2)'};background:${discussTag===t.name?t.c+'20':'transparent'};color:${discussTag===t.name?t.c:'rgba(226,232,240,.5)'}`;
-    pill.textContent = t.name;
-    pill.onclick = () => { discussTag=t.name; renderTabContent(); };
-    tagBar.appendChild(pill);
-  });
-  postCard.appendChild(tagBar);
-  
-  const postBtn = E('button',{class:'btn btn-sm'},'✦ 發布貼文');
-  postBtn.onclick = () => {
-    if (!ta.value.trim()) { showNotif('請輸入內容'); return; }
-    const tc = DISC_TAGS.find(t=>t.name===discussTag).c;
-    const newPost = {id:Date.now(),user:displayName,avatar:state.role==='admin'?'⚔️':'🧙',title:ta.value,replies:0,likes:0,liked:false,time:'剛剛',tag:discussTag,tc,isMine:true};
-    updateData(d=>({...d,posts:[newPost,...d.posts]}));
-    ta.value = '';
-    showNotif('貼文已發布！');
-  };
-  postCard.appendChild(postBtn);
-  wrap.appendChild(postCard);
-  
-  const posts = state.data.posts;
-  if (posts.length===0) {
-    wrap.innerHTML += `<div style="text-align:center;color:rgba(226,232,240,.4);padding:28px 0;font-size:12px">尚無貼文，來發布第一篇吧！</div>`;
-    return wrap;
-  }
-  
-  posts.forEach(post => {
-    const card = E('div',{class:'disc-card',style:{marginBottom:'10px',cursor:'pointer'}});
-    card.innerHTML = `
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-        <span style="font-size:20px">${post.avatar}</span>
-        <div style="flex:1">
-          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-            <span style="font-family:'Cinzel',serif;color:#e2e8f0;font-size:11px">${post.user}</span>
-            <span class="tag" style="background:${post.tc}20;border:1px solid ${post.tc}40;color:${post.tc}">${post.tag}</span>
-            ${post.isMine?'<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">我的</span>':''}
-          </div>
-          <span style="color:rgba(226,232,240,.32);font-size:10px">${post.time}</span>
-        </div>
-      </div>
-      <p style="color:rgba(226,232,240,.83);font-size:12px;margin-bottom:10px;line-height:1.5">${post.title}</p>
-      <div style="display:flex;gap:14px">
-        <span style="color:rgba(226,232,240,.38);font-size:11px">💬 ${post.replies}</span>
-        <span style="color:${post.liked?'#ef4444':'rgba(226,232,240,.38)'};font-size:11px;cursor:pointer" data-like="${post.id}">❤️ ${post.likes}</span>
-      </div>
-    `;
-    card.querySelector('[data-like]').onclick = e => {
-      e.stopPropagation();
-      const id = parseInt(e.target.dataset.like);
-      updateData(d=>({...d,posts:d.posts.map(p=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p)}));
-    };
-    card.onclick = () => showDiscModal(post);
-    wrap.appendChild(card);
-  });
-  return wrap;
-}
-
-function showDiscModal(post) {
-  const existing = $('disc-modal');
-  if (existing) existing.remove();
-  const modal = E('div',{class:'modal-bg',id:'disc-modal'});
-  modal.innerHTML = `
-    <div class="modal" style="text-align:left">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-        <span style="font-size:28px">${post.avatar}</span>
-        <div><p style="font-family:'Cinzel',serif;color:#a78bfa;font-size:13px">${post.user}</p><p style="color:rgba(226,232,240,.32);font-size:10px">${post.time}</p></div>
-      </div>
-      <span class="tag" style="background:${post.tc}20;border:1px solid ${post.tc}40;color:${post.tc};margin-bottom:10px;display:inline-block">${post.tag}</span>
-      <p style="color:#e2e8f0;font-size:13px;line-height:1.7;margin-bottom:14px">${post.title}</p>
-      <div style="display:flex;gap:16px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(139,92,246,.15)">
-        <span style="color:rgba(226,232,240,.5);font-size:12px">💬 ${post.replies}</span>
-        <span style="color:${post.liked?'#ef4444':'rgba(226,232,240,.5)'};font-size:12px;cursor:pointer" id="modal-like">❤️ ${post.likes}</span>
-      </div>
-      <div style="display:flex;gap:8px">
-        ${post.isMine?'<button class="btn btn-danger btn-sm" id="disc-del" style="flex:1">刪除</button>':''}
-        <button class="btn btn-muted btn-sm" id="disc-close" style="flex:1">關閉</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-  $('disc-close').onclick = () => modal.remove();
-  modal.onclick = e => { if(e.target===modal) modal.remove(); };
-  $('modal-like').onclick = () => {
-    updateData(d=>({...d,posts:d.posts.map(p=>p.id===post.id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p)}));
-    modal.remove();
-  };
-  if (post.isMine) {
-    $('disc-del').onclick = () => {
-      if (!confirm('確定刪除？')) return;
-      updateData(d=>({...d,posts:d.posts.filter(p=>p.id!==post.id)}));
-      modal.remove();
-      showNotif('已刪除');
-    };
-  }
-}
-
-// ── 繪符 Tab ──
-function renderDraw() {
-  const d = state.data;
-  const COLORS = [{c:'#a78bfa',n:'紫'},{c:'#06b6d4',n:'青'},{c:'#f59e0b',n:'金'},{c:'#ef4444',n:'赤'},{c:'#10b981',n:'綠'},{c:'#ffffff',n:'白'}];
-  const DRAW_TYPES = ['一般魔法陣','盧恩符文','符籙'];
-  
-  const wrap = E('div',{class:'fade-in'});
-  wrap.innerHTML = `<h2 class="section-title">魔法符陣繪製</h2><p class="section-sub">每日限得5點，可無限繪製累積成就</p>`;
-  
-  const pct = Math.min((d.todayDrawPts/5)*100,100);
-  wrap.innerHTML += `
-    <div style="margin-bottom:12px;padding:10px;background:rgba(139,92,246,.1);border-radius:10px">
-      <p style="color:rgba(226,232,240,.6);font-family:'Cinzel',serif;font-size:11px;margin-bottom:4px">今日：<span style="color:#fbbf24;font-weight:700">${d.todayDrawPts} / 5 點</span></p>
-      <div style="height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden">
-        <div style="width:${pct}%;height:100%;background:linear-gradient(to right,#8b5cf6,#22d3ee)"></div>
-      </div>
-    </div>
-  `;
-  
-  const typeBox = E('div',{style:{marginBottom:'10px'}});
-  typeBox.innerHTML = `<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">繪符目標</label>`;
-  const drawTypeSel = E('select',{id:'draw-type-sel'});
-  DRAW_TYPES.forEach(t => {
-    const opt = E('option',{value:t},t);
-    drawTypeSel.appendChild(opt);
-  });
-  typeBox.appendChild(drawTypeSel);
-  wrap.appendChild(typeBox);
-  
-  const colorRow = E('div',{style:{display:'flex',gap:'6px',marginBottom:'8px',flexWrap:'wrap',alignItems:'center'}});
-  COLORS.forEach(c => {
-    const sw = E('div',{class:'swatch'+(state.drawColor===c.c?' active':'')});
-    sw.style.background = c.c;
-    sw.title = c.n;
-    sw.onclick = () => { state.drawColor=c.c; state.drawMode='draw'; document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active')); sw.classList.add('active'); };
-    colorRow.appendChild(sw);
-  });
-  const eraser = E('button');
-  eraser.style.cssText = `padding:6px 12px;height:32px;border-radius:6px;background:rgba(139,92,246,.2);color:${state.drawMode==='erase'?'#fff':'rgba(226,232,240,.7)'};border:${state.drawMode==='erase'?'2px solid #fff':'1px solid rgba(255,255,255,.15)'};cursor:pointer;font-size:12px`;
-  eraser.textContent = '橡皮擦';
-  eraser.onclick = () => { state.drawMode = state.drawMode==='erase'?'draw':'erase'; renderTabContent(); };
-  colorRow.appendChild(eraser);
-  wrap.appendChild(colorRow);
-  
-  const sizeRow = E('div',{style:{display:'flex',alignItems:'center',gap:'10px',marginBottom:'10px'}});
-  sizeRow.innerHTML = `<span style="color:rgba(226,232,240,.6);font-family:'Cinzel',serif;font-size:11px;white-space:nowrap">大小</span>`;
-  const sizeSlider = E('input',{type:'range',min:'1',max:'40',value:state.drawSize,style:{flex:'1'}});
-  const sizeLabel = E('span',{style:{color:'#a78bfa',font:'11px/1 Cinzel,serif',minWidth:'32px'}},state.drawSize+'px');
-  sizeSlider.oninput = () => { state.drawSize=parseInt(sizeSlider.value); sizeLabel.textContent=state.drawSize+'px'; };
-  sizeRow.appendChild(sizeSlider);
-  sizeRow.appendChild(sizeLabel);
-  wrap.appendChild(sizeRow);
-  
-  const canvas = E('canvas',{id:'draw-canvas',width:'800',height:'500'});
-  wrap.appendChild(canvas);
-  
-  const btnRow = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px',margin:'12px 0 14px'}});
-  const clearBtn = E('button',{class:'btn btn-muted btn-sm'},'🗑️ 清除');
-  const dlBtn = E('button',{class:'btn btn-muted btn-sm'},'💾 下載');
-  const submitBtn = E('button',{class:'btn btn-sm'},'📤 提交');
-  submitBtn.disabled = d.todayDrawPts >= 5;
-  if (d.todayDrawPts >= 5) submitBtn.textContent = '✓ 已滿';
-  clearBtn.onclick = () => { const ctx=canvas.getContext('2d'); ctx.fillStyle='#0d0d1a'; ctx.fillRect(0,0,800,500); showNotif('已清除'); };
-  dlBtn.onclick = () => { const a=document.createElement('a'); a.href=canvas.toDataURL(); a.download='魔法符陣.png'; a.click(); showNotif('已下載'); };
-  submitBtn.onclick = () => {
-    const pts = d.todayDrawPts < 5 ? 5 : 0;
-    const typeSel = $('draw-type-sel');
-    const subType = typeSel ? typeSel.value : '一般魔法陣';
-    const img = canvas.toDataURL();
-    updateData(prev=>({...prev,
-      drawings:[{id:Date.now(),image:img,subType,time:new Date().toLocaleDateString('zh-TW'),timestamp:Date.now()},...prev.drawings],
-      todayDrawPts:prev.todayDrawPts+pts, points:prev.points+pts,
-      lastDrawDate:new Date().toDateString()
-    }));
-    showNotif(pts>0?'繪符提交！+'+pts+' 點':'繪符紀錄已保存');
-    const ctx=canvas.getContext('2d'); ctx.fillStyle='#0d0d1a'; ctx.fillRect(0,0,800,500);
-  };
-  btnRow.appendChild(clearBtn); btnRow.appendChild(dlBtn); btnRow.appendChild(submitBtn);
-  wrap.appendChild(btnRow);
-  
-  if (d.drawings.length>0) {
-    const gallDiv = E('div');
-    gallDiv.innerHTML = `<p class="sec-label">✦ 作品集（${d.drawings.length}幅）</p>`;
-    const gallGrid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'6px'}});
-    d.drawings.slice(0,12).forEach(dw => {
-      const cell = E('div',{style:{position:'relative'}});
-      const img = E('img',{src:dw.image,style:{width:'100%',aspectRatio:'1.6',objectFit:'cover',borderRadius:'8px',border:'1px solid rgba(139,92,246,.2)',display:'block'}});
-      let pressTimer;
-      img.addEventListener('touchstart', () => {
-        pressTimer = setTimeout(() => {
-          if (confirm('確定刪除這幅作品？')) {
-            updateData(d => ({...d, drawings: d.drawings.filter(x => x.id !== dw.id)}));
-            showNotif('已刪除作品');
-          }
-        }, 600);
-      });
-      img.addEventListener('touchend', () => clearTimeout(pressTimer));
-      img.addEventListener('touchmove', () => clearTimeout(pressTimer));
-      cell.appendChild(img);
-      const hint = E('div',{style:{textAlign:'center',color:'rgba(226,232,240,.3)',fontSize:'9px',marginTop:'2px'}});
-      hint.textContent = '長按刪除';
-      cell.appendChild(hint);
-      gallGrid.appendChild(cell);
-    });
-    gallDiv.appendChild(gallGrid);
-    wrap.appendChild(gallDiv);
-  }
-  
-  setTimeout(() => {
-    const c = $('draw-canvas');
-    if (!c) return;
-    const ctx = c.getContext('2d');
-    ctx.fillStyle = '#0d0d1a';
-    ctx.fillRect(0,0,800,500);
-    
-    let drawing = false;
-    const getPos = e => {
-      const rect = c.getBoundingClientRect();
-      const scX = c.width/rect.width, scY = c.height/rect.height;
-      const clientX = e.clientX || e.touches?.[0]?.clientX;
-      const clientY = e.clientY || e.touches?.[0]?.clientY;
-      return {x:(clientX-rect.left)*scX, y:(clientY-rect.top)*scY};
-    };
-    const start = e => { e.preventDefault(); const {x,y}=getPos(e); ctx.beginPath(); ctx.moveTo(x,y); drawing=true; };
-    const move = e => { if(!drawing) return; e.preventDefault(); const {x,y}=getPos(e); ctx.lineWidth=state.drawSize; ctx.lineCap='round'; ctx.strokeStyle=state.drawMode==='erase'?'#0d0d1a':state.drawColor; ctx.lineTo(x,y); ctx.stroke(); };
-    const end = () => drawing=false;
-    c.addEventListener('mousedown',start); c.addEventListener('mousemove',move); c.addEventListener('mouseup',end); c.addEventListener('mouseleave',end);
-    c.addEventListener('touchstart',start,{passive:false}); c.addEventListener('touchmove',move,{passive:false}); c.addEventListener('touchend',end);
-  }, 50);
-  
-  return wrap;
-}
-
-// ── 個人檔案 Tab ──
-function getAutoTitles(data) {
-  const n = data.uploads.filter(u=>u.type==='place'&&u.verifiedSuccess).length;
-  const out = [];
-  if(n>=10) out.push({id:'auto_1',name:'尋靈者',icon:'👁️',desc:'已驗證探靈成功10次',type:'title'});
-  if(n>=50) out.push({id:'auto_2',name:'定靈師',icon:'🕯️',desc:'已驗證探靈成功50次',type:'title'});
-  if(n>=100) out.push({id:'auto_3',name:'靈界行者',icon:'🌀',desc:'已驗證探靈成功100次',type:'title'});
-  return out;
-}
-
-function renderProfile() {
-  const d = state.data;
-  const autoTitles = getAutoTitles(d);
-  const allItems = SHOP.concat(autoTitles);
-  const ownedTitles = SHOP.filter(i=>d.purchased.includes(i.id)&&i.type==='title').concat(autoTitles);
-  const cur = d.currentTitle ? allItems.find(s=>s.id===d.currentTitle) : null;
-  const level = Math.floor(d.points/250)+1;
-  const displayName = d.customName||(state.role==='admin'?'管理員':'見習術士');
-  const magicMap={};
-  d.purchased.forEach(id=>{ const it=SHOP.find(i=>i.id===id&&i.type==='magic'); if(it) magicMap[it.name]=(magicMap[it.name]||0)+1; });
-  const otherOwned = SHOP.filter(i=>d.purchased.includes(i.id)&&i.type!=='title'&&i.type!=='magic');
-  
-  const wrap = E('div',{class:'fade-in'});
-  wrap.innerHTML = `<h2 class="section-title" style="margin-bottom:18px">個人檔案</h2>`;
-  
-  wrap.innerHTML += `
-    <div class="card" style="background:rgba(139,92,246,.08);margin-bottom:12px;text-align:center;padding:20px">
-      <div style="font-size:44px;margin-bottom:10px">${state.role==='admin'?'⚔️':'🧙'}</div>
-      <h3 class="grad-text" style="font-family:'Cinzel Decorative',serif;font-size:19px;margin-bottom:4px">${displayName}</h3>
-      <p style="color:rgba(226,232,240,.6);font-family:'Cinzel',serif;font-size:12px;margin-bottom:16px">${cur?cur.icon+' '+cur.name:'見習魔法師'}</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-        <div><p style="color:#a78bfa;font-size:9px;font-family:'Cinzel',serif;margin-bottom:2px">等級</p><p style="font-size:15px;font-weight:700">Lv.${level}</p></div>
-        <div><p style="color:#a78bfa;font-size:9px;font-family:'Cinzel',serif;margin-bottom:2px">點數</p><p style="font-size:15px;font-weight:700">${d.points}</p></div>
-        <div><p style="color:#a78bfa;font-size:9px;font-family:'Cinzel',serif;margin-bottom:2px">稱號</p><p style="font-size:15px;font-weight:700">${ownedTitles.length}</p></div>
-      </div>
-    </div>
-  `;
-  
-  const nameCard = E('div',{class:'card',style:{marginBottom:'10px'}});
-  nameCard.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><p class="sec-label" style="margin-bottom:0">✦ 術士名號</p></div><p style="font-size:13px;color:#e2e8f0">${displayName}</p>`;
-  const nameBtn = E('button',{style:{background:'rgba(139,92,246,.2)',border:'1px solid rgba(139,92,246,.3)',color:'#a78bfa',padding:'4px 10px',borderRadius:'6px',fontSize:'10px',cursor:'pointer'}},'更改');
-  nameBtn.onclick = () => showNameChangeModal();
-  nameCard.querySelector('div').appendChild(nameBtn);
-  wrap.appendChild(nameCard);
-  
-  const titleCard = E('div',{class:'card',style:{marginBottom:'10px'}});
-  titleCard.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <p class="sec-label" style="margin-bottom:0">✦ 當前稱號</p>
-    </div>
-    ${cur?`<div style="display:flex;gap:10px;align-items:center;padding:10px;background:rgba(139,92,246,.08);border-radius:8px"><span style="font-size:22px">${cur.icon}</span><div><p style="color:#a78bfa;font-size:13px;font-weight:600">${cur.name}</p><p style="color:rgba(226,232,240,.4);font-size:10px">${cur.desc}</p></div></div>`:'<p style="font-size:12px;color:rgba(226,232,240,.4);padding:8px 0">未配戴稱號</p>'}
-  `;
-  const switchBtn = E('button',{style:{background:'rgba(139,92,246,.2)',border:'1px solid rgba(139,92,246,.3)',color:'#a78bfa',padding:'4px 10px',borderRadius:'6px',fontSize:'10px',cursor:'pointer'}},'切換');
-  switchBtn.onclick = () => showTitleModal(ownedTitles, d.currentTitle);
-  titleCard.querySelector('div').appendChild(switchBtn);
-  wrap.appendChild(titleCard);
-  
-  if (Object.keys(magicMap).length>0) {
-    const mc = E('div',{class:'card',style:{marginBottom:'10px'}});
-    mc.innerHTML = `<p class="sec-label">✦ 已學魔法</p><div style="display:flex;gap:6px;flex-wrap:wrap">${Object.entries(magicMap).map(([n,c])=>`<span class="tag" style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#a78bfa;padding:4px 10px">${n}${c>1?' ×'+c:''}</span>`).join('')}</div>`;
-    wrap.appendChild(mc);
-  }
-  
-  if (otherOwned.length>0) {
-    const oc = E('div',{class:'card',style:{marginBottom:'10px'}});
-    oc.innerHTML = `<p class="sec-label">✦ 已解鎖技能</p><div style="display:flex;gap:6px;flex-wrap:wrap">${otherOwned.map(i=>`<span class="tag" style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#a78bfa">${i.icon} ${i.name}</span>`).join('')}</div>`;
-    wrap.appendChild(oc);
-  }
-  
-  const ac = E('div',{class:'card',style:{marginBottom:'12px',fontSize:'12px'}});
-  ac.innerHTML = `
-    <p class="sec-label">✦ 帳號資訊</p>
-    ${[['帳號',state.role==='admin'?'管理員':'@@'],['身份',state.role==='admin'?'管理員':'一般用戶'],['加入日期',d.joinDate||'—'],['登入次數',d.loginCount],['上傳總數',d.uploads.length],['繪符總數',d.drawings.length]].map(([l,v])=>`<p style="color:rgba(226,232,240,.6);margin-bottom:6px;display:flex;justify-content:space-between"><span>${l}</span><span style="color:#e2e8f0">${v}</span></p>`).join('')}
-  `;
-  wrap.appendChild(ac);
-  
-  const logoutBtn = E('button',{class:'btn btn-muted',style:{marginBottom:'8px'}},'🚪 登出');
-  logoutBtn.onclick = () => {
-    localStorage.removeItem('arcane_session');
-    state.role=null; state.data=null; state.stage='login';
-    render();
-  };
-  const resetBtn = E('button',{class:'btn btn-danger'},'⚠️ 重置所有數據');
-  resetBtn.onclick = () => {
-    if (!confirm('確定重置？此操作無法復原！')) return;
-    updateData(Object.assign(defaultData(),{joinDate:new Date().toLocaleDateString('zh-TW'),lastDrawDate:new Date().toDateString()}));
-    showNotif('已重置');
-  };
-  wrap.appendChild(logoutBtn);
-  wrap.appendChild(resetBtn);
-  return wrap;
-}
-
-function showNameChangeModal() {
-  const existing = $('name-modal');
-  if(existing) existing.remove();
-  const modal = E('div',{class:'modal-bg',id:'name-modal'});
-  modal.innerHTML = `<div class="modal"><h3 style="font-size:15px;color:#a78bfa;margin-bottom:14px">更改術士名號</h3><input id="new-name-inp" type="text" placeholder="輸入新名號（最多12字）" maxlength="12" style="margin-bottom:14px"><div style="display:flex;gap:8px"><button class="btn btn-sm" id="name-ok" style="flex:1">確定</button><button class="btn btn-muted btn-sm" id="name-cancel" style="flex:1">取消</button></div></div>`;
-  document.body.appendChild(modal);
-  $('name-cancel').onclick = () => modal.remove();
-  modal.onclick = e => { if(e.target===modal) modal.remove(); };
-  $('name-ok').onclick = () => {
-    const val = $('new-name-inp').value.trim();
-    if (!val) { showNotif('請輸入名稱'); return; }
-    updateData(d=>({...d,customName:val}));
-    modal.remove();
-    showNotif('名稱已更改！');
-  };
-}
-
-function showTitleModal(titles, currentId) {
-  const existing = $('title-modal');
-  if(existing) existing.remove();
-  const modal = E('div',{class:'modal-bg',id:'title-modal'});
-  const list = titles.map(t=>`<div onclick="selectTitle(${typeof t.id==='number'?t.id:'"'+t.id+'"'})" style="padding:10px;background:${currentId===t.id?'rgba(139,92,246,.2)':'rgba(139,92,246,.06)'};border:1px solid ${currentId===t.id?'#a78bfa':'rgba(139,92,246,.2)'};border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">${t.icon}</span><div><p style="color:#a78bfa;font-size:12px;font-weight:600">${t.name}</p><p style="color:rgba(226,232,240,.4);font-size:10px">${t.desc}</p></div>${currentId===t.id?'<span style="color:#34d399;margin-left:auto;font-size:14px">✓</span>':''}</div>`).join('');
-  modal.innerHTML = `<div class="modal" style="text-align:left;max-height:80vh;overflow-y:auto"><h3 style="font-size:15px;text-align:center;margin-bottom:14px;color:#a78bfa">選擇配戴稱號</h3>${titles.length===0?'<p style="text-align:center;color:rgba(226,232,240,.4);font-size:12px;padding:20px 0">尚未擁有任何稱號</p>':list}<div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-muted btn-sm" onclick="clearTitle()" style="flex:1">卸下稱號</button><button class="btn btn-muted btn-sm" id="title-cancel" style="flex:1">取消</button></div></div>`;
-  document.body.appendChild(modal);
-  $('title-cancel').onclick = () => modal.remove();
-  modal.onclick = e => { if(e.target===modal) modal.remove(); };
-}
-
-window.selectTitle = function(id) {
-  updateData(d=>({...d,currentTitle:id}));
-  const m = $('title-modal');
-  if(m) m.remove();
-  showNotif('稱號已切換');
-};
-window.clearTitle = function() {
-  updateData(d=>({...d,currentTitle:null}));
-  const m = $('title-modal');
-  if(m) m.remove();
-  showNotif('已卸下稱號');
-};
-
-// ── 初始化 ──
-document.body.innerHTML = `
-  <div id="bg" style="position:fixed;inset:0;pointer-events:none;overflow:hidden"></div>
-  <div id="notif" class="notif" style="display:none"></div>
-  <div id="app-content" style="height:100vh;height:100dvh;display:flex;flex-direction:column;max-width:480px;margin:0 auto"></div>
-`;
-
+function showNotif(msg){const el=$('notif');el.textContent=msg;el.style.display='block';if(state.notifTimer)clearTimeout(state.notifTimer);state.notifTimer=setTimeout(()=>el.style.display='none',2500);}
+function updateData(updater){const prev=state.data;state.data=typeof updater==='function'?updater(prev):Object.assign({},prev,updater);saveData(state.role,state.data);render();}
+function initBg(){const bg=$('bg');for(let i=0;i<60;i++){const s=document.createElement('div');s.className='star';s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()<0.2?2:1}px;height:${Math.random()<0.2?2:1}px;background:${['#a78bfa','#22d3ee','#fbbf24'][i%3]};--d:${3+Math.random()*4}s;--delay:${Math.random()*4}s`;bg.appendChild(s);}for(let i=0;i<15;i++){const p=document.createElement('div');p.className='particle';const size=2+Math.random()*3;p.style.cssText=`left:${Math.random()*100}%;bottom:0;width:${size}px;height:${size}px;--d:${6+Math.random()*8}s;--delay:${Math.random()*8}s`;bg.appendChild(p);}}
+function render(){const app=$('app-content');if(!app)return;app.innerHTML='';if(state.stage==='login'){app.appendChild(renderLogin());return;}if(state.stage==='name'){app.appendChild(renderNameModal());return;}if(state.stage==='main'){app.appendChild(renderMain());return;}}
+function renderLogin(){const wrap=E('div',{style:{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',padding:'20px',position:'relative'}});const r1=E('div',{class:'ring',style:{width:'360px',height:'360px',top:'50%',left:'50%',marginLeft:'-180px',marginTop:'-180px'}});wrap.appendChild(r1);const box=E('div',{class:'fade-in',style:{width:'100%',maxWidth:'380px',position:'relative',zIndex:10}});box.innerHTML=`<div style="text-align:center;margin-bottom:28px"><div style="font-size:56px;margin-bottom:10px">🔮</div><h1 class="header-title" style="font-size:24px;font-weight:900;letter-spacing:2px">玄秘紀元</h1><p style="color:rgba(167,139,250,.6);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;margin-top:6px">ARCANE CHRONICLES</p></div><div style="background:rgba(8,8,20,.85);backdrop-filter:blur(20px);border:1px solid rgba(139,92,246,.3);border-radius:20px;padding:28px 24px"><div style="margin-bottom:16px"><label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;margin-bottom:6px">帳號</label><input id="l-user" type="text" placeholder="輸入帳號..."></div><div style="margin-bottom:22px"><label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;margin-bottom:6px">密碼</label><input id="l-pass" type="password" placeholder="輸入密碼..."></div><button class="btn" id="login-btn">登入</button><p style="text-align:center;margin-top:12px;color:rgba(167,139,250,.35);font-size:10px;font-family:'Cinzel',serif">管理員/武者 或 @@/##</p></div>`;wrap.appendChild(box);setTimeout(()=>{const btn=$('login-btn');if(btn)btn.onclick=doLogin;['l-user','l-pass'].forEach(id=>{const el=$(id);if(el)el.onkeydown=e=>{if(e.key==='Enter')doLogin();};});},0);return wrap;}
+function doLogin(){const u=($('l-user')||{}).value||'';const p=($('l-pass')||{}).value||'';if(!u||!p){showNotif('請輸入帳號和密碼');return;}let r=null;if(u==='管理員'&&p==='武者')r='admin';else if(u==='@@'&&p==='##')r='user';else{showNotif('帳號或密碼錯誤');return;}state.role=r;localStorage.setItem('arcane_session',r);state.data=loadData(r);state.data.loginCount=(state.data.loginCount||0)+1;saveData(r,state.data);if(!state.data.customName){state.stage='name';}else{state.stage='main';}render();}
+function renderNameModal(){const wrap=E('div',{style:{position:'fixed',inset:'0',display:'flex',alignItems:'center',justifyContent:'center',padding:'20px',background:'#080810',zIndex:9999}});wrap.innerHTML=`<div class="modal fade-in" style="max-width:340px;width:100%"><div style="font-size:50px;margin-bottom:12px">🔮</div><h3 style="font-size:17px;color:#a78bfa;margin-bottom:8px">歡迎來到玄秘紀元</h3><p style="color:rgba(226,232,240,.6);font-size:12px;margin-bottom:16px;line-height:1.7">請為自己取一個術士名號<br>日後可在個人檔案中更改</p><input id="name-input" type="text" placeholder="輸入術士名號（最多12字）" maxlength="12" style="margin-bottom:14px"><button class="btn" id="name-btn">確認名號，開始冒險</button></div>`;setTimeout(()=>{const btn=$('name-btn');if(btn)btn.onclick=confirmName;const inp=$('name-input');if(inp){inp.onkeydown=e=>{if(e.key==='Enter')confirmName();};inp.focus();}},0);return wrap;}
+function confirmName(){const val=($('name-input')||{}).value||'';if(!val.trim()){showNotif('請輸入術士名號');return;}updateData(d=>({...d,customName:val.trim(),isFirstLogin:false}));state.stage='main';showNotif('歡迎，'+val.trim()+'！');render();}
+const TABS=[{id:'upload',icon:'📸',label:'上傳'},{id:'points',icon:'💎',label:'點數'},{id:'shop',icon:'🛍️',label:'商店'},{id:'records',icon:'🗺️',label:'紀錄'},{id:'discuss',icon:'💬',label:'討論'},{id:'draw',icon:'✨',label:'繪符'},{id:'profile',icon:'👤',label:'檔案'}];
+function renderMain(){const d=state.data;const allItems=SHOP.concat(getAutoTitles(d));const cur=d.currentTitle?allItems.find(s=>s.id===d.currentTitle):null;const wrap=E('div',{class:'fade-in',style:{display:'contents'}});const hdr=E('div',{class:'header'});hdr.innerHTML=`<div><div class="header-title">玄秘紀元</div><div class="header-sub">${cur?cur.icon+' '+cur.name:(state.role==='admin'?'⚔️ 管理員':'✨ 見習術士')}</div></div><div class="pts-badge"><span style="font-size:13px">💎</span><span class="pts-num">${d.points.toLocaleString()}</span></div>`;wrap.appendChild(hdr);const content=E('div',{class:'content',id:'tab-content'});renderTab(content);wrap.appendChild(content);const bar=E('div',{class:'tabbar'});TABS.forEach(t=>{const tab=E('div',{class:'tab'+(state.tab===t.id?' on':'')});tab.innerHTML=`<span class="tab-icon">${t.icon}</span><span class="tab-label">${t.label}</span>`;tab.onclick=()=>{state.tab=t.id;renderTabContent();};bar.appendChild(tab);});wrap.appendChild(bar);return wrap;}
+function renderTabContent(){const content=$('tab-content');if(!content)return;document.querySelectorAll('.tab').forEach((el,i)=>{el.className='tab'+(TABS[i].id===state.tab?' on':'');});content.innerHTML='';renderTab(content);content.scrollTop=0;}
+function renderTab(container){switch(state.tab){case'upload':container.appendChild(renderUpload());break;case'points':container.appendChild(renderPoints());break;case'shop':container.appendChild(renderShop());break;case'records':container.appendChild(renderRecords());break;case'discuss':container.appendChild(renderDiscuss());break;case'draw':container.appendChild(renderDraw());break;case'profile':container.appendChild(renderProfile());break;}}
+const uploadState={sel:null,magic:'白魔法',preview:null,note:'',location:'',uploading:false,result:null};
+function renderUpload(){const DAILY=state.data.dailyUploads||{magic:0,creature:0,place:0};const cats=[{id:'magic',icon:'🧙',label:'魔法道法',desc:'施法・符陣',c:'#8b5cf6',r:'139,92,246',pts:10},{id:'creature',icon:'🐉',label:'神秘生物',desc:'奇異生物・靈異',c:'#10b981',r:'16,185,129',pts:15},{id:'place',icon:'🌙',label:'神秘地點',desc:'廟宇・秘境',c:'#3b82f6',r:'59,130,246',pts:20}];const wrap=E('div',{class:'fade-in'});wrap.innerHTML=`<h2 class="section-title">探險打卡</h2><p class="section-sub">選擇類型，從相簿或相機上傳</p>`;
+if(uploadState.result){const r=uploadState.result;wrap.innerHTML+=`<img src="${uploadState.preview}" class="preview-img"><div style="padding:12px;background:rgba(139,92,246,.08);border-radius:10px;text-align:center;margin-bottom:10px"><p style="font-family:'Cinzel',serif;color:#a78bfa;font-size:11px;margin-bottom:4px">靈界占卜結果</p><p style="color:rgba(226,232,240,.7);font-size:12px;margin-bottom:6px">${r.label} 之反饋</p><div style="display:flex;justify-content:center;gap:12px;font-size:11px;color:rgba(226,232,240,.5)"><span>${r.moon.symbol} ${r.moon.name}</span><span>⏰ ${r.time.name}</span>${r.location?`<span>📍 ${r.location}</span>`:''}</div></div><div style="margin-bottom:10px;padding:10px;border-radius:10px;text-align:center;background:${r.p1>=50?'rgba(52,211,153,.1)':'rgba(239,68,68,.1)'};border:1px solid ${r.p1>=50?'#34d399':'#ef4444'}"><p style="font-size:14px;font-weight:700;color:${r.p1>=50?'#34d399':'#ef4444'}">${r.p1>=50?'✅ 靈界認可 · 次數已計入':'❌ 靈界未回應 · 次數未消耗'}</p>${r.p1<50?'<p style="color:rgba(226,232,240,.5);font-size:11px;margin-top:4px">換個時辰或等待更好的靈力環境</p>':''}</div>${[1,2,3].map(i=>`<div class="oracle-box"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-family:'Cinzel',serif;font-size:11px;color:#a78bfa">可能性 ${i}</span><span style="color:#22d3ee;font-weight:700;font-size:12px">${r['p'+i]}%</span></div><p style="color:rgba(226,232,240,.7);font-size:11px;line-height:1.5">${OUTCOMES[r.type][i]}</p><div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:6px;overflow:hidden"><div style="width:${r['p'+i]}%;height:100%;background:linear-gradient(to right,#8b5cf6,#22d3ee)"></div></div></div>`).join('')}`;const back=E('button',{class:'btn btn-muted',style:{marginTop:'12px'}},'↺ 繼續上傳');back.onclick=()=>{uploadState.result=null;uploadState.preview=null;uploadState.note='';uploadState.location='';renderTabContent();};wrap.appendChild(back);return wrap;}
+const grid=E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px',marginBottom:'12px'}});cats.forEach(cat=>{const used=DAILY[cat.id]||0;const left=DAILY_LIMITS[cat.id]-used;const card=E('div',{class:'cat-card'+(uploadState.sel===cat.id?' sel':'')});card.style.borderColor=uploadState.sel===cat.id?cat.c:'';card.innerHTML=`<div style="font-size:24px;margin-bottom:4px">${cat.icon}</div><div style="color:${uploadState.sel===cat.id?cat.c:'rgba(226,232,240,.75)'};font-family:'Cinzel',serif;font-size:11px;font-weight:600;margin-bottom:2px">${cat.label}</div><div style="color:rgba(226,232,240,.38);font-size:9px;margin-bottom:6px">${cat.desc}</div><div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap"><span style="background:rgba(${cat.r},.18);border-radius:100px;padding:2px 7px;color:${cat.c};font-size:9px">+${cat.pts}</span><span style="background:${left===0?'rgba(239,68,68,.18)':'rgba(52,211,153,.12)'};border-radius:100px;padding:2px 7px;color:${left===0?'#ef4444':'#34d399'};font-size:9px">${left===0?'今日已滿':'剩'+left+'次'}</span></div>`;card.onclick=()=>{uploadState.sel=cat.id;renderTabContent();};grid.appendChild(card);});wrap.appendChild(grid);
+if(uploadState.sel==='magic'){const magicBox=E('div',{style:{marginBottom:'12px'}});magicBox.innerHTML=`<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">魔法分支</label>`;const sel=E('select');MAGIC_TYPES.forEach(t=>{const opt=E('option',{value:t},t);if(t===uploadState.magic)opt.selected=true;sel.appendChild(opt);});sel.onchange=e=>uploadState.magic=e.target.value;magicBox.appendChild(sel);wrap.appendChild(magicBox);}
+if(uploadState.sel==='place'){const locBox=E('div',{style:{marginBottom:'12px'}});locBox.innerHTML=`<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">📍 地點名稱（加入占卜計算）</label>`;const inp=E('input',{type:'text',placeholder:'例：台北大龍峒、九份老街、廢棄醫院...',maxlength:'30'});inp.value=uploadState.location;inp.oninput=e=>uploadState.location=e.target.value;locBox.appendChild(inp);wrap.appendChild(locBox);}
+if(uploadState.preview){wrap.appendChild(E('img',{src:uploadState.preview,class:'preview-img'}));const rb=E('button',{class:'btn btn-muted btn-sm',style:{marginBottom:'12px'}},'✕ 重新選擇照片');rb.onclick=()=>{uploadState.preview=null;renderTabContent();};wrap.appendChild(rb);}else{const photoGrid=E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'10px',marginBottom:'12px'}});const galleryInp=E('input',{type:'file',accept:'image/*',id:'gallery-inp'});galleryInp.onchange=e=>handlePhotoSelect(e);const galleryZone=E('div',{class:'up-zone'});galleryZone.innerHTML=`<div style="font-size:30px;margin-bottom:6px">🖼️</div><p style="color:rgba(167,139,250,.7);font-family:'Cinzel',serif;font-size:11px">從相簿選擇</p>`;galleryZone.onclick=()=>galleryInp.click();galleryZone.appendChild(galleryInp);photoGrid.appendChild(galleryZone);const cameraInp=E('input',{type:'file',accept:'image/*',capture:'environment',id:'camera-inp'});cameraInp.onchange=e=>handlePhotoSelect(e);const cameraZone=E('div',{class:'up-zone'});cameraZone.innerHTML=`<div style="font-size:30px;margin-bottom:6px">📷</div><p style="color:rgba(167,139,250,.7);font-family:'Cinzel',serif;font-size:11px">拍照上傳</p>`;cameraZone.onclick=()=>cameraInp.click();cameraZone.appendChild(cameraInp);photoGrid.appendChild(cameraZone);wrap.appendChild(photoGrid);}
+if(uploadState.preview){const ta=E('textarea',{placeholder:'描述探險或儀式紀錄（選填）...',style:{minHeight:'60px',marginBottom:'12px'}});ta.value=uploadState.note;ta.oninput=e=>uploadState.note=e.target.value;wrap.appendChild(ta);}
+const btn=E('button',{class:'btn'},(uploadState.uploading?'⏳ 靈界通靈中...':'🔮 提交上傳'));btn.disabled=!uploadState.sel||!uploadState.preview||uploadState.uploading;btn.onclick=doUpload;wrap.appendChild(btn);return wrap;}
+function handlePhotoSelect(e){const file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024){showNotif('圖片過大（限10MB）');return;}const reader=new FileReader();reader.onload=ev=>{uploadState.preview=ev.target.result;renderTabContent();};reader.readAsDataURL(file);e.target.value='';}
+function doUpload(){if(!uploadState.sel||!uploadState.preview)return;const DAILY=state.data.dailyUploads||{magic:0,creature:0,place:0};const used=DAILY[uploadState.sel]||0;if(used>=DAILY_LIMITS[uploadState.sel]){const nameMap={magic:'魔法道法',creature:'神秘生物',place:'神秘地點'};showNotif(`今日「${nameMap[uploadState.sel]}」已達上限`);return;}uploadState.uploading=true;renderTabContent();const labelMap={magic:uploadState.magic,creature:'靈體探查',place:'靈地探尋'};const qMap={magic:'魔法是否成功',creature:'是否拍到生物',place:'是否探到靈地'+(uploadState.location?'+'+uploadState.location:'')};const userName=state.data.customName||'術士';setTimeout(()=>{const{p1,p2,p3,moon,time}=divineCalc(userName,qMap[uploadState.sel],Date.now()+'');const isSuccess=p1>=50;const pts=isSuccess?(uploadState.sel==='place'?20:uploadState.sel==='creature'?15:10):0;const sel=uploadState.sel;uploadState.result={type:sel,label:labelMap[sel],p1,p2,p3,moon,time,location:uploadState.location,isSuccess};uploadState.uploading=false;const newUpload={id:Date.now(),type:sel,subType:sel==='magic'?uploadState.magic:null,label:labelMap[sel],location:uploadState.location||null,preview:uploadState.preview,points:pts,note:uploadState.note,verifiedSuccess:isSuccess,isSuccess,time:new Date().toLocaleString('zh-TW'),timestamp:Date.now(),result:{p1,p2,p3}};updateData(d=>({...d,uploads:[newUpload,...d.uploads],points:d.points+pts,dailyUploads:{...(d.dailyUploads||{magic:0,creature:0,place:0}),[sel]:isSuccess?(d.dailyUploads?.[sel]||0)+1:(d.dailyUploads?.[sel]||0)},lastUploadDate:new Date().toDateString()}));showNotif(isSuccess?'靈界認可！+'+pts+' 點':'占卜未通過，未獲得點數');},1800);}
+function renderPoints(){const d=state.data;const level=Math.floor(d.points/250)+1;const pct=((d.points-(level-1)*250)/250)*100;const today=new Date().toDateString();const canCI=d.lastCheckIn!==today;const successN=d.uploads.filter(u=>u.type==='place'&&u.verifiedSuccess).length;const magicN=d.uploads.filter(u=>u.type==='magic').length;const creatureN=d.uploads.filter(u=>u.type==='creature').length;const placeN=d.uploads.filter(u=>u.type==='place').length;const weekPts=d.uploads.filter(u=>Date.now()-u.timestamp<7*86400000).reduce((s,u)=>s+u.points,0);const achs=[{icon:'🌟',label:'首次上傳',done:d.uploads.length>=1,desc:'完成第一次打卡'},{icon:'🔮',label:'魔法使者',done:magicN>=10,desc:`施法10次（${magicN}/10）`},{icon:'🐉',label:'生物學者',done:creatureN>=5,desc:`拍攝5次（${creatureN}/5）`},{icon:'🗺️',label:'地點探索',done:placeN>=3,desc:`探尋3個（${placeN}/3）`},{icon:'✨',label:'繪符大師',done:d.drawings.length>=5,desc:`繪製5幅（${d.drawings.length}/5）`},{icon:'💎',label:'點數收藏家',done:d.points>=1000,desc:`累積1000點（${d.points}/1000）`}];const missions=[{name:'尋靈者',need:10,icon:'👁️'},{name:'定靈師',need:50,icon:'🕯️'},{name:'靈界行者',need:100,icon:'🌀'}];const wrap=E('div',{class:'fade-in'});const hdr=E('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'18px'}});hdr.innerHTML=`<h2 class="section-title">我的神秘點數</h2>`;const ciBtn=E('button');ciBtn.style.cssText=`background:${canCI?'linear-gradient(135deg,#7c3aed,#0891b2)':'rgba(139,92,246,.15)'};color:${canCI?'#fff':'rgba(226,232,240,.4)'};border:none;padding:6px 14px;border-radius:100px;font-size:11px;cursor:${canCI?'pointer':'default'};font-family:'Cinzel',serif`;ciBtn.textContent=canCI?'每日打卡 +1':'今日已打卡';if(canCI)ciBtn.onclick=()=>{updateData(d=>({...d,points:d.points+1,lastCheckIn:today}));showNotif('每日打卡！+1 點');};hdr.appendChild(ciBtn);wrap.appendChild(hdr);wrap.innerHTML+=`<div style="text-align:center;margin-bottom:20px;padding:24px 12px;position:relative;border-radius:18px;overflow:hidden"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(139,92,246,.14),transparent 70%)"></div><div style="position:relative;display:flex;flex-direction:column;align-items:center"><div class="spin-ring" style="margin-bottom:14px"><div class="spin-ring-inner">💎</div></div><div class="grad-text" style="font-family:'Cinzel Decorative',serif;font-size:38px;font-weight:900;line-height:1;margin-bottom:4px">${d.points.toLocaleString()}</div><p style="color:rgba(167,139,250,.65);font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px">Lv.${level} 術士</p></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px"><div class="card" style="text-align:center;padding:12px"><div style="font-size:18px;margin-bottom:4px">⚡</div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:15px;font-weight:700">Lv.${level}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">等級</div></div><div class="card" style="text-align:center;padding:12px"><div style="font-size:18px;margin-bottom:4px">📸</div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:15px;font-weight:700">${d.uploads.length}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">任務</div></div><div class="card" style="text-align:center;padding:12px"><div style="font-size:18px;margin-bottom:4px">📈</div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:15px;font-weight:700">+${weekPts}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">本週</div></div></div><div class="card" style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#a78bfa;font-size:12px;font-family:'Cinzel',serif">升至 Lv.${level+1}</span><span style="color:rgba(226,232,240,.4);font-size:11px">${d.points} / ${level*250}</span></div><div style="height:6px;background:rgba(139,92,246,.18);border-radius:3px;overflow:hidden"><div style="width:${Math.min(pct,100)}%;height:100%;background:linear-gradient(to right,#7c3aed,#0891b2)"></div></div></div>`;const achDiv=E('div');achDiv.innerHTML='<p class="sec-label">✦ 成就勳章</p>';const achGrid=E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px',marginBottom:'20px'}});achs.forEach(a=>{const card=E('div',{class:'card',style:{display:'flex',alignItems:'center',gap:'8px',padding:'12px',opacity:a.done?'1':'0.55'}});card.innerHTML=`<span style="font-size:20px;filter:${a.done?'none':'grayscale(1)'}">${a.icon}</span><div><div style="font-family:'Cinzel',serif;color:${a.done?'#a78bfa':'rgba(226,232,240,.5)'};font-size:11px;margin-bottom:1px">${a.label}${a.done?' ✓':''}</div><div style="color:rgba(226,232,240,.35);font-size:9px">${a.desc}</div></div>`;achGrid.appendChild(card);});achDiv.appendChild(achGrid);wrap.appendChild(achDiv);const msnDiv=E('div');msnDiv.innerHTML='<p class="sec-label">✦ 探靈專屬稱號任務</p>';missions.forEach(m=>{const prg=Math.min((successN/m.need)*100,100);const done=successN>=m.need;const card=E('div',{class:'card',style:{padding:'12px',marginBottom:'10px'}});card.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">${m.icon}</span><span style="font-size:13px;font-weight:700;color:${done?'#22d3ee':'#e2e8f0'}">${m.name}${done?' ✓':''}</span></div><span style="font-size:11px;color:rgba(226,232,240,.45)">${successN}/${m.need}</span></div><div style="height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:4px"><div style="width:${prg}%;height:100%;background:${done?'linear-gradient(to right,#10b981,#34d399)':'linear-gradient(to right,#7c3aed,#0891b2)'}"></div></div><p style="font-size:10px;color:rgba(226,232,240,.3)">只有靈界驗證成功的探靈才計入進度（解鎖後在檔案中配戴）</p>`;msnDiv.appendChild(card);});wrap.appendChild(msnDiv);return wrap;}
+let shopFilter='all';const FILTERS=[{id:'all',label:'全部',icon:'✦'},{id:'magic',label:'魔法',icon:'✨'},{id:'summon',label:'召喚',icon:'🦊'},{id:'item',label:'道具',icon:'📜'},{id:'title',label:'稱號',icon:'👑'}];
+function renderShop(){const wrap=E('div',{class:'fade-in'});wrap.innerHTML=`<h2 class="section-title">神秘兌換商店</h2><p class="section-sub">消耗點數兌換，購買後聯繫管理員</p>`;const filterBar=E('div',{class:'filter-bar',style:{marginBottom:'14px'}});FILTERS.forEach(f=>{const pill=E('span',{class:'fpill'});pill.style.cssText=`border-color:${shopFilter===f.id?'rgba(167,139,250,.7)':'rgba(139,92,246,.2)'};background:${shopFilter===f.id?'rgba(139,92,246,.2)':'transparent'};color:${shopFilter===f.id?'#a78bfa':'rgba(226,232,240,.45)'}`;pill.textContent=f.icon+' '+f.label;pill.onclick=()=>{shopFilter=f.id;renderTabContent();};filterBar.appendChild(pill);});wrap.appendChild(filterBar);const items=shopFilter==='all'?SHOP:SHOP.filter(i=>i.type===shopFilter);const grid=E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'10px'}});items.forEach(item=>{const owned=state.data.purchased.includes(item.id);const isMagic=item.type==='magic';const st=checkReq(item.req,state.data);let tagHtml='';if(owned&&!isMagic){tagHtml='<span class="tag" style="background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.3);color:#34d399">✓ 已解鎖</span>';}else if(item.type==='title'&&!st.ok){tagHtml='<span class="tag" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#ef4444;font-size:9px">🔒 條件未達</span>';}else{tagHtml=`<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">💎 ${item.cost}</span>`;}const card=E('div',{class:'shop-item'+(owned&&!isMagic?' owned':'')});card.innerHTML=`<div style="font-size:26px;margin-bottom:6px">${item.icon}</div><div style="color:#e2e8f0;font-size:11px;font-weight:600;margin-bottom:4px">${item.name}</div><div style="color:rgba(226,232,240,.4);font-size:9px;margin-bottom:6px;min-height:24px;line-height:1.4">${item.desc}</div>${tagHtml}`;card.onclick=()=>showBuyModal(item);grid.appendChild(card);});wrap.appendChild(grid);return wrap;}
+function showBuyModal(item){const existing=$('buy-modal');if(existing)existing.remove();const st=checkReq(item.req,state.data);const canAfford=state.data.points>=item.cost;const reqHtml=item.req?`<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(139,92,246,.2)"><p style="color:${st.ok?'#34d399':'#f59e0b'};font-size:11px;margin-bottom:${st.ok?0:4}px">${st.ok?'✅ 條件已達成':'⚠️ 條件未達成'}</p>${!st.ok?`<p style="color:rgba(226,232,240,.5);font-size:10px">${st.msg}</p>`:''}</div>`:'';const disableBtn=!canAfford||!st.ok;const btnText=!st.ok?'未達條件':(!canAfford?'點數不足':'確認兌換');const modal=E('div',{class:'modal-bg',id:'buy-modal'});modal.innerHTML=`<div class="modal"><div style="font-size:50px;margin-bottom:10px">${item.icon}</div><h3 style="font-size:17px;font-weight:700;margin-bottom:4px">${item.name}</h3><p style="color:rgba(226,232,240,.5);font-size:11px;margin-bottom:14px">${item.desc}</p><div style="background:rgba(139,92,246,.1);border-radius:12px;padding:14px;margin-bottom:14px;text-align:left">${reqHtml}<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><p style="color:rgba(226,232,240,.6);font-size:11px">所需點數</p><p style="color:#fbbf24;font-size:20px;font-weight:900">💎 ${item.cost}</p></div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><p style="color:rgba(226,232,240,.6);font-size:11px">目前擁有</p><p style="color:${canAfford?'#34d399':'#ef4444'};font-size:14px;font-weight:700">💎 ${state.data.points}</p></div><div style="border-top:1px solid rgba(139,92,246,.2);padding-top:10px;text-align:center"><p style="color:rgba(226,232,240,.5);font-size:11px;font-family:'Cinzel',serif;margin-bottom:4px">購買後聯繫管理員微信</p><p style="color:#fbbf24;font-family:'Cinzel',serif;font-size:15px;font-weight:700;letter-spacing:1px">db371928356</p></div></div><div style="display:flex;gap:8px"><button class="btn btn-sm" id="buy-confirm" ${disableBtn?'disabled':''} style="flex:1">${btnText}</button><button class="btn btn-muted btn-sm" id="buy-cancel" style="flex:1">取消</button></div></div>`;document.body.appendChild(modal);$('buy-cancel').onclick=()=>modal.remove();modal.onclick=e=>{if(e.target===modal)modal.remove();};if(!disableBtn){$('buy-confirm').onclick=()=>{updateData(d=>({...d,points:d.points-item.cost,purchased:[...d.purchased,item.id]}));modal.remove();showNotif('已解鎖「'+item.name+'」！');};}}
+function renderRecords(){const recs=state.data.uploads;const wrap=E('div',{class:'fade-in'});wrap.innerHTML=`<h2 class="section-title" style="margin-bottom:14px">探險紀錄</h2>`;const stats=E('div',{class:'card',style:{background:'rgba(139,92,246,.04)',marginBottom:'14px',display:'flex',justifyContent:'space-around',textAlign:'center',padding:'14px'}});const totalPts=recs.reduce((s,u)=>s+u.points,0);const days=new Set(recs.map(u=>new Date(u.timestamp).toDateString())).size;stats.innerHTML=`<div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:20px;font-weight:700">${recs.length}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">總任務</div></div><div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:20px;font-weight:700">${totalPts}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">總點數</div></div><div><div style="font-family:'Cinzel',serif;color:#a78bfa;font-size:20px;font-weight:700">${days}</div><div style="color:rgba(226,232,240,.38);font-size:10px;margin-top:2px">活躍天</div></div>`;wrap.appendChild(stats);if(recs.length===0){wrap.innerHTML+=`<div style="text-align:center;color:rgba(226,232,240,.4);padding:40px 0"><div style="font-size:40px;margin-bottom:12px;opacity:.4">📭</div><p>尚無探險紀錄</p></div>`;return wrap;}recs.forEach(rec=>{const card=E('div',{class:'card',style:{display:'flex',gap:'12px',alignItems:'center',padding:'12px',cursor:'pointer',marginBottom:'10px'}});card.innerHTML=`<img src="${rec.preview}" style="width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0"><div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span class="tag" style="background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.3);color:#a78bfa">${rec.subType||rec.label}</span><div style="display:flex;align-items:center;gap:6px">${rec.isSuccess?'<span style="color:#34d399;font-size:10px">✓ 通過</span><span style="color:#34d399;font-size:12px;font-weight:700">+'+rec.points+'</span>':'<span style="color:#ef4444;font-size:10px">✗ 未通過</span><span style="color:rgba(226,232,240,.4);font-size:12px;font-weight:700">+0</span>'}</div></div><p style="color:rgba(226,232,240,.8);font-size:12px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${rec.note||'探索紀錄'}</p><p style="color:rgba(226,232,240,.32);font-size:10px">${rec.time}</p></div>`;card.onclick=()=>showRecordModal(rec);wrap.appendChild(card);});return wrap;}
+function showRecordModal(rec){const existing=$('rec-modal');if(existing)existing.remove();const modal=E('div',{class:'modal-bg',id:'rec-modal'});modal.innerHTML=`<div class="modal" style="text-align:left;max-width:380px"><img src="${rec.preview}" style="width:100%;max-height:280px;object-fit:contain;border-radius:10px;margin-bottom:12px;background:rgba(0,0,0,.3)"><div style="margin-bottom:12px"><div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap"><span class="tag" style="background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.3);color:#a78bfa">${rec.subType||rec.label}</span>${rec.isSuccess?'<span class="tag" style="background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.3);color:#34d399">✓ 通過</span>':'<span class="tag" style="background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.3);color:#ef4444">✗ 未通過</span>'}</div><p style="font-size:14px;color:#e2e8f0;margin-bottom:6px">${rec.note||'探索紀錄'}</p><p style="color:rgba(226,232,240,.45);font-size:11px;margin-bottom:4px">${rec.time}</p><p style="color:${rec.isSuccess?'#34d399':'rgba(226,232,240,.4)'};font-size:13px;font-weight:700">獲得 +${rec.points} 點</p></div>${rec.result?`<div class="oracle-box" style="margin-bottom:12px"><p style="color:#a78bfa;font-family:'Cinzel',serif;font-size:11px;margin-bottom:4px">占卜結果</p><p style="color:rgba(226,232,240,.55);font-size:11px">成功 ${rec.result.p1}% · 中等 ${rec.result.p2}% · 困難 ${rec.result.p3}%</p></div>`:''}<div style="display:flex;gap:8px"><button class="btn btn-muted btn-sm" id="rec-close" style="flex:1">關閉</button><button class="btn btn-danger btn-sm" id="rec-del" style="flex:1">刪除</button></div></div>`;document.body.appendChild(modal);$('rec-close').onclick=()=>modal.remove();modal.onclick=e=>{if(e.target===modal)modal.remove();};$('rec-del').onclick=()=>{if(!confirm('確定刪除？'))return;updateData(d=>({...d,uploads:d.uploads.filter(u=>u.id!==rec.id)}));modal.remove();showNotif('已刪除');};}
+let discussTag='魔法道法';const DISC_TAGS=[{name:'魔法道法',c:'#8b5cf6'},{name:'神秘生物',c:'#10b981'},{name:'神秘地點',c:'#3b82f6'},{name:'攻略',c:'#f59e0b'}];
+function renderDiscuss(){const wrap=E('div',{class:'fade-in'});wrap.innerHTML=`<h2 class="section-title">公共討論區</h2><p class="section-sub">與同道術士們交流</p>`;const postCard=E('div',{class:'card',style:{marginBottom:'16px'}});const displayName=state.data.customName||(state.role==='admin'?'管理員':'見習術士');postCard.innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:20px">${state.role==='admin'?'⚔️':'🧙'}</span><span style="font-family:'Cinzel',serif;color:#a78bfa;font-size:12px">${displayName}</span></div>`;const ta=E('textarea',{placeholder:'分享你的探險心得或提問...',style:{marginBottom:'10px'}});postCard.appendChild(ta);const tagBar=E('div',{style:{display:'flex',gap:'6px',marginBottom:'10px',flexWrap:'wrap'}});DISC_TAGS.forEach(t=>{const pill=E('span',{class:'fpill'});pill.style.cssText=`border-color:${discussTag===t.name?t.c:'rgba(139,92,246,.2)'};background:${discussTag===t.name?t.c+'20':'transparent'};color:${discussTag===t.name?t.c:'rgba(226,232,240,.5)'}`;pill.textContent=t.name;pill.onclick=()=>{discussTag=t.name;renderTabContent();};tagBar.appendChild(pill);});postCard.appendChild(tagBar);const postBtn=E('button',{class:'btn btn-sm'},'✦ 發布貼文');postBtn.onclick=()=>{if(!ta.value.trim()){showNotif('請輸入內容');return;}const tc=DISC_TAGS.find(t=>t.name===discussTag).c;const newPost={id:Date.now(),user:displayName,avatar:state.role==='admin'?'⚔️':'🧙',title:ta.value,replies:0,likes:0,liked:false,time:'剛剛',tag:discussTag,tc,isMine:true};updateData(d=>({...d,posts:[newPost,...d.posts]}));ta.value='';showNotif('貼文已發布！');};postCard.appendChild(postBtn);wrap.appendChild(postCard);const posts=state.data.posts;if(posts.length===0){wrap.innerHTML+=`<div style="text-align:center;color:rgba(226,232,240,.4);padding:28px 0;font-size:12px">尚無貼文，來發布第一篇吧！</div>`;return wrap;}posts.forEach(post=>{const card=E('div',{class:'disc-card',style:{marginBottom:'10px',cursor:'pointer'}});card.innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:20px">${post.avatar}</span><div style="flex:1"><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-family:'Cinzel',serif;color:#e2e8f0;font-size:11px">${post.user}</span><span class="tag" style="background:${post.tc}20;border:1px solid ${post.tc}40;color:${post.tc}">${post.tag}</span>${post.isMine?'<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">我的</span>':''}</div><span style="color:rgba(226,232,240,.32);font-size:10px">${post.time}</span></div></div><p style="color:rgba(226,232,240,.83);font-size:12px;margin-bottom:10px;line-height:1.5">${post.title}</p><div style="display:flex;gap:14px"><span style="color:rgba(226,232,240,.38);font-size:11px">💬 ${post.replies}</span><span style="color:${post.liked?'#ef4444':'rgba(226,232,240,.38)'};font-size:11px;cursor:pointer" data-like="${post.id}">❤️ ${post.likes}</span></div>`;card.querySelector('[data-like]').onclick=e=>{e.stopPropagation();const id=parseInt(e.target.dataset.like);updateData(d=>({...d,posts:d.posts.map(p=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p)}));};card.onclick=()=>showDiscModal(post);wrap.appendChild(card);});return wrap;}
+function showDiscModal(post){const existing=$('disc-modal');if(existing)existing.remove();const modal=E('div',{class:'modal-bg',id:'disc-modal'});modal.innerHTML=`<div class="modal" style="text-align:left"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span style="font-size:28px">${post.avatar}</span><div><p style="font-family:'Cinzel',serif;color:#a78bfa;font-size:13px">${post.user}</p><p style="color:rgba(226,232,240,.32);font-size:10px">${post.time}</p></div></div><span class="tag" style="background:${post.tc}20;border:1px solid ${post.tc}40;color:${post.tc};margin-bottom:10px;display:inline-block">${post.tag}</span><p style="color:#e2e8f0;font-size:13px;line-height:1.7;margin-bottom:14px">${post.title}</p><div style="display:flex;gap:16px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(139,92,246,.15)"><span style="color:rgba(226,232,240,.5);font-size:12px">💬 ${post.replies}</span><span style="color:${post.liked?'#ef4444':'rgba(226,232,240,.5)'};font-size:12px;cursor:pointer" id="modal-like">❤️ ${post.likes}</span></div><div style="display:flex;gap:8px">${post.isMine?'<button class="btn btn-danger btn-sm" id="disc-del" style="flex:1">刪除</button>':''}<button class="btn btn-muted btn-sm" id="disc-close" style="flex:1">關閉</button></div></div>`;document.body.appendChild(modal);$('disc-close').onclick=()=>modal.remove();modal.onclick=e=>{if(e.target===modal)modal.remove();};$('modal-like').onclick=()=>{updateData(d=>({...d,posts:d.posts.map(p=>p.id===post.id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p)}));modal.remove();};if(post.isMine){$('disc-del').onclick=()=>{if(!confirm('確定刪除？'))return;updateData(d=>({...d,posts:d.posts.filter(p=>p.id!==post.id)}));modal.remove();showNotif('已刪除');};}}
+function renderDraw(){const d=state.data;const COLORS=[{c:'#a78bfa',n:'紫'},{c:'#06b6d4',n:'青'},{c:'#f59e0b',n:'金'},{c:'#ef4444',n:'赤'},{c:'#10b981',n:'綠'},{c:'#ffffff',n:'白'}];const DRAW_TYPES=['一般魔法陣','盧恩符文','符籙'];const wrap=E('div',{class:'fade-in'});wrap.innerHTML=`<h2 class="section-title">魔法符陣繪製</h2><p class="section-sub">每日限得5點，可無限繪製累積成就</p>`;const pct=Math.min((d.todayDrawPts/5)*100,100);wrap.innerHTML+=`<div style="margin-bottom:12px;padding:10px;background:rgba(139,92,246,.1);border-radius:10px"><p style="color:rgba(226,232,240,.6);font-family:'Cinzel',serif;font-size:11px;margin-bottom:4px">今日：<span style="color:#fbbf24;font-weight:700">${d.todayDrawPts} / 5 點</span></p><div style="height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden"><div style="width:${pct}%;height:100%;background:linear-gradient(to right,#8b5cf6,#22d3ee)"></div></div></div>`;const typeBox=E('div',{style:{marginBottom:'10px'}});typeBox.innerHTML=`<label style="display:block;color:rgba(167,139,250,.8);font-family:'Cinzel',serif;font-size:11px;margin-bottom:6px">繪符目標</label>`;const drawTypeSel=E('select',{id:'draw-type-sel'});DRAW_TYPES.forEach(t=>{const opt=E('option',{value:t},t);drawTypeSel.appendChild(opt);});typeBox.appendChild(drawTypeSel);wrap.appendChild(typeBox);const colorRow=E('div',{style:{display:'flex',gap:'6px',marginBottom:'8px',flexWrap:'wrap',alignItems:'center'}});COLORS.forEach(c=>{const sw=E('div',{class:'swatch'+(state.drawColor===c.c?' active':'')});sw.style.background=c.c;sw.title=c.n;sw.onclick=()=>{state.drawColor=c.c;state.drawMode='draw';document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));sw.classList.add('active');};colorRow.appendChild(sw);});const eraser=E('button');eraser.style.cssText=`padding:6px 12px;height:32px;border-radius:6px;background:rgba(139,92,246,.2);color:${state.drawMode==='erase'?'#fff':'rgba(226,232,240,.7)'};border:${state.drawMode==='erase'?'2px solid #fff':'1px solid rgba(255,255,255,.15)'};cursor:pointer;font-size:12px`;eraser.textContent='橡皮擦';eraser.onclick=()=>{state.drawMode=state.drawMode==='erase'?'draw':'erase';renderTabContent();};colorRow.appendChild(eraser);wrap.appendChild(colorRow);const sizeRow=E('div',{style:{display:'flex',alignItems:'center',gap:'10px',marginBottom:'10px'}});sizeRow.innerHTML=`<span style="color:rgba(226,232,240,.6);font-family:'Cinzel',serif;font-size:11px;white-space:nowrap">大小</span>`;const sizeSlider=E('input',{type:'range',min:'1',max:'40',value:state.drawSize,style:{flex:'1'}});const sizeLabel=E('span',{style:{color:'#a78bfa',font:'11px/1 Cinzel,serif',minWidth:'32px'}},state.drawSize+'px');sizeSlider.oninput=()=>{state.drawSize=parseInt(sizeSlider.value);sizeLabel.textContent=state.drawSize+'px';};sizeRow.appendChild(sizeSlider);sizeRow.appendChild(sizeLabel);wrap.appendChild(sizeRow);const canvas=E('canvas',{id:'draw-canvas',width:'800',height:'500'});wrap.appendChild(canvas);const btnRow=E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px',margin:'12px 0 14px'}});const clearBtn=E('button',{class:'btn btn-muted btn-sm'},'🗑️ 清除');const dlBtn=E('button',{class:'btn btn-muted btn-sm'},'💾 下載');const submitBtn=E('button',{class:'btn btn-sm'},'📤 提交');submitBtn.disabled=d.todayDrawPts>=5;if(d.todayDrawPts>=5)submitBtn.textContent='✓ 已滿';clearBtn.onclick=()=>{const ctx=canvas.getContext('2d');ctx.fillStyle='#0d0d1a';ctx.fillRect(0,0,800,500);showNotif('已清除');};dlBtn.onclick=()=>{const a=document.createElement('a');a.href=canvas.toDataURL();a.download='魔法符陣.png';a.click();showNotif('已下載');};submitBtn.onclick=()=>{const pts=d.todayDrawPts<5?5:0;const typeSel=$('draw-type-sel');const subType=typeSel?typeSel.value:'一般魔法陣';const img=canvas.toDataURL();updateData(prev=>({...prev,drawings:[{id:Date.now(),image:img,subType,time:new Date().toLocaleDateString('zh-TW'),timestamp:Date.now()},...prev.drawings],todayDrawPts:prev.todayDrawPts+pts,points:prev.points+pts,lastDrawDate:new Date().toDateString()}));showNotif(pts>0?'繪符提交！+'+pts+' 點':'繪符紀錄已保存');const ctx=canvas.getContext('2d');ctx.fillStyle='#0d0d1a';ctx.fillRect(0,0,800,500);};btnRow.appendChild(clearBtn);btnRow.appendChild(dlBtn);btnRow.appendChild(submitBtn);wrap.appendChild(btnRow);if(d.drawings.length>0){const gallDiv=E('div');gallDiv.innerHTML=`<p class="sec-label">✦ 作品集（${d.drawings.length}幅）</p>`;const gallGrid=E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'6px'}});d.drawings.slice(0,12).forEach(dw=>{const cell=E('div',{style:{position:'relative'}});const img=E('img',{src:dw.image,style:{width:'100%',aspectRatio:'1.6',objectFit:'cover',borderRadius:'8px',border:'1px solid rgba(139,92,246,.2)',display:'block'}});let pressTimer;img.addEventListener('touchstart',()=>{pressTimer=setTimeout(()=>{if(confirm('確定刪除這幅作品？')){updateData(d=>({...d,drawings:d.drawings.filter(x=>x.id!==dw.id)}));showNotif('已刪除作品');}},600);});img.addEventListener('touchend',()=>clearTimeout(pressTimer));img.addEventListener('touchmove',()=>clearTimeout(pressTimer));cell.appendChild(img);const hint=E('div',{style:{textAlign:'center',color:'rgba(226,232,240,.3)',fontSize:'9px',marginTop:'2px'}});hint.textContent='長按刪除';cell.appendChild(hint);gallGrid.appendChild(cell);});gallDiv.appendChild(gallGrid);wrap.appendChild(gallDiv);}setTimeout(()=>{const c=$('draw-canvas');if(!c)return;const ctx=c.getContext('2d');ctx.fillStyle='#0d0d1a';ctx.fillRect(0,0,800,500);let drawing=false;const getPos=e=>{const rect=c.getBoundingClientRect();const scX=c.width/rect.width,scY=c.height/rect.height;const clientX=e.clientX||e.touches?.[0]?.clientX;const clientY=e.clientY||e.touches?.[0]?.clientY;return{x:(clientX-rect.left)*scX,y:(clientY-rect.top)*scY};};const start=e=>{e.preventDefault();const{x,y}=getPos(e);ctx.beginPath();ctx.moveTo(x,y);drawing=true;};const move=e=>{if(!drawing)return;e.preventDefault();const{x,y}=getPos(e);ctx.lineWidth=state.drawSize;ctx.lineCap='round';ctx.strokeStyle=state.drawMode==='erase'?'#0d0d1a':state.drawColor;ctx.lineTo(x,y);ctx.stroke();};const end=()=>drawing=false;c.addEventListener('mousedown',start);c.addEventListener('mousemove',move);c.addEventListener('mouseup',end);c.addEventListener('mouseleave',end);c.addEventListener('touchstart',start,{passive:false});c.addEventListener('touchmove',move,{passive:false});c.addEventListener('touchend',end);},50);return wrap;}
+function getAutoTitles(data){const n=data.uploads.filter(u=>u.type==='place'&&u.verifiedSuccess).length;const out=[];if(n>=10)out.push({id:'auto_1',name:'尋靈者',icon:'👁️',desc:'已驗證探靈成功10次',type:'title'});if(n>=50)out.push({id:'auto_2',name:'定靈師',icon:'🕯️',desc:'已驗證探靈成功50次',type:'title'});if(n>=100)out.push({id:'auto_3',name:'靈界行者',icon:'🌀',desc:'已驗證探靈成功100次',type:'title'});return out;}
+function renderProfile(){const d=state.data;const autoTitles=getAutoTitles(d);const allItems=SHOP.concat(autoTitles);const ownedTitles=SHOP.filter(i=>d.purchased.includes(i.id)&&i.type==='title').concat(autoTitles);const cur=d.currentTitle?allItems.find(s=>s.id===d.currentTitle):null;const level=Math.floor(d.points/250)+1;const displayName=d.customName||(state.role==='admin'?'管理員':'見習術士');const magicMap={};d.purchased.forEach(id=>{const it=SHOP.find(i=>i.id===id&&i.type==='magic');if(it)magicMap[it.name]=(magicMap[it.name]||0)+1;});const otherOwned=SHOP.filter(i=>d.purchased.includes(i.id)&&i.type!=='title'&&i.type!=='magic');const wrap=E('div',{class:'fade-in'});wrap.innerHTML=`<h2 class="section-title" style="margin-bottom:18px">個人檔案</h2><div class="card" style="background:rgba(139,92,246,.08);margin-bottom:12px;text-align:center;padding:20px"><div style="font-size:44px;margin-bottom:10px">${state.role==='admin'?'⚔️':'🧙'}</div><h3 class="grad-text" style="font-family:'Cinzel Decorative',serif;font-size:19px;margin-bottom:4px">${displayName}</h3><p style="color:rgba(226,232,240,.6);font-family:'Cinzel',serif;font-size:12px;margin-bottom:16px">${cur?cur.icon+' '+cur.name:'見習魔法師'}</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><div><p style="color:#a78bfa;font-size:9px;font-family:'Cinzel',serif;margin-bottom:2px">等級</p><p style="font-size:15px;font-weight:700">Lv.${level}</p></div><div><p style="color:#a78bfa;font-size:9px;font-family:'Cinzel',serif;margin-bottom:2px">點數</p><p style="font-size:15px;font-weight:700">${d.points}</p></div><div><p style="color:#a78bfa;font-size:9px;font-family:'Cinzel',serif;margin-bottom:2px">稱號</p><p style="font-size:15px;font-weight:700">${ownedTitles.length}</p></div></div></div>`;const nameCard=E('div',{class:'card',style:{marginBottom:'10px'}});nameCard.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><p class="sec-label" style="margin-bottom:0">✦ 術士名號</p></div><p style="font-size:13px;color:#e2e8f0">${displayName}</p>`;const nameBtn=E('button',{style:{background:'rgba(139,92,246,.2)',border:'1px solid rgba(139,92,246,.3)',color:'#a78bfa',padding:'4px 10px',borderRadius:'6px',fontSize:'10px',cursor:'pointer'}},'更改');nameBtn.onclick=()=>showNameChangeModal();nameCard.querySelector('div').appendChild(nameBtn);wrap.appendChild(nameCard);const titleCard=E('div',{class:'card',style:{marginBottom:'10px'}});titleCard.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><p class="sec-label" style="margin-bottom:0">✦ 當前稱號</p></div>${cur?`<div style="display:flex;gap:10px;align-items:center;padding:10px;background:rgba(139,92,246,.08);border-radius:8px"><span style="font-size:22px">${cur.icon}</span><div><p style="color:#a78bfa;font-size:13px;font-weight:600">${cur.name}</p><p style="color:rgba(226,232,240,.4);font-size:10px">${cur.desc}</p></div></div>`:'<p style="font-size:12px;color:rgba(226,232,240,.4);padding:8px 0">未配戴稱號</p>'}`;const switchBtn=E('button',{style:{background:'rgba(139,92,246,.2)',border:'1px solid rgba(139,92,246,.3)',color:'#a78bfa',padding:'4px 10px',borderRadius:'6px',fontSize:'10px',cursor:'pointer'}},'切換');switchBtn.onclick=()=>showTitleModal(ownedTitles,d.currentTitle);titleCard.querySelector('div').appendChild(switchBtn);wrap.appendChild(titleCard);if(Object.keys(magicMap).length>0){const mc=E('div',{class:'card',style:{marginBottom:'10px'}});mc.innerHTML=`<p class="sec-label">✦ 已學魔法</p><div style="display:flex;gap:6px;flex-wrap:wrap">${Object.entries(magicMap).map(([n,c])=>`<span class="tag" style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#a78bfa;padding:4px 10px">${n}${c>1?' ×'+c:''}</span>`).join('')}</div>`;wrap.appendChild(mc);}if(otherOwned.length>0){const oc=E('div',{class:'card',style:{marginBottom:'10px'}});oc.innerHTML=`<p class="sec-label">✦ 已解鎖技能</p><div style="display:flex;gap:6px;flex-wrap:wrap">${otherOwned.map(i=>`<span class="tag" style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#a78bfa">${i.icon} ${i.name}</span>`).join('')}</div>`;wrap.appendChild(oc);}const ac=E('div',{class:'card',style:{marginBottom:'12px',fontSize:'12px'}});ac.innerHTML=`<p class="sec-label">✦ 帳號資訊</p>${[['帳號',state.role==='admin'?'管理員':'@@'],['身份',state.role==='admin'?'管理員':'一般用戶'],['加入日期',d.joinDate||'—'],['登入次數',d.loginCount],['上傳總數',d.uploads.length],['繪符總數',d.drawings.length]].map(([l,v])=>`<p style="color:rgba(226,232,240,.6);margin-bottom:6px;display:flex;justify-content:space-between"><span>${l}</span><span style="color:#e2e8f0">${v}</span></p>`).join('')}`;wrap.appendChild(ac);const logoutBtn=E('button',{class:'btn btn-muted',style:{marginBottom:'8px'}},'🚪 登出');logoutBtn.onclick=()=>{localStorage.removeItem('arcane_session');state.role=null;state.data=null;state.stage='login';render();};const resetBtn=E('button',{class:'btn btn-danger'},'⚠️ 重置所有數據');resetBtn.onclick=()=>{if(!confirm('確定重置？此操作無法復原！'))return;updateData(Object.assign(defaultData(),{joinDate:new Date().toLocaleDateString('zh-TW'),lastDrawDate:new Date().toDateString()}));showNotif('已重置');};wrap.appendChild(logoutBtn);wrap.appendChild(resetBtn);return wrap;}
+function showNameChangeModal(){const existing=$('name-modal');if(existing)existing.remove();const modal=E('div',{class:'modal-bg',id:'name-modal'});modal.innerHTML=`<div class="modal"><h3 style="font-size:15px;color:#a78bfa;margin-bottom:14px">更改術士名號</h3><input id="new-name-inp" type="text" placeholder="輸入新名號（最多12字）" maxlength="12" style="margin-bottom:14px"><div style="display:flex;gap:8px"><button class="btn btn-sm" id="name-ok" style="flex:1">確定</button><button class="btn btn-muted btn-sm" id="name-cancel" style="flex:1">取消</button></div></div>`;document.body.appendChild(modal);$('name-cancel').onclick=()=>modal.remove();modal.onclick=e=>{if(e.target===modal)modal.remove();};$('name-ok').onclick=()=>{const val=$('new-name-inp').value.trim();if(!val){showNotif('請輸入名稱');return;}updateData(d=>({...d,customName:val}));modal.remove();showNotif('名稱已更改！');};}
+function showTitleModal(titles,currentId){const existing=$('title-modal');if(existing)existing.remove();const modal=E('div',{class:'modal-bg',id:'title-modal'});const list=titles.map(t=>`<div onclick="selectTitle(${typeof t.id==='number'?t.id:'"'+t.id+'"'})" style="padding:10px;background:${currentId===t.id?'rgba(139,92,246,.2)':'rgba(139,92,246,.06)'};border:1px solid ${currentId===t.id?'#a78bfa':'rgba(139,92,246,.2)'};border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">${t.icon}</span><div><p style="color:#a78bfa;font-size:12px;font-weight:600">${t.name}</p><p style="color:rgba(226,232,240,.4);font-size:10px">${t.desc}</p></div>${currentId===t.id?'<span style="color:#34d399;margin-left:auto;font-size:14px">✓</span>':''}</div>`).join('');modal.innerHTML=`<div class="modal" style="text-align:left;max-height:80vh;overflow-y:auto"><h3 style="font-size:15px;text-align:center;margin-bottom:14px;color:#a78bfa">選擇配戴稱號</h3>${titles.length===0?'<p style="text-align:center;color:rgba(226,232,240,.4);font-size:12px;padding:20px 0">尚未擁有任何稱號</p>':list}<div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-muted btn-sm" onclick="clearTitle()" style="flex:1">卸下稱號</button><button class="btn btn-muted btn-sm" id="title-cancel" style="flex:1">取消</button></div></div>`;document.body.appendChild(modal);$('title-cancel').onclick=()=>modal.remove();modal.onclick=e=>{if(e.target===modal)modal.remove();};}
+window.selectTitle=function(id){updateData(d=>({...d,currentTitle:id}));const m=$('title-modal');if(m)m.remove();showNotif('稱號已切換');};
+window.clearTitle=function(){updateData(d=>({...d,currentTitle:null}));const m=$('title-modal');if(m)m.remove();showNotif('已卸下稱號');};
+document.body.innerHTML=`<div id="bg" style="position:fixed;inset:0;pointer-events:none;overflow:hidden"></div><div id="notif" class="notif" style="display:none"></div><div id="app-content" style="height:100vh;height:100dvh;display:flex;flex-direction:column;max-width:480px;margin:0 auto"></div>`;
 initBg();
 render();
 </script>
