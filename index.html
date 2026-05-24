@@ -1175,18 +1175,23 @@ function renderDraw() {
     gallDiv.innerHTML = `<p class="sec-label">✦ 作品集（${d.drawings.length}幅）</p>`;
     const gallGrid = E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'6px'}});
     d.drawings.slice(0,12).forEach(dw => {
-      const cell = E('div',{style:{position:'relative',overflow:'visible'}});
+      const cell = E('div',{style:{position:'relative'}});
       const img = E('img',{src:dw.image,style:{width:'100%',aspectRatio:'1.6',objectFit:'cover',borderRadius:'8px',border:'1px solid rgba(139,92,246,.2)',display:'block'}});
-      const delBtn = E('button');
-      delBtn.style.cssText = 'position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(220,38,38,.85);border:none;color:#fff;font-size:13px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0';
-      delBtn.textContent = '✕';
-      delBtn.onclick = () => {
-        if (!confirm('確定刪除這幅作品？')) return;
-        updateData(d => ({...d, drawings: d.drawings.filter(x => x.id !== dw.id)}));
-        showNotif('已刪除作品');
-      };
+      let pressTimer;
+      img.addEventListener('touchstart', () => {
+        pressTimer = setTimeout(() => {
+          if (confirm('確定刪除這幅作品？')) {
+            updateData(d => ({...d, drawings: d.drawings.filter(x => x.id !== dw.id)}));
+            showNotif('已刪除作品');
+          }
+        }, 600);
+      });
+      img.addEventListener('touchend', () => clearTimeout(pressTimer));
+      img.addEventListener('touchmove', () => clearTimeout(pressTimer));
       cell.appendChild(img);
-      cell.appendChild(delBtn);
+      const hint = E('div',{style:{textAlign:'center',color:'rgba(226,232,240,.3)',fontSize:'9px',marginTop:'2px'}});
+      hint.textContent = '長按刪除';
+      cell.appendChild(hint);
       gallGrid.appendChild(cell);
     });
     gallDiv.appendChild(gallGrid);
