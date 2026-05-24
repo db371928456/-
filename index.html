@@ -70,7 +70,7 @@ select option{background:#0d0d1a;color:#e2e8f0;}
 .upload-preview{width:100%;max-height:280px;border-radius:10px;object-fit:contain;background:rgba(0,0,0,.3);}
 .spin-ring{animation:spin-slow 8s linear infinite;}
 .grad-text{background:linear-gradient(135deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.tabbar{padding:6px 4px;padding-bottom:max(6px,env(safe-area-inset-bottom));background:rgba(6,6,16,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(139,92,246,.18);display:flex;justify-content:space-around;position:fixed;bottom:0;left:0;right:0;z-index:100;gap:2px;max-width:480px;margin:0 auto;}
+.tabbar{padding:6px 4px;padding-bottom:calc(max(12px,env(safe-area-inset-bottom)) + 56px);background:rgba(6,6,16,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(139,92,246,.18);display:flex;justify-content:space-around;position:fixed;bottom:0;left:0;right:0;z-index:100;gap:2px;max-width:480px;margin:0 auto;}
 .filter-bar{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-ms-overflow-style:none;scrollbar-width:none;}
 .filter-bar::-webkit-scrollbar{display:none;}
 .fpill{padding:5px 12px;border-radius:100px;font-size:11px;font-family:'Cinzel',serif;cursor:pointer;border:1px solid;transition:all .3s;white-space:nowrap;flex-shrink:0;}
@@ -332,7 +332,7 @@ function Main({tab,setTab,showNotif,role,data,updateData,onLogout}){
           <span style={{color:"#a78bfa",fontFamily:"'Cinzel',serif",fontWeight:700,fontSize:15}}>{data.points.toLocaleString()}</span>
         </div>
       </div>
-      <div style={{flex:1,overflowY:"auto",padding:"16px 14px 80px"}}>
+      <div style={{flex:1,overflowY:"auto",padding:"16px 14px 140px"}}>
         {tab==="upload"  && <Upload  showNotif={showNotif} data={data} updateData={updateData}/>}
         {tab==="points"  && <Points  showNotif={showNotif} data={data} updateData={updateData}/>}
         {tab==="shop"    && <Shop    showNotif={showNotif} data={data} updateData={updateData}/>}
