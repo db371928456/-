@@ -13,7 +13,6 @@
   <title>玄秘紀元 · Arcane Chronicles</title>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -41,7 +40,8 @@
 </head>
 <body>
 <div id="root"></div>
-<script type="text/babel" data-presets="react">
+<script>
+const _jsxFileName = ""; function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
 const { useState, useRef, useEffect } = React;
 
 // ═══════════════════════════════
@@ -278,7 +278,7 @@ ${location ? "神諭中可隱喻地提及該地點的靈力特質。" : ""}
       })
     });
     const data = await res.json();
-    return data.content?.[0]?.text || null;
+    return _optionalChain([data, 'access', _2 => _2.content, 'optionalAccess', _3 => _3[0], 'optionalAccess', _4 => _4.text]) || null;
   } catch(e) {
     return null;
   }
@@ -343,29 +343,29 @@ function App() {
   };
 
   return (
-    <div style={{background:"#080810",minHeight:"100vh",overflow:"hidden",position:"relative"}}>
-      <style>{CSS}</style>
-      <div style={{position:"fixed",inset:0,pointerEvents:"none",overflow:"hidden"}}>
-        {STARS.map(s=><div key={s.id} style={{position:"absolute",borderRadius:"50%",width:s.big?"2px":"1px",height:s.big?"2px":"1px",background:s.color,left:`${s.left}%`,top:`${s.top}%`,animation:`starBlink ${s.duration}s ease-in-out infinite`,animationDelay:`${s.delay}s`}}/>)}
-      </div>
-      <div style={{position:"fixed",inset:0,pointerEvents:"none",overflow:"hidden"}}>
-        {PARTICLES.map(pt=><div key={pt.id} className="particle" style={{left:`${pt.left}%`,bottom:0,width:`${pt.size}px`,height:`${pt.size}px`,animationDuration:`${pt.duration}s`,animationDelay:`${pt.delay}s`}}/>)}
-      </div>
-      {notif&&<div className="notif">{notif}</div>}
-      {stage==="login" && <Login u={u} setU={setU} p={p} setP={setP} onLogin={login}/>}
-      {stage==="main"  && <Main tab={tab} setTab={setTab} showNotif={showNotif} role={role} data={data} updateData={updateData} onLogout={logout}/>}
-      {nameModal && (
-        <div className="modal-overlay">
-          <div className="modal-box fade-up">
-            <div style={{fontSize:50,marginBottom:12}}>🔮</div>
-            <h3 style={{fontSize:17,color:"#a78bfa",marginBottom:8}}>歡迎來到玄秘紀元</h3>
-            <p style={{color:"rgba(226,232,240,.6)",fontSize:12,marginBottom:16,lineHeight:1.7}}>請為自己取一個術士名號<br/>日後可在個人檔案中更改</p>
-            <input type="text" placeholder="輸入術士名號（最多12字）" value={firstName} onChange={e=>setFirstName(e.target.value)} onKeyDown={e=>e.key==="Enter"&&confirmName()} maxLength={12} style={{marginBottom:14}} autoFocus/>
-            <button className="mbtn" onClick={confirmName}>確認名號，開始冒險</button>
-          </div>
-        </div>
-      )}
-    </div>
+    React.createElement('div', { style: {background:"#080810",minHeight:"100vh",overflow:"hidden",position:"relative"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 303}}
+      , React.createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 304}}, CSS)
+      , React.createElement('div', { style: {position:"fixed",inset:0,pointerEvents:"none",overflow:"hidden"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 305}}
+        , STARS.map(s=>React.createElement('div', { key: s.id, style: {position:"absolute",borderRadius:"50%",width:s.big?"2px":"1px",height:s.big?"2px":"1px",background:s.color,left:`${s.left}%`,top:`${s.top}%`,animation:`starBlink ${s.duration}s ease-in-out infinite`,animationDelay:`${s.delay}s`}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 306}}))
+      )
+      , React.createElement('div', { style: {position:"fixed",inset:0,pointerEvents:"none",overflow:"hidden"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 308}}
+        , PARTICLES.map(pt=>React.createElement('div', { key: pt.id, className: "particle", style: {left:`${pt.left}%`,bottom:0,width:`${pt.size}px`,height:`${pt.size}px`,animationDuration:`${pt.duration}s`,animationDelay:`${pt.delay}s`}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 309}}))
+      )
+      , notif&&React.createElement('div', { className: "notif", __self: this, __source: {fileName: _jsxFileName, lineNumber: 311}}, notif)
+      , stage==="login" && React.createElement(Login, { u: u, setU: setU, p: p, setP: setP, onLogin: login, __self: this, __source: {fileName: _jsxFileName, lineNumber: 312}})
+      , stage==="main"  && React.createElement(Main, { tab: tab, setTab: setTab, showNotif: showNotif, role: role, data: data, updateData: updateData, onLogout: logout, __self: this, __source: {fileName: _jsxFileName, lineNumber: 313}})
+      , nameModal && (
+        React.createElement('div', { className: "modal-overlay", __self: this, __source: {fileName: _jsxFileName, lineNumber: 315}}
+          , React.createElement('div', { className: "modal-box fade-up" , __self: this, __source: {fileName: _jsxFileName, lineNumber: 316}}
+            , React.createElement('div', { style: {fontSize:50,marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 317}}, "🔮")
+            , React.createElement('h3', { style: {fontSize:17,color:"#a78bfa",marginBottom:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 318}}, "歡迎來到玄秘紀元")
+            , React.createElement('p', { style: {color:"rgba(226,232,240,.6)",fontSize:12,marginBottom:16,lineHeight:1.7}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 319}}, "請為自己取一個術士名號", React.createElement('br', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 319}}), "日後可在個人檔案中更改")
+            , React.createElement('input', { type: "text", placeholder: "輸入術士名號（最多12字）", value: firstName, onChange: e=>setFirstName(e.target.value), onKeyDown: e=>e.key==="Enter"&&confirmName(), maxLength: 12, style: {marginBottom:14}, autoFocus: true, __self: this, __source: {fileName: _jsxFileName, lineNumber: 320}})
+            , React.createElement('button', { className: "mbtn", onClick: confirmName, __self: this, __source: {fileName: _jsxFileName, lineNumber: 321}}, "確認名號，開始冒險")
+          )
+        )
+      )
+    )
   );
 }
 
@@ -375,32 +375,32 @@ function App() {
 function Login({u,setU,p,setP,onLogin}){
   const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone;
   return (
-    <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",padding:20,position:"relative"}}>
-      <div style={{position:"absolute",width:360,height:360,borderRadius:"50%",border:"1px solid rgba(139,92,246,.12)",top:"50%",left:"50%",transform:"translate(-50%,-50%)"}} className="spin-ring"/>
-      <div style={{width:"100%",maxWidth:380,position:"relative",zIndex:10}} className="fade-up">
-        <div style={{textAlign:"center",marginBottom:28}}>
-          <div style={{fontSize:56,marginBottom:10}}>🔮</div>
-          <h1 className="grad-text" style={{fontFamily:"'Cinzel Decorative',serif",fontSize:24,fontWeight:900,letterSpacing:2}}>玄秘紀元</h1>
-          <p style={{color:"rgba(167,139,250,.6)",fontFamily:"'Cinzel',serif",fontSize:10,letterSpacing:4,marginTop:6}}>ARCANE CHRONICLES</p>
-        </div>
-        <div style={{background:"rgba(8,8,20,.85)",backdropFilter:"blur(20px)",border:"1px solid rgba(139,92,246,.3)",borderRadius:20,padding:"28px 24px"}}>
-          <div style={{marginBottom:16}}>
-            <label style={{display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,letterSpacing:2,marginBottom:6}}>帳號</label>
-            <input type="text" placeholder="輸入帳號..." value={u} onChange={e=>setU(e.target.value)} onKeyDown={e=>e.key==="Enter"&&onLogin()}/>
-          </div>
-          <div style={{marginBottom:22}}>
-            <label style={{display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,letterSpacing:2,marginBottom:6}}>密碼</label>
-            <input type="password" placeholder="輸入密碼..." value={p} onChange={e=>setP(e.target.value)} onKeyDown={e=>e.key==="Enter"&&onLogin()}/>
-          </div>
-          <button className="mbtn" onClick={onLogin}>登入</button>
-        </div>
-        {isIOS && (
-          <div style={{marginTop:14,padding:12,background:"rgba(139,92,246,.08)",border:"1px solid rgba(139,92,246,.2)",borderRadius:12,textAlign:"center"}}>
-            <p style={{color:"rgba(226,232,240,.6)",fontSize:11,lineHeight:1.6}}>iOS 用戶：點擊 Safari 底部分享鍵<br/>選擇「加入主畫面」即可安裝</p>
-          </div>
-        )}
-      </div>
-    </div>
+    React.createElement('div', { style: {minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",padding:20,position:"relative"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 335}}
+      , React.createElement('div', { style: {position:"absolute",width:360,height:360,borderRadius:"50%",border:"1px solid rgba(139,92,246,.12)",top:"50%",left:"50%",transform:"translate(-50%,-50%)"}, className: "spin-ring", __self: this, __source: {fileName: _jsxFileName, lineNumber: 336}})
+      , React.createElement('div', { style: {width:"100%",maxWidth:380,position:"relative",zIndex:10}, className: "fade-up", __self: this, __source: {fileName: _jsxFileName, lineNumber: 337}}
+        , React.createElement('div', { style: {textAlign:"center",marginBottom:28}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 338}}
+          , React.createElement('div', { style: {fontSize:56,marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 339}}, "🔮")
+          , React.createElement('h1', { className: "grad-text", style: {fontFamily:"'Cinzel Decorative',serif",fontSize:24,fontWeight:900,letterSpacing:2}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 340}}, "玄秘紀元")
+          , React.createElement('p', { style: {color:"rgba(167,139,250,.6)",fontFamily:"'Cinzel',serif",fontSize:10,letterSpacing:4,marginTop:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 341}}, "ARCANE CHRONICLES" )
+        )
+        , React.createElement('div', { style: {background:"rgba(8,8,20,.85)",backdropFilter:"blur(20px)",border:"1px solid rgba(139,92,246,.3)",borderRadius:20,padding:"28px 24px"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 343}}
+          , React.createElement('div', { style: {marginBottom:16}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 344}}
+            , React.createElement('label', { style: {display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,letterSpacing:2,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 345}}, "帳號")
+            , React.createElement('input', { type: "text", placeholder: "輸入帳號...", value: u, onChange: e=>setU(e.target.value), onKeyDown: e=>e.key==="Enter"&&onLogin(), __self: this, __source: {fileName: _jsxFileName, lineNumber: 346}})
+          )
+          , React.createElement('div', { style: {marginBottom:22}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 348}}
+            , React.createElement('label', { style: {display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,letterSpacing:2,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 349}}, "密碼")
+            , React.createElement('input', { type: "password", placeholder: "輸入密碼...", value: p, onChange: e=>setP(e.target.value), onKeyDown: e=>e.key==="Enter"&&onLogin(), __self: this, __source: {fileName: _jsxFileName, lineNumber: 350}})
+          )
+          , React.createElement('button', { className: "mbtn", onClick: onLogin, __self: this, __source: {fileName: _jsxFileName, lineNumber: 352}}, "登入")
+        )
+        , isIOS && (
+          React.createElement('div', { style: {marginTop:14,padding:12,background:"rgba(139,92,246,.08)",border:"1px solid rgba(139,92,246,.2)",borderRadius:12,textAlign:"center"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 355}}
+            , React.createElement('p', { style: {color:"rgba(226,232,240,.6)",fontSize:11,lineHeight:1.6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 356}}, "iOS 用戶：點擊 Safari 底部分享鍵"   , React.createElement('br', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 356}}), "選擇「加入主畫面」即可安裝")
+          )
+        )
+      )
+    )
   );
 }
 
@@ -422,36 +422,36 @@ function Main({tab,setTab,showNotif,role,data,updateData,onLogout}){
   const currentTitle = data.currentTitle ? allItems.find(s=>s.id===data.currentTitle) : null;
   const displayName = data.customName || (role==="admin"?"管理員":"見習術士");
   return (
-    <div className="fade-up" style={{height:"100vh",display:"flex",flexDirection:"column",maxWidth:480,margin:"0 auto"}}>
-      <div style={{padding:"14px 16px 12px",background:"rgba(8,8,20,.92)",backdropFilter:"blur(12px)",borderBottom:"1px solid rgba(139,92,246,.15)",position:"sticky",top:0,zIndex:100,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <div>
-          <h1 className="grad-text" style={{fontFamily:"'Cinzel Decorative',serif",fontSize:15,letterSpacing:1}}>玄秘紀元</h1>
-          <p style={{color:"rgba(167,139,250,.55)",fontSize:10,fontFamily:"'Cinzel',serif",letterSpacing:1,marginTop:2}}>
-            {currentTitle?`${currentTitle.icon} ${currentTitle.name}`:(role==="admin"?"⚔️ 管理員":"✨ 見習術士")}
-          </p>
-        </div>
-        <div style={{background:"rgba(139,92,246,.13)",border:"1px solid rgba(139,92,246,.3)",borderRadius:10,padding:"6px 12px",display:"flex",alignItems:"center",gap:5}}>
-          <span style={{fontSize:13}}>💎</span>
-          <span style={{color:"#a78bfa",fontFamily:"'Cinzel',serif",fontWeight:700,fontSize:15}}>{data.points.toLocaleString()}</span>
-        </div>
-      </div>
-      <div style={{flex:1,overflowY:"auto",padding:"16px 14px 140px"}}>
-        {tab==="upload"  && <Upload  showNotif={showNotif} data={data} updateData={updateData}/>}
-        {tab==="points"  && <Points  showNotif={showNotif} data={data} updateData={updateData}/>}
-        {tab==="shop"    && <Shop    showNotif={showNotif} data={data} updateData={updateData}/>}
-        {tab==="records" && <Records showNotif={showNotif} data={data} updateData={updateData}/>}
-        {tab==="discuss" && <Discuss showNotif={showNotif} data={data} updateData={updateData} role={role}/>}
-        {tab==="draw"    && <Draw    showNotif={showNotif} data={data} updateData={updateData}/>}
-        {tab==="profile" && <Profile showNotif={showNotif} data={data} updateData={updateData} role={role} onLogout={onLogout}/>}
-      </div>
-      <div className="tabbar">
-        {tabs.map(t=>(
-          <div key={t.id} className={`ntab ${tab===t.id?"on":""}`} onClick={()=>setTab(t.id)}>
-            <span>{t.icon}</span><span>{t.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+    React.createElement('div', { className: "fade-up", style: {height:"100vh",display:"flex",flexDirection:"column",maxWidth:480,margin:"0 auto"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 382}}
+      , React.createElement('div', { style: {padding:"14px 16px 12px",background:"rgba(8,8,20,.92)",backdropFilter:"blur(12px)",borderBottom:"1px solid rgba(139,92,246,.15)",position:"sticky",top:0,zIndex:100,display:"flex",alignItems:"center",justifyContent:"space-between"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 383}}
+        , React.createElement('div', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 384}}
+          , React.createElement('h1', { className: "grad-text", style: {fontFamily:"'Cinzel Decorative',serif",fontSize:15,letterSpacing:1}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 385}}, "玄秘紀元")
+          , React.createElement('p', { style: {color:"rgba(167,139,250,.55)",fontSize:10,fontFamily:"'Cinzel',serif",letterSpacing:1,marginTop:2}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 386}}
+            , currentTitle?`${currentTitle.icon} ${currentTitle.name}`:(role==="admin"?"⚔️ 管理員":"✨ 見習術士")
+          )
+        )
+        , React.createElement('div', { style: {background:"rgba(139,92,246,.13)",border:"1px solid rgba(139,92,246,.3)",borderRadius:10,padding:"6px 12px",display:"flex",alignItems:"center",gap:5}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 390}}
+          , React.createElement('span', { style: {fontSize:13}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 391}}, "💎")
+          , React.createElement('span', { style: {color:"#a78bfa",fontFamily:"'Cinzel',serif",fontWeight:700,fontSize:15}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 392}}, data.points.toLocaleString())
+        )
+      )
+      , React.createElement('div', { style: {flex:1,overflowY:"auto",padding:"16px 14px 140px"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 395}}
+        , tab==="upload"  && React.createElement(Upload, {  showNotif: showNotif, data: data, updateData: updateData, __self: this, __source: {fileName: _jsxFileName, lineNumber: 396}})
+        , tab==="points"  && React.createElement(Points, {  showNotif: showNotif, data: data, updateData: updateData, __self: this, __source: {fileName: _jsxFileName, lineNumber: 397}})
+        , tab==="shop"    && React.createElement(Shop, {    showNotif: showNotif, data: data, updateData: updateData, __self: this, __source: {fileName: _jsxFileName, lineNumber: 398}})
+        , tab==="records" && React.createElement(Records, { showNotif: showNotif, data: data, updateData: updateData, __self: this, __source: {fileName: _jsxFileName, lineNumber: 399}})
+        , tab==="discuss" && React.createElement(Discuss, { showNotif: showNotif, data: data, updateData: updateData, role: role, __self: this, __source: {fileName: _jsxFileName, lineNumber: 400}})
+        , tab==="draw"    && React.createElement(Draw, {    showNotif: showNotif, data: data, updateData: updateData, __self: this, __source: {fileName: _jsxFileName, lineNumber: 401}})
+        , tab==="profile" && React.createElement(Profile, { showNotif: showNotif, data: data, updateData: updateData, role: role, onLogout: onLogout, __self: this, __source: {fileName: _jsxFileName, lineNumber: 402}})
+      )
+      , React.createElement('div', { className: "tabbar", __self: this, __source: {fileName: _jsxFileName, lineNumber: 404}}
+        , tabs.map(t=>(
+          React.createElement('div', { key: t.id, className: `ntab ${tab===t.id?"on":""}`, onClick: ()=>setTab(t.id), __self: this, __source: {fileName: _jsxFileName, lineNumber: 406}}
+            , React.createElement('span', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 407}}, t.icon), React.createElement('span', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 407}}, t.label)
+          )
+        ))
+      )
+    )
   );
 }
 
@@ -523,7 +523,7 @@ function Upload({showNotif,data,updateData}){
         ...prev,
         uploads:[{id:Date.now(),type:sel,subType:sel==="magic"?magic:null,label:labelMap[sel],locationName:loc||null,preview,points:earnPts,note,verifiedSuccess:verified,isSuccess,time:new Date().toLocaleString("zh-TW"),timestamp:Date.now(),result:{p1,p2,p3}},...prev.uploads],
         points:prev.points+earnPts,
-        dailyUploads:{...(prev.dailyUploads||{magic:0,creature:0,place:0}),[sel]:isSuccess?(prev.dailyUploads?.[sel]||0)+1:(prev.dailyUploads?.[sel]||0)},
+        dailyUploads:{...(prev.dailyUploads||{magic:0,creature:0,place:0}),[sel]:isSuccess?(_optionalChain([prev, 'access', _5 => _5.dailyUploads, 'optionalAccess', _6 => _6[sel]])||0)+1:(_optionalChain([prev, 'access', _7 => _7.dailyUploads, 'optionalAccess', _8 => _8[sel]])||0)},
         lastUploadDate:new Date().toDateString()
       }));
       if(isSuccess){
@@ -538,134 +538,133 @@ function Upload({showNotif,data,updateData}){
   const reset=()=>{setResult(null);setSel(null);setPreview(null);setNote("");setLocationName("");};
 
   return (
-    <div className="tab-in">
-      <h2 style={{fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:4}}>探險打卡</h2>
-      <p style={{color:"rgba(226,232,240,.45)",fontSize:12,marginBottom:16}}>選擇類型，從相簿選取或直接拍照</p>
-      {!result ? (<>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12}}>
-          {cats.map(c=>(
-            <div key={c.id} className={`cat-card ${sel===c.id?"sel":""}`} onClick={()=>setSel(c.id)} style={{borderColor:sel===c.id?c.c:undefined}}>
-              <div style={{fontSize:24,marginBottom:4}}>{c.icon}</div>
-              <div style={{color:sel===c.id?c.c:"rgba(226,232,240,.75)",fontFamily:"'Cinzel',serif",fontSize:11,fontWeight:600,marginBottom:2}}>{c.label}</div>
-              <div style={{color:"rgba(226,232,240,.38)",fontSize:9,marginBottom:4}}>{c.desc}</div>
-              <div style={{display:"flex",gap:4,justifyContent:"center",flexWrap:"wrap"}}>
-                  <div style={{background:`rgba(${c.r},.18)`,borderRadius:100,padding:"2px 7px"}}>
-                    <span style={{color:c.c,fontSize:9}}>+{c.pts}</span>
-                  </div>
-                  {(()=>{const used=(todayUploads[c.id]||0);const lim=DAILY_LIMITS[c.id];const left=lim-used;return(<div style={{background:left===0?"rgba(239,68,68,.18)":"rgba(52,211,153,.12)",borderRadius:100,padding:"2px 7px"}}><span style={{color:left===0?"#ef4444":"#34d399",fontSize:9}}>{left===0?"今日已滿":"剩"+left+"次"}</span></div>);})()}
-                </div>
-            </div>
-          ))}
-        </div>
-        {sel==="magic" && (
-          <div style={{marginBottom:12}}>
-            <label style={{display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}}>魔法分支</label>
-            <select value={magic} onChange={e=>setMagic(e.target.value)}
-          {sel==="place" && (
-            <div style={{marginBottom:12}} className="fade-up">
-              <label style={{display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}}>
-                📍 地點名稱（加入占卜計算）
-              </label>
-              <input
-                type="text"
-                placeholder="例：台北大龍峒、九份老街、廢棄醫院..."
-                value={locationName}
-                onChange={e=>setLocationName(e.target.value)}
-                maxLength={30}
-              />
-            </div>
-          )}
->
-              {magicTypes.map(t=><option key={t} value={t}>{t}</option>)}
-            </select>
-          </div>
-        )}
-        {preview ? (
-          <div style={{marginBottom:12}}>
-            <img src={preview} alt="預覽" className="upload-preview" style={{marginBottom:10}}/>
-            <button className="mbtn mbtn-cancel mbtn-sm" onClick={()=>{setPreview(null);}}>✕ 重新選擇照片</button>
-          </div>
+    React.createElement('div', { className: "tab-in", __self: this, __source: {fileName: _jsxFileName, lineNumber: 498}}
+      , React.createElement('h2', { style: {fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 499}}, "探險打卡")
+      , React.createElement('p', { style: {color:"rgba(226,232,240,.45)",fontSize:12,marginBottom:16}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 500}}, "選擇類型，從相簿選取或直接拍照")
+      , !result ? (React.createElement(React.Fragment, null
+        , React.createElement('div', { style: {display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 502}}
+          , cats.map(c=>(
+            React.createElement('div', { key: c.id, className: `cat-card ${sel===c.id?"sel":""}`, onClick: ()=>setSel(c.id), style: {borderColor:sel===c.id?c.c:undefined}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 504}}
+              , React.createElement('div', { style: {fontSize:24,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 505}}, c.icon)
+              , React.createElement('div', { style: {color:sel===c.id?c.c:"rgba(226,232,240,.75)",fontFamily:"'Cinzel',serif",fontSize:11,fontWeight:600,marginBottom:2}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 506}}, c.label)
+              , React.createElement('div', { style: {color:"rgba(226,232,240,.38)",fontSize:9,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 507}}, c.desc)
+              , React.createElement('div', { style: {display:"flex",gap:4,justifyContent:"center",flexWrap:"wrap"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 508}}
+                  , React.createElement('div', { style: {background:`rgba(${c.r},.18)`,borderRadius:100,padding:"2px 7px"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 509}}
+                    , React.createElement('span', { style: {color:c.c,fontSize:9}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 510}}, "+", c.pts)
+                  )
+                  , (()=>{const used=(todayUploads[c.id]||0);const lim=DAILY_LIMITS[c.id];const left=lim-used;return(React.createElement('div', { style: {background:left===0?"rgba(239,68,68,.18)":"rgba(52,211,153,.12)",borderRadius:100,padding:"2px 7px"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 512}}, React.createElement('span', { style: {color:left===0?"#ef4444":"#34d399",fontSize:9}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 512}}, left===0?"今日已滿":"剩"+left+"次")));})()
+                )
+            )
+          ))
+        )
+        , sel==="magic" && (
+          React.createElement('div', { style: {marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 518}}
+            , React.createElement('label', { style: {display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 519}}, "魔法分支")
+            , React.createElement('select', { value: magic, onChange: e=>setMagic(e.target.value), __self: this, __source: {fileName: _jsxFileName, lineNumber: 520}}
+              , magicTypes.map(t=>React.createElement('option', { key: t, value: t, __self: this, __source: {fileName: _jsxFileName, lineNumber: 521}}, t))
+            )
+          )
+        )
+          , sel==="place" && (
+            React.createElement('div', { style: {marginBottom:12}, className: "fade-up", __self: this, __source: {fileName: _jsxFileName, lineNumber: 526}}
+              , React.createElement('label', { style: {display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 527}}, "📍 地點名稱（加入占卜計算）"
+
+              )
+              , React.createElement('input', {
+                type: "text",
+                placeholder: "例：台北大龍峒、九份老街、廢棄醫院...",
+                value: locationName,
+                onChange: e=>setLocationName(e.target.value),
+                maxLength: 30, __self: this, __source: {fileName: _jsxFileName, lineNumber: 530}}
+              )
+            )
+          )
+        , preview ? (
+          React.createElement('div', { style: {marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 540}}
+            , React.createElement('img', { src: preview, alt: "預覽", className: "upload-preview", style: {marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 541}})
+            , React.createElement('button', { className: "mbtn mbtn-cancel mbtn-sm"  , onClick: ()=>{setPreview(null);}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 542}}, "✕ 重新選擇照片" )
+          )
         ):(
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:12}}>
-            <div className="up-zone" onClick={()=>galleryRef.current.click()}>
-              <div style={{fontSize:30,marginBottom:6}}>🖼️</div>
-              <p style={{color:"rgba(167,139,250,.7)",fontFamily:"'Cinzel',serif",fontSize:11}}>從相簿選擇</p>
-              <input ref={galleryRef} type="file" accept="image/*" onChange={handleFile} style={{display:"none"}}/>
-            </div>
-            <div className="up-zone" onClick={()=>cameraRef.current.click()}>
-              <div style={{fontSize:30,marginBottom:6}}>📷</div>
-              <p style={{color:"rgba(167,139,250,.7)",fontFamily:"'Cinzel',serif",fontSize:11}}>拍照上傳</p>
-              <input ref={cameraRef} type="file" accept="image/*" capture="environment" onChange={handleFile} style={{display:"none"}}/>
-            </div>
-          </div>
-        )}
-        {preview && (
-          <div style={{marginBottom:12}}>
-            <textarea placeholder="描述你的探險或儀式紀錄（選填）..." value={note} onChange={e=>setNote(e.target.value)} style={{minHeight:60}}/>
-          </div>
-        )}
-        <button className="mbtn" onClick={submit} disabled={!sel||!preview||uploading}>
-          {uploading?"⏳ 靈界通靈中...":"🔮 提交上傳"}
-        </button>
-      </>) : (
-        <div className="fade-up">
-          <img src={preview} alt="" className="upload-preview" style={{marginBottom:12}}/>
-          <div style={{padding:12,background:"rgba(139,92,246,.08)",borderRadius:10,textAlign:"center",marginBottom:10}}>
-            <p style={{fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:11,marginBottom:4}}>靈界占卜結果</p>
-            <p style={{color:"rgba(226,232,240,.7)",fontSize:12,marginBottom:6}}>{result.label} 之反饋</p>
-            {result.moon && (
-              <div style={{display:"flex",justifyContent:"center",gap:12,fontSize:11,color:"rgba(226,232,240,.5)",flexWrap:"wrap"}}>
-                <span>{result.moon.symbol} {result.moon.name} · {result.moon.energy}</span>
-                <span>⏰ {result.time.name}</span>
-                {result.locationName && <span>📍 {result.locationName}</span>}
-              </div>
-            )}
-          </div>
-          {/* 成功/失敗大標示 */}
-          <div style={{marginBottom:10,padding:12,borderRadius:12,textAlign:"center",
+          React.createElement('div', { style: {display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 545}}
+            , React.createElement('div', { className: "up-zone", onClick: ()=>galleryRef.current.click(), __self: this, __source: {fileName: _jsxFileName, lineNumber: 546}}
+              , React.createElement('div', { style: {fontSize:30,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 547}}, "🖼️")
+              , React.createElement('p', { style: {color:"rgba(167,139,250,.7)",fontFamily:"'Cinzel',serif",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 548}}, "從相簿選擇")
+              , React.createElement('input', { ref: galleryRef, type: "file", accept: "image/*", onChange: handleFile, style: {display:"none"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 549}})
+            )
+            , React.createElement('div', { className: "up-zone", onClick: ()=>cameraRef.current.click(), __self: this, __source: {fileName: _jsxFileName, lineNumber: 551}}
+              , React.createElement('div', { style: {fontSize:30,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 552}}, "📷")
+              , React.createElement('p', { style: {color:"rgba(167,139,250,.7)",fontFamily:"'Cinzel',serif",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 553}}, "拍照上傳")
+              , React.createElement('input', { ref: cameraRef, type: "file", accept: "image/*", capture: "environment", onChange: handleFile, style: {display:"none"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 554}})
+            )
+          )
+        )
+        , preview && (
+          React.createElement('div', { style: {marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 559}}
+            , React.createElement('textarea', { placeholder: "描述你的探險或儀式紀錄（選填）...", value: note, onChange: e=>setNote(e.target.value), style: {minHeight:60}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 560}})
+          )
+        )
+        , React.createElement('button', { className: "mbtn", onClick: submit, disabled: !sel||!preview||uploading, __self: this, __source: {fileName: _jsxFileName, lineNumber: 563}}
+          , uploading?"⏳ 靈界通靈中...":"🔮 提交上傳"
+        )
+      )) : (
+        React.createElement('div', { className: "fade-up", __self: this, __source: {fileName: _jsxFileName, lineNumber: 567}}
+          , React.createElement('img', { src: preview, alt: "", className: "upload-preview", style: {marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 568}})
+          , React.createElement('div', { style: {padding:12,background:"rgba(139,92,246,.08)",borderRadius:10,textAlign:"center",marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 569}}
+            , React.createElement('p', { style: {fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:11,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 570}}, "靈界占卜結果")
+            , React.createElement('p', { style: {color:"rgba(226,232,240,.7)",fontSize:12,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 571}}, result.label, " 之反饋" )
+            , result.moon && (
+              React.createElement('div', { style: {display:"flex",justifyContent:"center",gap:12,fontSize:11,color:"rgba(226,232,240,.5)",flexWrap:"wrap"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 573}}
+                , React.createElement('span', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 574}}, result.moon.symbol, " " , result.moon.name, " · "  , result.moon.energy)
+                , React.createElement('span', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 575}}, "⏰ " , result.time.name)
+                , result.locationName && React.createElement('span', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 576}}, "📍 " , result.locationName)
+              )
+            )
+          )
+          /* 成功/失敗大標示 */
+          , React.createElement('div', { style: {marginBottom:10,padding:12,borderRadius:12,textAlign:"center",
             background:result.o1.pct>=50?"rgba(52,211,153,.1)":"rgba(239,68,68,.1)",
-            border:`1px solid ${result.o1.pct>=50?"#34d399":"#ef4444"}`}}>
-            <p style={{fontSize:16,fontWeight:700,color:result.o1.pct>=50?"#34d399":"#ef4444"}}>
-              {result.o1.pct>=50?"✅ 靈界認可 · 次數已計入":"❌ 靈界未回應 · 次數未消耗，可重試"}
-            </p>
-            {result.o1.pct<50 && <p style={{color:"rgba(226,232,240,.5)",fontSize:11,marginTop:4}}>換個時辰或等待更好的靈力環境</p>}
-          </div>
-          {/* AI 神諭區塊 */}
-          <div style={{marginBottom:10,padding:14,background:"linear-gradient(135deg,rgba(139,92,246,.12),rgba(6,182,212,.08))",borderRadius:12,border:"1px solid rgba(139,92,246,.3)"}}>
-            <p style={{fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:11,letterSpacing:1,marginBottom:8,textAlign:"center"}}>✦ 靈界神諭 ✦</p>
-            {result.loading ? (
-              <p style={{color:"rgba(226,232,240,.5)",fontSize:12,textAlign:"center",lineHeight:1.8}}>⏳ 靈界通靈中...</p>
+            border:`1px solid ${result.o1.pct>=50?"#34d399":"#ef4444"}`}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 581}}
+            , React.createElement('p', { style: {fontSize:16,fontWeight:700,color:result.o1.pct>=50?"#34d399":"#ef4444"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 584}}
+              , result.o1.pct>=50?"✅ 靈界認可 · 次數已計入":"❌ 靈界未回應 · 次數未消耗，可重試"
+            )
+            , result.o1.pct<50 && React.createElement('p', { style: {color:"rgba(226,232,240,.5)",fontSize:11,marginTop:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 587}}, "換個時辰或等待更好的靈力環境")
+          )
+          /* AI 神諭區塊 */
+          , React.createElement('div', { style: {marginBottom:10,padding:14,background:"linear-gradient(135deg,rgba(139,92,246,.12),rgba(6,182,212,.08))",borderRadius:12,border:"1px solid rgba(139,92,246,.3)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 590}}
+            , React.createElement('p', { style: {fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:11,letterSpacing:1,marginBottom:8,textAlign:"center"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 591}}, "✦ 靈界神諭 ✦"  )
+            , result.loading ? (
+              React.createElement('p', { style: {color:"rgba(226,232,240,.5)",fontSize:12,textAlign:"center",lineHeight:1.8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 593}}, "⏳ 靈界通靈中..." )
             ) : result.oracle ? (
-              <p style={{color:"#e2e8f0",fontSize:13,lineHeight:1.9,textAlign:"center",fontStyle:"italic"}}>{result.oracle}</p>
+              React.createElement('p', { style: {color:"#e2e8f0",fontSize:13,lineHeight:1.9,textAlign:"center",fontStyle:"italic"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 595}}, result.oracle)
             ) : (
-              <p style={{color:"rgba(226,232,240,.5)",fontSize:11,textAlign:"center"}}>靈界暫時沉默</p>
-            )}
-          </div>
-          {result.type==="place" && (
-            <div style={{marginBottom:10,padding:10,borderRadius:10,textAlign:"center",
+              React.createElement('p', { style: {color:"rgba(226,232,240,.5)",fontSize:11,textAlign:"center"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 597}}, "靈界暫時沉默")
+            )
+          )
+          , result.type==="place" && (
+            React.createElement('div', { style: {marginBottom:10,padding:10,borderRadius:10,textAlign:"center",
               background:result.verified?"rgba(52,211,153,.1)":"rgba(239,68,68,.1)",
-              border:`1px solid ${result.verified?"#34d399":"#ef4444"}`}}>
-              <p style={{fontSize:12,fontWeight:700,color:result.verified?"#34d399":"#ef4444"}}>
-                {result.verified?"✅ 靈界驗證：探靈成功！（已計入稱號任務進度）":"❌ 靈界驗證：成功能量不足（不計入進度）"}
-              </p>
-            </div>
-          )}
-          {[result.o1,result.o2,result.o3].map((o,i)=>(
-            <div key={i} className="oracle-box">
-              <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
-                <span style={{fontFamily:"'Cinzel',serif",fontSize:11,color:"#a78bfa"}}>可能性 {i+1}</span>
-                <span style={{color:"#22d3ee",fontWeight:700,fontSize:12}}>{o.pct}%</span>
-              </div>
-              <p style={{color:"rgba(226,232,240,.7)",fontSize:11,lineHeight:1.5}}>{o.text}</p>
-              <div style={{height:3,background:"rgba(255,255,255,.08)",borderRadius:2,marginTop:6,overflow:"hidden"}}>
-                <div style={{width:`${o.pct}%`,height:"100%",background:"linear-gradient(to right,#8b5cf6,#22d3ee)"}}/>
-              </div>
-            </div>
-          ))}
-          <button className="mbtn mbtn-cancel" onClick={reset} style={{marginTop:12}}>↺ 繼續上傳</button>
-        </div>
-      )}
-    </div>
+              border:`1px solid ${result.verified?"#34d399":"#ef4444"}`}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 601}}
+              , React.createElement('p', { style: {fontSize:12,fontWeight:700,color:result.verified?"#34d399":"#ef4444"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 604}}
+                , result.verified?"✅ 靈界驗證：探靈成功！（已計入稱號任務進度）":"❌ 靈界驗證：成功能量不足（不計入進度）"
+              )
+            )
+          )
+          , [result.o1,result.o2,result.o3].map((o,i)=>(
+            React.createElement('div', { key: i, className: "oracle-box", __self: this, __source: {fileName: _jsxFileName, lineNumber: 610}}
+              , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 611}}
+                , React.createElement('span', { style: {fontFamily:"'Cinzel',serif",fontSize:11,color:"#a78bfa"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 612}}, "可能性 " , i+1)
+                , React.createElement('span', { style: {color:"#22d3ee",fontWeight:700,fontSize:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 613}}, o.pct, "%")
+              )
+              , React.createElement('p', { style: {color:"rgba(226,232,240,.7)",fontSize:11,lineHeight:1.5}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 615}}, o.text)
+              , React.createElement('div', { style: {height:3,background:"rgba(255,255,255,.08)",borderRadius:2,marginTop:6,overflow:"hidden"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 616}}
+                , React.createElement('div', { style: {width:`${o.pct}%`,height:"100%",background:"linear-gradient(to right,#8b5cf6,#22d3ee)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 617}})
+              )
+            )
+          ))
+          , React.createElement('button', { className: "mbtn mbtn-cancel" , onClick: reset, style: {marginTop:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 621}}, "↺ 繼續上傳" )
+        )
+      )
+    )
   );
 }
 
@@ -704,75 +703,75 @@ function Points({showNotif,data,updateData}){
   ];
 
   return (
-    <div className="tab-in">
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}}>
-        <h2 style={{fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1}}>我的神秘點數</h2>
-        <button onClick={canCI?checkIn:undefined} style={{
+    React.createElement('div', { className: "tab-in", __self: this, __source: {fileName: _jsxFileName, lineNumber: 663}}
+      , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 664}}
+        , React.createElement('h2', { style: {fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 665}}, "我的神秘點數")
+        , React.createElement('button', { onClick: canCI?checkIn:undefined, style: {
           background:canCI?"linear-gradient(135deg,#7c3aed,#0891b2)":"rgba(139,92,246,.15)",
           color:canCI?"#fff":"rgba(226,232,240,.4)",border:"none",padding:"6px 14px",
           borderRadius:100,fontSize:11,cursor:canCI?"pointer":"default",fontFamily:"'Cinzel',serif"
-        }}>{canCI?"每日打卡 +1":"今日已打卡"}</button>
-      </div>
-      <div style={{textAlign:"center",marginBottom:20,padding:"22px 12px",position:"relative",borderRadius:18,overflow:"hidden"}}>
-        <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse at center,rgba(139,92,246,.14),transparent 70%)"}}/>
-        <div style={{position:"relative"}}>
-          <div style={{width:110,height:110,margin:"0 auto 14px"}}>
-            <div className="spin-ring" style={{width:110,height:110,borderRadius:"50%",padding:3,background:"conic-gradient(from 0deg,#7c3aed,#0891b2,#a78bfa,#7c3aed)"}}>
-              <div style={{width:"100%",height:"100%",borderRadius:"50%",background:"#0d0d1a",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <span style={{fontSize:30}}>💎</span>
-              </div>
-            </div>
-          </div>
-          <div className="grad-text" style={{fontSize:38,fontWeight:900,lineHeight:1,marginBottom:4}}>{data.points.toLocaleString()}</div>
-          <p style={{color:"rgba(167,139,250,.65)",fontFamily:"'Cinzel',serif",fontSize:12,letterSpacing:3}}>Lv.{level} 術士</p>
-        </div>
-      </div>
-      <div className="card" style={{marginBottom:16}}>
-        <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-          <span style={{color:"#a78bfa",fontSize:12,fontFamily:"'Cinzel',serif"}}>升至 Lv.{level+1}</span>
-          <span style={{color:"rgba(226,232,240,.4)",fontSize:11}}>{data.points} / {nextPts}</span>
-        </div>
-        <div style={{height:6,background:"rgba(139,92,246,.18)",borderRadius:3,overflow:"hidden"}}>
-          <div style={{width:`${Math.min(pct,100)}%`,height:"100%",background:"linear-gradient(to right,#7c3aed,#0891b2)"}}/>
-        </div>
-      </div>
+        }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 666}}, canCI?"每日打卡 +1":"今日已打卡")
+      )
+      , React.createElement('div', { style: {textAlign:"center",marginBottom:20,padding:"22px 12px",position:"relative",borderRadius:18,overflow:"hidden"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 672}}
+        , React.createElement('div', { style: {position:"absolute",inset:0,background:"radial-gradient(ellipse at center,rgba(139,92,246,.14),transparent 70%)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 673}})
+        , React.createElement('div', { style: {position:"relative"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 674}}
+          , React.createElement('div', { style: {width:110,height:110,margin:"0 auto 14px"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 675}}
+            , React.createElement('div', { className: "spin-ring", style: {width:110,height:110,borderRadius:"50%",padding:3,background:"conic-gradient(from 0deg,#7c3aed,#0891b2,#a78bfa,#7c3aed)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 676}}
+              , React.createElement('div', { style: {width:"100%",height:"100%",borderRadius:"50%",background:"#0d0d1a",display:"flex",alignItems:"center",justifyContent:"center"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 677}}
+                , React.createElement('span', { style: {fontSize:30}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 678}}, "💎")
+              )
+            )
+          )
+          , React.createElement('div', { className: "grad-text", style: {fontSize:38,fontWeight:900,lineHeight:1,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 682}}, data.points.toLocaleString())
+          , React.createElement('p', { style: {color:"rgba(167,139,250,.65)",fontFamily:"'Cinzel',serif",fontSize:12,letterSpacing:3}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 683}}, "Lv.", level, " 術士" )
+        )
+      )
+      , React.createElement('div', { className: "card", style: {marginBottom:16}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 686}}
+        , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",marginBottom:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 687}}
+          , React.createElement('span', { style: {color:"#a78bfa",fontSize:12,fontFamily:"'Cinzel',serif"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 688}}, "升至 Lv." , level+1)
+          , React.createElement('span', { style: {color:"rgba(226,232,240,.4)",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 689}}, data.points, " / "  , nextPts)
+        )
+        , React.createElement('div', { style: {height:6,background:"rgba(139,92,246,.18)",borderRadius:3,overflow:"hidden"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 691}}
+          , React.createElement('div', { style: {width:`${Math.min(pct,100)}%`,height:"100%",background:"linear-gradient(to right,#7c3aed,#0891b2)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 692}})
+        )
+      )
 
-      <p className="sec-title">✦ 成就勳章</p>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:20}}>
-        {achievements.map((a,i)=>(
-          <div key={i} className="card" style={{display:"flex",alignItems:"center",gap:8,padding:12,opacity:a.done?1:.55}}>
-            <span style={{fontSize:20,filter:a.done?"none":"grayscale(1)"}}>{a.icon}</span>
-            <div>
-              <div style={{fontFamily:"'Cinzel',serif",color:a.done?"#a78bfa":"rgba(226,232,240,.5)",fontSize:11,marginBottom:1}}>{a.label}{a.done?" ✓":""}</div>
-              <div style={{color:"rgba(226,232,240,.35)",fontSize:9}}>{a.desc}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+      , React.createElement('p', { className: "sec-title", __self: this, __source: {fileName: _jsxFileName, lineNumber: 696}}, "✦ 成就勳章" )
+      , React.createElement('div', { style: {display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:20}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 697}}
+        , achievements.map((a,i)=>(
+          React.createElement('div', { key: i, className: "card", style: {display:"flex",alignItems:"center",gap:8,padding:12,opacity:a.done?1:.55}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 699}}
+            , React.createElement('span', { style: {fontSize:20,filter:a.done?"none":"grayscale(1)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 700}}, a.icon)
+            , React.createElement('div', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 701}}
+              , React.createElement('div', { style: {fontFamily:"'Cinzel',serif",color:a.done?"#a78bfa":"rgba(226,232,240,.5)",fontSize:11,marginBottom:1}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 702}}, a.label, a.done?" ✓":"")
+              , React.createElement('div', { style: {color:"rgba(226,232,240,.35)",fontSize:9}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 703}}, a.desc)
+            )
+          )
+        ))
+      )
 
-      <p className="sec-title">✦ 探靈稱號任務（靈界自動驗證）</p>
-      <div style={{display:"flex",flexDirection:"column",gap:10}}>
-        {missions.map(m=>{
+      , React.createElement('p', { className: "sec-title", __self: this, __source: {fileName: _jsxFileName, lineNumber: 709}}, "✦ 探靈稱號任務（靈界自動驗證）" )
+      , React.createElement('div', { style: {display:"flex",flexDirection:"column",gap:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 710}}
+        , missions.map(m=>{
           const prg = Math.min((successN/m.need)*100,100);
           const done = successN>=m.need;
           return (
-            <div key={m.name} className="card" style={{padding:12}}>
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
-                <div style={{display:"flex",alignItems:"center",gap:8}}>
-                  <span style={{fontSize:18}}>{m.icon}</span>
-                  <span style={{fontSize:13,fontWeight:700,color:done?"#22d3ee":"#e2e8f0"}}>{m.name}{done?" ✓":""}</span>
-                </div>
-                <span style={{fontSize:11,color:"rgba(226,232,240,.45)"}}>{successN} / {m.need}</span>
-              </div>
-              <div style={{height:5,background:"rgba(255,255,255,.06)",borderRadius:3,overflow:"hidden",marginBottom:4}}>
-                <div style={{width:`${prg}%`,height:"100%",background:done?"linear-gradient(to right,#10b981,#34d399)":"linear-gradient(to right,#7c3aed,#0891b2)"}}/>
-              </div>
-              <p style={{fontSize:10,color:"rgba(226,232,240,.3)"}}>只有靈界驗證成功的探靈才計入次數</p>
-            </div>
+            React.createElement('div', { key: m.name, className: "card", style: {padding:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 715}}
+              , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 716}}
+                , React.createElement('div', { style: {display:"flex",alignItems:"center",gap:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 717}}
+                  , React.createElement('span', { style: {fontSize:18}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 718}}, m.icon)
+                  , React.createElement('span', { style: {fontSize:13,fontWeight:700,color:done?"#22d3ee":"#e2e8f0"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 719}}, m.name, done?" ✓":"")
+                )
+                , React.createElement('span', { style: {fontSize:11,color:"rgba(226,232,240,.45)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 721}}, successN, " / "  , m.need)
+              )
+              , React.createElement('div', { style: {height:5,background:"rgba(255,255,255,.06)",borderRadius:3,overflow:"hidden",marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 723}}
+                , React.createElement('div', { style: {width:`${prg}%`,height:"100%",background:done?"linear-gradient(to right,#10b981,#34d399)":"linear-gradient(to right,#7c3aed,#0891b2)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 724}})
+              )
+              , React.createElement('p', { style: {fontSize:10,color:"rgba(226,232,240,.3)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 726}}, "只有靈界驗證成功的探靈才計入次數")
+            )
           );
-        })}
-      </div>
-    </div>
+        })
+      )
+    )
   );
 }
 
@@ -807,45 +806,45 @@ function Shop({showNotif,data,updateData}){
   };
 
   return (
-    <div className="tab-in">
-      <h2 style={{fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:4}}>神秘兌換商店</h2>
-      <p style={{color:"rgba(226,232,240,.45)",fontSize:12,marginBottom:12}}>消耗點數兌換，購買後聯繫管理員發放</p>
-      <div className="filter-bar" style={{marginBottom:14}}>
-        {filters.map(f=>(
-          <span key={f.id} className="fpill" onClick={()=>setFilter(f.id)} style={{
+    React.createElement('div', { className: "tab-in", __self: this, __source: {fileName: _jsxFileName, lineNumber: 766}}
+      , React.createElement('h2', { style: {fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 767}}, "神秘兌換商店")
+      , React.createElement('p', { style: {color:"rgba(226,232,240,.45)",fontSize:12,marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 768}}, "消耗點數兌換，購買後聯繫管理員發放")
+      , React.createElement('div', { className: "filter-bar", style: {marginBottom:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 769}}
+        , filters.map(f=>(
+          React.createElement('span', { key: f.id, className: "fpill", onClick: ()=>setFilter(f.id), style: {
             borderColor:filter===f.id?"rgba(167,139,250,.7)":"rgba(139,92,246,.2)",
             background:filter===f.id?"rgba(139,92,246,.2)":"transparent",
             color:filter===f.id?"#a78bfa":"rgba(226,232,240,.45)",
-          }}>{f.icon} {f.label}</span>
-        ))}
-      </div>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-        {filtered.map(item=>{
+          }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 771}}, f.icon, " " , f.label)
+        ))
+      )
+      , React.createElement('div', { style: {display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 778}}
+        , filtered.map(item=>{
           const owned=isOwned(item);
           const ownedCount=data.purchased.filter(id=>id===item.id).length;
           const st=checkReq(item.req,data);
           return (
-            <div key={item.id} className={`shop-item${owned?" owned":""}`} onClick={()=>buy(item)}>
-              <div style={{textAlign:"center"}}>
-                <div style={{fontSize:26,marginBottom:6}}>{item.icon}</div>
-                <div style={{color:"#e2e8f0",fontSize:11,fontWeight:600,marginBottom:4}}>{item.name}</div>
-                <div style={{color:"rgba(226,232,240,.4)",fontSize:9,marginBottom:6,minHeight:22,lineHeight:1.4}}>{item.desc}</div>
-                {owned?(
-                  <span className="tag" style={{background:"rgba(52,211,153,.14)",border:"1px solid rgba(52,211,153,.3)",color:"#34d399"}}>✓ 已解鎖</span>
+            React.createElement('div', { key: item.id, className: `shop-item${owned?" owned":""}`, onClick: ()=>buy(item), __self: this, __source: {fileName: _jsxFileName, lineNumber: 784}}
+              , React.createElement('div', { style: {textAlign:"center"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 785}}
+                , React.createElement('div', { style: {fontSize:26,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 786}}, item.icon)
+                , React.createElement('div', { style: {color:"#e2e8f0",fontSize:11,fontWeight:600,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 787}}, item.name)
+                , React.createElement('div', { style: {color:"rgba(226,232,240,.4)",fontSize:9,marginBottom:6,minHeight:22,lineHeight:1.4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 788}}, item.desc)
+                , owned?(
+                  React.createElement('span', { className: "tag", style: {background:"rgba(52,211,153,.14)",border:"1px solid rgba(52,211,153,.3)",color:"#34d399"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 790}}, "✓ 已解鎖" )
                 ):item.type==="title"&&!st.ok?(
-                  <span className="tag" style={{background:"rgba(239,68,68,.12)",border:"1px solid rgba(239,68,68,.3)",color:"#ef4444",fontSize:9}}>🔒 條件未達</span>
+                  React.createElement('span', { className: "tag", style: {background:"rgba(239,68,68,.12)",border:"1px solid rgba(239,68,68,.3)",color:"#ef4444",fontSize:9}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 792}}, "🔒 條件未達" )
                 ):(
-                  <span className="tag" style={{background:"rgba(245,158,11,.14)",border:"1px solid rgba(245,158,11,.3)",color:"#fbbf24"}}>
-                    💎 {item.cost}{isMagic(item)&&ownedCount>0?" ×"+ownedCount:""}
-                  </span>
-                )}
-              </div>
-            </div>
+                  React.createElement('span', { className: "tag", style: {background:"rgba(245,158,11,.14)",border:"1px solid rgba(245,158,11,.3)",color:"#fbbf24"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 794}}, "💎 "
+                     , item.cost, isMagic(item)&&ownedCount>0?" ×"+ownedCount:""
+                  )
+                )
+              )
+            )
           );
-        })}
-      </div>
-      {modal&&<BuyModal item={modal} data={data} onConfirm={()=>confirm(modal)} onCancel={()=>setModal(null)}/>}
-    </div>
+        })
+      )
+      , modal&&React.createElement(BuyModal, { item: modal, data: data, onConfirm: ()=>confirm(modal), onCancel: ()=>setModal(null), __self: this, __source: {fileName: _jsxFileName, lineNumber: 803}})
+    )
   );
 }
 
@@ -853,41 +852,41 @@ function BuyModal({item,data,onConfirm,onCancel}){
   const st = checkReq(item.req,data);
   const canAfford = data.points >= item.cost;
   return (
-    <div className="modal-overlay" onClick={onCancel}>
-      <div className="modal-box" onClick={e=>e.stopPropagation()}>
-        <div style={{fontSize:50,marginBottom:10}}>{item.icon}</div>
-        <h3 style={{fontSize:17,fontWeight:700,marginBottom:4}}>{item.name}</h3>
-        <p style={{color:"rgba(226,232,240,.5)",fontSize:11,marginBottom:14}}>{item.desc}</p>
-        <div style={{background:"rgba(139,92,246,.1)",borderRadius:12,padding:14,marginBottom:14,textAlign:"left"}}>
-          {item.req&&(
-            <div style={{marginBottom:10,paddingBottom:10,borderBottom:"1px solid rgba(139,92,246,.2)"}}>
-              <p style={{color:st.ok?"#34d399":"#f59e0b",fontSize:11,marginBottom:st.ok?0:4}}>
-                {st.ok?"✅ 條件已達成":"⚠️ 條件未達成"}
-              </p>
-              {!st.ok&&<p style={{color:"rgba(226,232,240,.5)",fontSize:10}}>{st.msg}</p>}
-            </div>
-          )}
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-            <p style={{color:"rgba(226,232,240,.6)",fontSize:11}}>所需點數</p>
-            <p style={{color:"#fbbf24",fontSize:18,fontWeight:900}}>💎 {item.cost}</p>
-          </div>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-            <p style={{color:"rgba(226,232,240,.6)",fontSize:11}}>目前擁有</p>
-            <p style={{color:canAfford?"#34d399":"#ef4444",fontSize:14,fontWeight:700}}>💎 {data.points}</p>
-          </div>
-          <div style={{borderTop:"1px solid rgba(139,92,246,.2)",paddingTop:10}}>
-            <p style={{color:"rgba(226,232,240,.5)",fontSize:11,marginBottom:4}}>購買後聯繫管理員微信</p>
-            <p style={{color:"#fbbf24",fontFamily:"'Cinzel',serif",fontSize:15,fontWeight:700,letterSpacing:1}}>db371928356</p>
-          </div>
-        </div>
-        <div style={{display:"flex",gap:8}}>
-          <button className="mbtn" style={{flex:1,padding:10,fontSize:12}} onClick={onConfirm} disabled={!st.ok||!canAfford}>
-            {!canAfford?"點數不足":!st.ok?"未達條件":"確認兌換"}
-          </button>
-          <button className="mbtn mbtn-cancel" style={{flex:1,padding:10,fontSize:12}} onClick={onCancel}>取消</button>
-        </div>
-      </div>
-    </div>
+    React.createElement('div', { className: "modal-overlay", onClick: onCancel, __self: this, __source: {fileName: _jsxFileName, lineNumber: 812}}
+      , React.createElement('div', { className: "modal-box", onClick: e=>e.stopPropagation(), __self: this, __source: {fileName: _jsxFileName, lineNumber: 813}}
+        , React.createElement('div', { style: {fontSize:50,marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 814}}, item.icon)
+        , React.createElement('h3', { style: {fontSize:17,fontWeight:700,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 815}}, item.name)
+        , React.createElement('p', { style: {color:"rgba(226,232,240,.5)",fontSize:11,marginBottom:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 816}}, item.desc)
+        , React.createElement('div', { style: {background:"rgba(139,92,246,.1)",borderRadius:12,padding:14,marginBottom:14,textAlign:"left"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 817}}
+          , item.req&&(
+            React.createElement('div', { style: {marginBottom:10,paddingBottom:10,borderBottom:"1px solid rgba(139,92,246,.2)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 819}}
+              , React.createElement('p', { style: {color:st.ok?"#34d399":"#f59e0b",fontSize:11,marginBottom:st.ok?0:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 820}}
+                , st.ok?"✅ 條件已達成":"⚠️ 條件未達成"
+              )
+              , !st.ok&&React.createElement('p', { style: {color:"rgba(226,232,240,.5)",fontSize:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 823}}, st.msg)
+            )
+          )
+          , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 826}}
+            , React.createElement('p', { style: {color:"rgba(226,232,240,.6)",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 827}}, "所需點數")
+            , React.createElement('p', { style: {color:"#fbbf24",fontSize:18,fontWeight:900}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 828}}, "💎 " , item.cost)
+          )
+          , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 830}}
+            , React.createElement('p', { style: {color:"rgba(226,232,240,.6)",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 831}}, "目前擁有")
+            , React.createElement('p', { style: {color:canAfford?"#34d399":"#ef4444",fontSize:14,fontWeight:700}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 832}}, "💎 " , data.points)
+          )
+          , React.createElement('div', { style: {borderTop:"1px solid rgba(139,92,246,.2)",paddingTop:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 834}}
+            , React.createElement('p', { style: {color:"rgba(226,232,240,.5)",fontSize:11,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 835}}, "購買後聯繫管理員微信")
+            , React.createElement('p', { style: {color:"#fbbf24",fontFamily:"'Cinzel',serif",fontSize:15,fontWeight:700,letterSpacing:1}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 836}}, "db371928356")
+          )
+        )
+        , React.createElement('div', { style: {display:"flex",gap:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 839}}
+          , React.createElement('button', { className: "mbtn", style: {flex:1,padding:10,fontSize:12}, onClick: onConfirm, disabled: !st.ok||!canAfford, __self: this, __source: {fileName: _jsxFileName, lineNumber: 840}}
+            , !canAfford?"點數不足":!st.ok?"未達條件":"確認兌換"
+          )
+          , React.createElement('button', { className: "mbtn mbtn-cancel" , style: {flex:1,padding:10,fontSize:12}, onClick: onCancel, __self: this, __source: {fileName: _jsxFileName, lineNumber: 843}}, "取消")
+        )
+      )
+    )
   );
 }
 
@@ -907,68 +906,68 @@ function Records({showNotif,data,updateData}){
   };
 
   return (
-    <div className="tab-in">
-      <h2 style={{fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:14}}>探險紀錄</h2>
-      <div className="card" style={{background:"rgba(139,92,246,.04)",marginBottom:14,display:"flex",justifyContent:"space-around",textAlign:"center",padding:14}}>
-        {[{v:recs.length,l:"總任務"},{v:totalPts,l:"總點數"},{v:days,l:"活躍天"}].map((s,i)=>(
-          <div key={i}>
-            <div style={{fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:20,fontWeight:700}}>{s.v}</div>
-            <div style={{color:"rgba(226,232,240,.38)",fontSize:10,marginTop:2}}>{s.l}</div>
-          </div>
-        ))}
-      </div>
-      {recs.length===0 ? (
-        <div className="empty-tip">
-          <div style={{fontSize:40,marginBottom:12,opacity:.4}}>📭</div>
-          <p>尚無探險紀錄</p><p style={{marginTop:4,fontSize:11}}>去上傳你的第一張照片吧！</p>
-        </div>
+    React.createElement('div', { className: "tab-in", __self: this, __source: {fileName: _jsxFileName, lineNumber: 866}}
+      , React.createElement('h2', { style: {fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 867}}, "探險紀錄")
+      , React.createElement('div', { className: "card", style: {background:"rgba(139,92,246,.04)",marginBottom:14,display:"flex",justifyContent:"space-around",textAlign:"center",padding:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 868}}
+        , [{v:recs.length,l:"總任務"},{v:totalPts,l:"總點數"},{v:days,l:"活躍天"}].map((s,i)=>(
+          React.createElement('div', { key: i, __self: this, __source: {fileName: _jsxFileName, lineNumber: 870}}
+            , React.createElement('div', { style: {fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:20,fontWeight:700}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 871}}, s.v)
+            , React.createElement('div', { style: {color:"rgba(226,232,240,.38)",fontSize:10,marginTop:2}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 872}}, s.l)
+          )
+        ))
+      )
+      , recs.length===0 ? (
+        React.createElement('div', { className: "empty-tip", __self: this, __source: {fileName: _jsxFileName, lineNumber: 877}}
+          , React.createElement('div', { style: {fontSize:40,marginBottom:12,opacity:.4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 878}}, "📭")
+          , React.createElement('p', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 879}}, "尚無探險紀錄"), React.createElement('p', { style: {marginTop:4,fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 879}}, "去上傳你的第一張照片吧！")
+        )
       ):(
-        <div style={{display:"flex",flexDirection:"column",gap:10}}>
-          {recs.map(rec=>(
-            <div key={rec.id} className="card" style={{display:"flex",gap:12,alignItems:"center",cursor:"pointer",padding:12}} onClick={()=>setView(rec)}>
-              <img src={rec.preview} alt="" style={{width:50,height:50,borderRadius:10,objectFit:"cover",flexShrink:0}}/>
-              <div style={{flex:1,minWidth:0}}>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:3}}>
-                  <span className="tag" style={{background:"rgba(139,92,246,.14)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa"}}>{rec.subType||rec.label}</span>
-                  <div style={{display:"flex",alignItems:"center",gap:6}}>
-                    {rec.verifiedSuccess&&<span style={{color:"#34d399",fontSize:10}}>✓驗證</span>}
-                    <span style={{color:"#34d399",fontSize:12,fontWeight:700}}>+{rec.points}</span>
-                  </div>
-                </div>
-                <p style={{color:"rgba(226,232,240,.8)",fontSize:12,marginBottom:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{rec.note||"探索紀錄"}</p>
-                <p style={{color:"rgba(226,232,240,.32)",fontSize:10}}>{rec.time}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      {view&&(
-        <div className="modal-overlay" onClick={()=>setView(null)}>
-          <div className="modal-box" onClick={e=>e.stopPropagation()} style={{maxWidth:380,textAlign:"left"}}>
-            <img src={view.preview} alt="" style={{width:"100%",maxHeight:280,objectFit:"contain",borderRadius:10,marginBottom:12,background:"rgba(0,0,0,.3)"}}/>
-            <div style={{marginBottom:12}}>
-              <div style={{display:"flex",gap:6,marginBottom:8,flexWrap:"wrap"}}>
-                <span className="tag" style={{background:"rgba(139,92,246,.14)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa"}}>{view.subType||view.label}</span>
-                {view.verifiedSuccess&&<span className="tag" style={{background:"rgba(52,211,153,.14)",border:"1px solid rgba(52,211,153,.3)",color:"#34d399"}}>✓靈界驗證</span>}
-              </div>
-              <p style={{fontSize:14,color:"#e2e8f0",marginBottom:6}}>{view.note||"探索紀錄"}</p>
-              <p style={{color:"rgba(226,232,240,.45)",fontSize:11,marginBottom:4}}>{view.time}</p>
-              <p style={{color:"#34d399",fontSize:13,fontWeight:700}}>獲得 +{view.points} 點</p>
-            </div>
-            {view.result&&(
-              <div style={{background:"rgba(139,92,246,.08)",borderRadius:10,padding:10,marginBottom:12}}>
-                <p style={{color:"#a78bfa",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:4}}>占卜結果</p>
-                <p style={{color:"rgba(226,232,240,.55)",fontSize:11}}>成功 {view.result.p1}% · 中等 {view.result.p2}% · 困難 {view.result.p3}%</p>
-              </div>
-            )}
-            <div style={{display:"flex",gap:8}}>
-              <button className="mbtn mbtn-cancel" style={{flex:1,padding:10,fontSize:12}} onClick={()=>setView(null)}>關閉</button>
-              <button className="mbtn mbtn-danger" style={{flex:1,padding:10,fontSize:12}} onClick={()=>del(view.id)}>刪除</button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+        React.createElement('div', { style: {display:"flex",flexDirection:"column",gap:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 882}}
+          , recs.map(rec=>(
+            React.createElement('div', { key: rec.id, className: "card", style: {display:"flex",gap:12,alignItems:"center",cursor:"pointer",padding:12}, onClick: ()=>setView(rec), __self: this, __source: {fileName: _jsxFileName, lineNumber: 884}}
+              , React.createElement('img', { src: rec.preview, alt: "", style: {width:50,height:50,borderRadius:10,objectFit:"cover",flexShrink:0}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 885}})
+              , React.createElement('div', { style: {flex:1,minWidth:0}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 886}}
+                , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:3}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 887}}
+                  , React.createElement('span', { className: "tag", style: {background:"rgba(139,92,246,.14)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 888}}, rec.subType||rec.label)
+                  , React.createElement('div', { style: {display:"flex",alignItems:"center",gap:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 889}}
+                    , rec.verifiedSuccess&&React.createElement('span', { style: {color:"#34d399",fontSize:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 890}}, "✓驗證")
+                    , React.createElement('span', { style: {color:"#34d399",fontSize:12,fontWeight:700}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 891}}, "+", rec.points)
+                  )
+                )
+                , React.createElement('p', { style: {color:"rgba(226,232,240,.8)",fontSize:12,marginBottom:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 894}}, rec.note||"探索紀錄")
+                , React.createElement('p', { style: {color:"rgba(226,232,240,.32)",fontSize:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 895}}, rec.time)
+              )
+            )
+          ))
+        )
+      )
+      , view&&(
+        React.createElement('div', { className: "modal-overlay", onClick: ()=>setView(null), __self: this, __source: {fileName: _jsxFileName, lineNumber: 902}}
+          , React.createElement('div', { className: "modal-box", onClick: e=>e.stopPropagation(), style: {maxWidth:380,textAlign:"left"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 903}}
+            , React.createElement('img', { src: view.preview, alt: "", style: {width:"100%",maxHeight:280,objectFit:"contain",borderRadius:10,marginBottom:12,background:"rgba(0,0,0,.3)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 904}})
+            , React.createElement('div', { style: {marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 905}}
+              , React.createElement('div', { style: {display:"flex",gap:6,marginBottom:8,flexWrap:"wrap"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 906}}
+                , React.createElement('span', { className: "tag", style: {background:"rgba(139,92,246,.14)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 907}}, view.subType||view.label)
+                , view.verifiedSuccess&&React.createElement('span', { className: "tag", style: {background:"rgba(52,211,153,.14)",border:"1px solid rgba(52,211,153,.3)",color:"#34d399"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 908}}, "✓靈界驗證")
+              )
+              , React.createElement('p', { style: {fontSize:14,color:"#e2e8f0",marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 910}}, view.note||"探索紀錄")
+              , React.createElement('p', { style: {color:"rgba(226,232,240,.45)",fontSize:11,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 911}}, view.time)
+              , React.createElement('p', { style: {color:"#34d399",fontSize:13,fontWeight:700}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 912}}, "獲得 +" , view.points, " 點" )
+            )
+            , view.result&&(
+              React.createElement('div', { style: {background:"rgba(139,92,246,.08)",borderRadius:10,padding:10,marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 915}}
+                , React.createElement('p', { style: {color:"#a78bfa",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 916}}, "占卜結果")
+                , React.createElement('p', { style: {color:"rgba(226,232,240,.55)",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 917}}, "成功 " , view.result.p1, "% · 中等 "   , view.result.p2, "% · 困難 "   , view.result.p3, "%")
+              )
+            )
+            , React.createElement('div', { style: {display:"flex",gap:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 920}}
+              , React.createElement('button', { className: "mbtn mbtn-cancel" , style: {flex:1,padding:10,fontSize:12}, onClick: ()=>setView(null), __self: this, __source: {fileName: _jsxFileName, lineNumber: 921}}, "關閉")
+              , React.createElement('button', { className: "mbtn mbtn-danger" , style: {flex:1,padding:10,fontSize:12}, onClick: ()=>del(view.id), __self: this, __source: {fileName: _jsxFileName, lineNumber: 922}}, "刪除")
+            )
+          )
+        )
+      )
+    )
   );
 }
 
@@ -1003,82 +1002,82 @@ function Discuss({showNotif,data,updateData,role}){
   };
 
   return (
-    <div className="tab-in">
-      <h2 style={{fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:14}}>公共討論區</h2>
-      <div className="card" style={{marginBottom:16}}>
-        <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10}}>
-          <span style={{fontSize:20}}>{role==="admin"?"⚔️":"🧙"}</span>
-          <span style={{fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:12}}>{displayName}</span>
-        </div>
-        <textarea placeholder="分享你的探險心得、儀式筆記或提問..." value={post} onChange={e=>setPost(e.target.value)} style={{marginBottom:10}}/>
-        <div style={{display:"flex",gap:6,marginBottom:10,flexWrap:"wrap"}}>
-          {tags.map(t=>(
-            <span key={t.name} className="fpill" onClick={()=>setTag(t.name)} style={{
+    React.createElement('div', { className: "tab-in", __self: this, __source: {fileName: _jsxFileName, lineNumber: 962}}
+      , React.createElement('h2', { style: {fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 963}}, "公共討論區")
+      , React.createElement('div', { className: "card", style: {marginBottom:16}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 964}}
+        , React.createElement('div', { style: {display:"flex",alignItems:"center",gap:8,marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 965}}
+          , React.createElement('span', { style: {fontSize:20}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 966}}, role==="admin"?"⚔️":"🧙")
+          , React.createElement('span', { style: {fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 967}}, displayName)
+        )
+        , React.createElement('textarea', { placeholder: "分享你的探險心得、儀式筆記或提問...", value: post, onChange: e=>setPost(e.target.value), style: {marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 969}})
+        , React.createElement('div', { style: {display:"flex",gap:6,marginBottom:10,flexWrap:"wrap"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 970}}
+          , tags.map(t=>(
+            React.createElement('span', { key: t.name, className: "fpill", onClick: ()=>setTag(t.name), style: {
               borderColor:tag===t.name?t.c:"rgba(139,92,246,.2)",
               background:tag===t.name?t.c+"20":"transparent",
               color:tag===t.name?t.c:"rgba(226,232,240,.5)",
-            }}>{t.name}</span>
-          ))}
-        </div>
-        <button className="mbtn mbtn-sm" onClick={submit}>✦ 發布貼文</button>
-      </div>
-      {data.posts.length===0?(
-        <div className="empty-tip">
-          <div style={{fontSize:36,marginBottom:8,opacity:.35}}>💬</div>
-          <p>尚無貼文，來發布第一篇吧！</p>
-        </div>
+            }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 972}}, t.name)
+          ))
+        )
+        , React.createElement('button', { className: "mbtn mbtn-sm" , onClick: submit, __self: this, __source: {fileName: _jsxFileName, lineNumber: 979}}, "✦ 發布貼文" )
+      )
+      , data.posts.length===0?(
+        React.createElement('div', { className: "empty-tip", __self: this, __source: {fileName: _jsxFileName, lineNumber: 982}}
+          , React.createElement('div', { style: {fontSize:36,marginBottom:8,opacity:.35}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 983}}, "💬")
+          , React.createElement('p', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 984}}, "尚無貼文，來發布第一篇吧！")
+        )
       ):(
-        <div style={{display:"flex",flexDirection:"column",gap:10}}>
-          {data.posts.map(d=>(
-            <div key={d.id} className="card" style={{padding:14,cursor:"pointer"}} onClick={()=>setView(d)}>
-              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
-                <span style={{fontSize:20}}>{d.avatar}</span>
-                <div style={{flex:1}}>
-                  <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
-                    <span style={{fontFamily:"'Cinzel',serif",color:"#e2e8f0",fontSize:11}}>{d.user}</span>
-                    <span className="tag" style={{background:d.tc+"20",border:"1px solid "+d.tc+"40",color:d.tc}}>{d.tag}</span>
-                    {d.isMine&&<span className="tag" style={{background:"rgba(245,158,11,.14)",border:"1px solid rgba(245,158,11,.3)",color:"#fbbf24"}}>我的</span>}
-                  </div>
-                  <span style={{color:"rgba(226,232,240,.32)",fontSize:10}}>{d.time}</span>
-                </div>
-              </div>
-              <p style={{color:"rgba(226,232,240,.83)",fontSize:12,marginBottom:10,lineHeight:1.55}}>{d.title}</p>
-              <div style={{display:"flex",gap:14}}>
-                <span style={{color:"rgba(226,232,240,.38)",fontSize:11}}>💬 {d.replies}</span>
-                <span style={{color:d.liked?"#ef4444":"rgba(226,232,240,.38)",fontSize:11,cursor:"pointer"}} onClick={e=>{e.stopPropagation();like(d.id);}}>❤️ {d.likes}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      {view&&(
-        <div className="modal-overlay" onClick={()=>setView(null)}>
-          <div className="modal-box" onClick={e=>e.stopPropagation()} style={{textAlign:"left"}}>
-            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
-              <span style={{fontSize:28}}>{view.avatar}</span>
-              <div>
-                <p style={{fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:13}}>{view.user}</p>
-                <p style={{color:"rgba(226,232,240,.32)",fontSize:10}}>{view.time}</p>
-              </div>
-            </div>
-            <span className="tag" style={{background:view.tc+"20",border:"1px solid "+view.tc+"40",color:view.tc,marginBottom:10,display:"inline-block"}}>{view.tag}</span>
-            <p style={{color:"#e2e8f0",fontSize:13,lineHeight:1.7,marginBottom:14}}>{view.title}</p>
-            <div style={{display:"flex",gap:16,marginBottom:14,paddingBottom:14,borderBottom:"1px solid rgba(139,92,246,.15)"}}>
-              <span style={{color:"rgba(226,232,240,.5)",fontSize:12}}>💬 {view.replies}</span>
-              <span style={{color:view.liked?"#ef4444":"rgba(226,232,240,.5)",fontSize:12,cursor:"pointer"}} onClick={()=>like(view.id)}>❤️ {view.likes}</span>
-            </div>
-            {view.isMine?(
-              <div style={{display:"flex",gap:8}}>
-                <button className="mbtn mbtn-cancel" style={{flex:1,padding:10,fontSize:12}} onClick={()=>setView(null)}>關閉</button>
-                <button className="mbtn mbtn-danger" style={{flex:1,padding:10,fontSize:12}} onClick={()=>del(view.id)}>刪除</button>
-              </div>
+        React.createElement('div', { style: {display:"flex",flexDirection:"column",gap:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 987}}
+          , data.posts.map(d=>(
+            React.createElement('div', { key: d.id, className: "card", style: {padding:14,cursor:"pointer"}, onClick: ()=>setView(d), __self: this, __source: {fileName: _jsxFileName, lineNumber: 989}}
+              , React.createElement('div', { style: {display:"flex",alignItems:"center",gap:8,marginBottom:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 990}}
+                , React.createElement('span', { style: {fontSize:20}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 991}}, d.avatar)
+                , React.createElement('div', { style: {flex:1}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 992}}
+                  , React.createElement('div', { style: {display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 993}}
+                    , React.createElement('span', { style: {fontFamily:"'Cinzel',serif",color:"#e2e8f0",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 994}}, d.user)
+                    , React.createElement('span', { className: "tag", style: {background:d.tc+"20",border:"1px solid "+d.tc+"40",color:d.tc}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 995}}, d.tag)
+                    , d.isMine&&React.createElement('span', { className: "tag", style: {background:"rgba(245,158,11,.14)",border:"1px solid rgba(245,158,11,.3)",color:"#fbbf24"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 996}}, "我的")
+                  )
+                  , React.createElement('span', { style: {color:"rgba(226,232,240,.32)",fontSize:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 998}}, d.time)
+                )
+              )
+              , React.createElement('p', { style: {color:"rgba(226,232,240,.83)",fontSize:12,marginBottom:10,lineHeight:1.55}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1001}}, d.title)
+              , React.createElement('div', { style: {display:"flex",gap:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1002}}
+                , React.createElement('span', { style: {color:"rgba(226,232,240,.38)",fontSize:11}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1003}}, "💬 " , d.replies)
+                , React.createElement('span', { style: {color:d.liked?"#ef4444":"rgba(226,232,240,.38)",fontSize:11,cursor:"pointer"}, onClick: e=>{e.stopPropagation();like(d.id);}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1004}}, "❤️ " , d.likes)
+              )
+            )
+          ))
+        )
+      )
+      , view&&(
+        React.createElement('div', { className: "modal-overlay", onClick: ()=>setView(null), __self: this, __source: {fileName: _jsxFileName, lineNumber: 1011}}
+          , React.createElement('div', { className: "modal-box", onClick: e=>e.stopPropagation(), style: {textAlign:"left"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1012}}
+            , React.createElement('div', { style: {display:"flex",alignItems:"center",gap:10,marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1013}}
+              , React.createElement('span', { style: {fontSize:28}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1014}}, view.avatar)
+              , React.createElement('div', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 1015}}
+                , React.createElement('p', { style: {fontFamily:"'Cinzel',serif",color:"#a78bfa",fontSize:13}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1016}}, view.user)
+                , React.createElement('p', { style: {color:"rgba(226,232,240,.32)",fontSize:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1017}}, view.time)
+              )
+            )
+            , React.createElement('span', { className: "tag", style: {background:view.tc+"20",border:"1px solid "+view.tc+"40",color:view.tc,marginBottom:10,display:"inline-block"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1020}}, view.tag)
+            , React.createElement('p', { style: {color:"#e2e8f0",fontSize:13,lineHeight:1.7,marginBottom:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1021}}, view.title)
+            , React.createElement('div', { style: {display:"flex",gap:16,marginBottom:14,paddingBottom:14,borderBottom:"1px solid rgba(139,92,246,.15)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1022}}
+              , React.createElement('span', { style: {color:"rgba(226,232,240,.5)",fontSize:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1023}}, "💬 " , view.replies)
+              , React.createElement('span', { style: {color:view.liked?"#ef4444":"rgba(226,232,240,.5)",fontSize:12,cursor:"pointer"}, onClick: ()=>like(view.id), __self: this, __source: {fileName: _jsxFileName, lineNumber: 1024}}, "❤️ " , view.likes)
+            )
+            , view.isMine?(
+              React.createElement('div', { style: {display:"flex",gap:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1027}}
+                , React.createElement('button', { className: "mbtn mbtn-cancel" , style: {flex:1,padding:10,fontSize:12}, onClick: ()=>setView(null), __self: this, __source: {fileName: _jsxFileName, lineNumber: 1028}}, "關閉")
+                , React.createElement('button', { className: "mbtn mbtn-danger" , style: {flex:1,padding:10,fontSize:12}, onClick: ()=>del(view.id), __self: this, __source: {fileName: _jsxFileName, lineNumber: 1029}}, "刪除")
+              )
             ):(
-              <button className="mbtn mbtn-cancel" style={{padding:10,fontSize:12}} onClick={()=>setView(null)}>關閉</button>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
+              React.createElement('button', { className: "mbtn mbtn-cancel" , style: {padding:10,fontSize:12}, onClick: ()=>setView(null), __self: this, __source: {fileName: _jsxFileName, lineNumber: 1032}}, "關閉")
+            )
+          )
+        )
+      )
+    )
   );
 }
 
@@ -1105,7 +1104,7 @@ function Draw({showNotif,data,updateData}){
   const getPos=e=>{
     const r=canvasRef.current.getBoundingClientRect();
     const scX=canvasRef.current.width/r.width, scY=canvasRef.current.height/r.height;
-    return {x:((e.clientX||e.touches?.[0]?.clientX)-r.left)*scX, y:((e.clientY||e.touches?.[0]?.clientY)-r.top)*scY};
+    return {x:((e.clientX||_optionalChain([e, 'access', _9 => _9.touches, 'optionalAccess', _10 => _10[0], 'optionalAccess', _11 => _11.clientX]))-r.left)*scX, y:((e.clientY||_optionalChain([e, 'access', _12 => _12.touches, 'optionalAccess', _13 => _13[0], 'optionalAccess', _14 => _14.clientY]))-r.top)*scY};
   };
 
   const start=e=>{ e.preventDefault(); const ctx=canvasRef.current.getContext("2d"); ctx.beginPath(); ctx.moveTo(getPos(e).x,getPos(e).y); setDrawing(true); };
@@ -1140,57 +1139,57 @@ function Draw({showNotif,data,updateData}){
   };
 
   return (
-    <div className="tab-in">
-      <h2 style={{fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:4}}>魔法符陣繪製</h2>
-      <p style={{color:"rgba(226,232,240,.45)",fontSize:12,marginBottom:12}}>每日限獲得5點，可無限繪製累積成就</p>
-      <div style={{marginBottom:10,padding:10,background:"rgba(139,92,246,.1)",borderRadius:10}}>
-        <p style={{color:"rgba(226,232,240,.6)",fontSize:11,marginBottom:4}}>今日：<span style={{color:"#fbbf24",fontWeight:700}}>{data.todayDrawPts} / 5 點</span></p>
-        <div style={{height:5,background:"rgba(255,255,255,.08)",borderRadius:3,overflow:"hidden"}}>
-          <div style={{width:`${Math.min((data.todayDrawPts/5)*100,100)}%`,height:"100%",background:"linear-gradient(to right,#8b5cf6,#22d3ee)"}}/>
-        </div>
-      </div>
-      <div style={{marginBottom:10}}>
-        <label style={{display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}}>繪符目標（影響成就進度）</label>
-        <select value={drawType} onChange={e=>setDrawType(e.target.value)}>
-          <option value="一般魔法陣">一般魔法陣</option>
-          <option value="盧恩符文">盧恩符文</option>
-          <option value="符籙">符籙</option>
-        </select>
-      </div>
-      <div style={{display:"flex",gap:6,marginBottom:8,flexWrap:"wrap",alignItems:"center"}}>
-        {colors.map(c=>(
-          <button key={c} onClick={()=>{setColor(c);setMode("draw");}} style={{width:32,height:32,borderRadius:6,background:c,border:(color===c&&mode==="draw")?"2px solid #fff":"1px solid rgba(255,255,255,.15)",cursor:"pointer",flexShrink:0}}/>
-        ))}
-        <button onClick={()=>setMode("erase")} style={{padding:"6px 12px",height:32,borderRadius:6,background:"rgba(139,92,246,.2)",color:mode==="erase"?"#fff":"rgba(226,232,240,.7)",border:mode==="erase"?"2px solid #fff":"1px solid rgba(255,255,255,.15)",cursor:"pointer",fontSize:12}}>橡皮擦</button>
-      </div>
-      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-        <span style={{color:"rgba(226,232,240,.6)",fontFamily:"'Cinzel',serif",fontSize:11,whiteSpace:"nowrap"}}>大小</span>
-        <input type="range" min="1" max="40" value={size} onChange={e=>setSize(Number(e.target.value))} style={{flex:1}}/>
-        <span style={{color:"#a78bfa",fontSize:11,minWidth:32}}>{size}px</span>
-      </div>
-      <canvas ref={canvasRef} width={800} height={500}
-        onMouseDown={start} onMouseMove={move} onMouseUp={end} onMouseLeave={end}
-        onTouchStart={start} onTouchMove={move} onTouchEnd={end}
-        style={{border:"2px solid rgba(139,92,246,.3)",borderRadius:10,width:"100%",touchAction:"none",marginBottom:12,display:"block"}}/>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14}}>
-        <button className="mbtn mbtn-cancel mbtn-sm" onClick={clear}>🗑️ 清除</button>
-        <button className="mbtn mbtn-cancel mbtn-sm" onClick={download}>💾 下載</button>
-        <button className="mbtn mbtn-sm" onClick={submit}>📤 提交</button>
-      </div>
-      {data.drawings.length>0&&(
-        <>
-          <p className="sec-title">✦ 作品集（{data.drawings.length}幅）</p>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:6}}>
-            {data.drawings.slice(0,12).map(d=>(
-              <div key={d.id} style={{position:"relative"}}>
-                <img src={d.image} alt="" style={{width:"100%",aspectRatio:"1.6",objectFit:"cover",borderRadius:8,border:"1px solid rgba(139,92,246,.2)"}}/>
-                <span style={{position:"absolute",bottom:3,right:4,fontSize:9,color:"rgba(226,232,240,.5)"}}>{d.subType}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    React.createElement('div', { className: "tab-in", __self: this, __source: {fileName: _jsxFileName, lineNumber: 1099}}
+      , React.createElement('h2', { style: {fontFamily:"'Cinzel',serif",fontSize:17,letterSpacing:1,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1100}}, "魔法符陣繪製")
+      , React.createElement('p', { style: {color:"rgba(226,232,240,.45)",fontSize:12,marginBottom:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1101}}, "每日限獲得5點，可無限繪製累積成就")
+      , React.createElement('div', { style: {marginBottom:10,padding:10,background:"rgba(139,92,246,.1)",borderRadius:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1102}}
+        , React.createElement('p', { style: {color:"rgba(226,232,240,.6)",fontSize:11,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1103}}, "今日：", React.createElement('span', { style: {color:"#fbbf24",fontWeight:700}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1103}}, data.todayDrawPts, " / 5 點"   ))
+        , React.createElement('div', { style: {height:5,background:"rgba(255,255,255,.08)",borderRadius:3,overflow:"hidden"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1104}}
+          , React.createElement('div', { style: {width:`${Math.min((data.todayDrawPts/5)*100,100)}%`,height:"100%",background:"linear-gradient(to right,#8b5cf6,#22d3ee)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1105}})
+        )
+      )
+      , React.createElement('div', { style: {marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1108}}
+        , React.createElement('label', { style: {display:"block",color:"rgba(167,139,250,.8)",fontFamily:"'Cinzel',serif",fontSize:11,marginBottom:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1109}}, "繪符目標（影響成就進度）")
+        , React.createElement('select', { value: drawType, onChange: e=>setDrawType(e.target.value), __self: this, __source: {fileName: _jsxFileName, lineNumber: 1110}}
+          , React.createElement('option', { value: "一般魔法陣", __self: this, __source: {fileName: _jsxFileName, lineNumber: 1111}}, "一般魔法陣")
+          , React.createElement('option', { value: "盧恩符文", __self: this, __source: {fileName: _jsxFileName, lineNumber: 1112}}, "盧恩符文")
+          , React.createElement('option', { value: "符籙", __self: this, __source: {fileName: _jsxFileName, lineNumber: 1113}}, "符籙")
+        )
+      )
+      , React.createElement('div', { style: {display:"flex",gap:6,marginBottom:8,flexWrap:"wrap",alignItems:"center"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1116}}
+        , colors.map(c=>(
+          React.createElement('button', { key: c, onClick: ()=>{setColor(c);setMode("draw");}, style: {width:32,height:32,borderRadius:6,background:c,border:(color===c&&mode==="draw")?"2px solid #fff":"1px solid rgba(255,255,255,.15)",cursor:"pointer",flexShrink:0}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1118}})
+        ))
+        , React.createElement('button', { onClick: ()=>setMode("erase"), style: {padding:"6px 12px",height:32,borderRadius:6,background:"rgba(139,92,246,.2)",color:mode==="erase"?"#fff":"rgba(226,232,240,.7)",border:mode==="erase"?"2px solid #fff":"1px solid rgba(255,255,255,.15)",cursor:"pointer",fontSize:12}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1120}}, "橡皮擦")
+      )
+      , React.createElement('div', { style: {display:"flex",alignItems:"center",gap:10,marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1122}}
+        , React.createElement('span', { style: {color:"rgba(226,232,240,.6)",fontFamily:"'Cinzel',serif",fontSize:11,whiteSpace:"nowrap"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1123}}, "大小")
+        , React.createElement('input', { type: "range", min: "1", max: "40", value: size, onChange: e=>setSize(Number(e.target.value)), style: {flex:1}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1124}})
+        , React.createElement('span', { style: {color:"#a78bfa",fontSize:11,minWidth:32}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1125}}, size, "px")
+      )
+      , React.createElement('canvas', { ref: canvasRef, width: 800, height: 500,
+        onMouseDown: start, onMouseMove: move, onMouseUp: end, onMouseLeave: end,
+        onTouchStart: start, onTouchMove: move, onTouchEnd: end,
+        style: {border:"2px solid rgba(139,92,246,.3)",borderRadius:10,width:"100%",touchAction:"none",marginBottom:12,display:"block"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1127}})
+      , React.createElement('div', { style: {display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1131}}
+        , React.createElement('button', { className: "mbtn mbtn-cancel mbtn-sm"  , onClick: clear, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1132}}, "🗑️ 清除" )
+        , React.createElement('button', { className: "mbtn mbtn-cancel mbtn-sm"  , onClick: download, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1133}}, "💾 下載" )
+        , React.createElement('button', { className: "mbtn mbtn-sm" , onClick: submit, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1134}}, "📤 提交" )
+      )
+      , data.drawings.length>0&&(
+        React.createElement(React.Fragment, null
+          , React.createElement('p', { className: "sec-title", __self: this, __source: {fileName: _jsxFileName, lineNumber: 1138}}, "✦ 作品集（" , data.drawings.length, "幅）")
+          , React.createElement('div', { style: {display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:6}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1139}}
+            , data.drawings.slice(0,12).map(d=>(
+              React.createElement('div', { key: d.id, style: {position:"relative"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1141}}
+                , React.createElement('img', { src: d.image, alt: "", style: {width:"100%",aspectRatio:"1.6",objectFit:"cover",borderRadius:8,border:"1px solid rgba(139,92,246,.2)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1142}})
+                , React.createElement('span', { style: {position:"absolute",bottom:3,right:4,fontSize:9,color:"rgba(226,232,240,.5)"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1143}}, d.subType)
+              )
+            ))
+          )
+        )
+      )
+    )
   );
 }
 
@@ -1236,147 +1235,48 @@ function Profile({role,data,updateData,onLogout,showNotif}){
   };
 
   return (
-    <div className="tab-in">
-      <h2 style={{fontFamily:"'Cinzel',serif",fontSize:17,marginBottom:18}}>個人檔案</h2>
-      {/* 主卡片 */}
-      <div className="card" style={{background:"rgba(139,92,246,.08)",marginBottom:12,textAlign:"center",padding:20}}>
-        <div style={{fontSize:44,marginBottom:10}}>{role==="admin"?"⚔️":"🧙"}</div>
-        <h3 className="grad-text" style={{fontFamily:"'Cinzel Decorative',serif",fontSize:19,marginBottom:4}}>{displayName}</h3>
-        <p style={{color:"rgba(226,232,240,.6)",fontFamily:"'Cinzel',serif",fontSize:12,marginBottom:16}}>
-          {currentTitle?`${currentTitle.icon} ${currentTitle.name}`:"見習魔法師"}
-        </p>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
-          {[{label:"等級",value:`Lv.${level}`},{label:"點數",value:data.points},{label:"稱號",value:ownedTitles.length}].map((s,i)=>(
-            <div key={i}>
-              <p style={{color:"#a78bfa",fontSize:9,fontFamily:"'Cinzel',serif",marginBottom:2}}>{s.label}</p>
-              <p style={{fontSize:15,fontWeight:700}}>{s.value}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+    React.createElement('div', { className: "tab-in", __self: this, __source: {fileName: _jsxFileName, lineNumber: 1195}}
+      , React.createElement('h2', { style: {fontFamily:"'Cinzel',serif",fontSize:17,marginBottom:18}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1196}}, "個人檔案")
+      /* 主卡片 */
+      , React.createElement('div', { className: "card", style: {background:"rgba(139,92,246,.08)",marginBottom:12,textAlign:"center",padding:20}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1198}}
+        , React.createElement('div', { style: {fontSize:44,marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1199}}, role==="admin"?"⚔️":"🧙")
+        , React.createElement('h3', { className: "grad-text", style: {fontFamily:"'Cinzel Decorative',serif",fontSize:19,marginBottom:4}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1200}}, displayName)
+        , React.createElement('p', { style: {color:"rgba(226,232,240,.6)",fontFamily:"'Cinzel',serif",fontSize:12,marginBottom:16}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1201}}
+          , currentTitle?`${currentTitle.icon} ${currentTitle.name}`:"見習魔法師"
+        )
+        , React.createElement('div', { style: {display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1204}}
+          , [{label:"等級",value:`Lv.${level}`},{label:"點數",value:data.points},{label:"稱號",value:ownedTitles.length}].map((s,i)=>(
+            React.createElement('div', { key: i, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1206}}
+              , React.createElement('p', { style: {color:"#a78bfa",fontSize:9,fontFamily:"'Cinzel',serif",marginBottom:2}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1207}}, s.label)
+              , React.createElement('p', { style: {fontSize:15,fontWeight:700}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1208}}, s.value)
+            )
+          ))
+        )
+      )
 
-      {/* 名稱設定 */}
-      <div className="card" style={{marginBottom:10}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
-          <p className="sec-title" style={{marginBottom:0}}>✦ 術士名號</p>
-          <button onClick={()=>{setNewName(data.customName||"");setNameModal(true);}} style={{background:"rgba(139,92,246,.2)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa",padding:"4px 10px",borderRadius:6,fontSize:10,cursor:"pointer"}}>更改</button>
-        </div>
-        <p style={{fontSize:13,color:"#e2e8f0"}}>{displayName}</p>
-      </div>
+      /* 名稱設定 */
+      , React.createElement('div', { className: "card", style: {marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1215}}
+        , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1216}}
+          , React.createElement('p', { className: "sec-title", style: {marginBottom:0}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1217}}, "✦ 術士名號" )
+          , React.createElement('button', { onClick: ()=>{setNewName(data.customName||"");setNameModal(true);}, style: {background:"rgba(139,92,246,.2)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa",padding:"4px 10px",borderRadius:6,fontSize:10,cursor:"pointer"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1218}}, "更改")
+        )
+        , React.createElement('p', { style: {fontSize:13,color:"#e2e8f0"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1220}}, displayName)
+      )
 
-      {/* 稱號 */}
-      <div className="card" style={{marginBottom:10}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
-          <p className="sec-title" style={{marginBottom:0}}>✦ 當前稱號</p>
-          <button onClick={()=>setTitleModal(true)} style={{background:"rgba(139,92,246,.2)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa",padding:"4px 10px",borderRadius:6,fontSize:10,cursor:"pointer"}}>切換</button>
-        </div>
-        {currentTitle?(
-          <div style={{display:"flex",gap:10,alignItems:"center",padding:10,background:"rgba(139,92,246,.08)",borderRadius:8}}>
-            <span style={{fontSize:22}}>{currentTitle.icon}</span>
-            <div><p style={{color:"#a78bfa",fontSize:13,fontWeight:600}}>{currentTitle.name}</p><p style={{color:"rgba(226,232,240,.4)",fontSize:10}}>{currentTitle.desc}</p></div>
-          </div>
-        ):<p style={{fontSize:12,color:"rgba(226,232,240,.4)",padding:"8px 0"}}>未配戴稱號</p>}
-      </div>
+      /* 稱號 */
+      , React.createElement('div', { className: "card", style: {marginBottom:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1224}}
+        , React.createElement('div', { style: {display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1225}}
+          , React.createElement('p', { className: "sec-title", style: {marginBottom:0}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1226}}, "✦ 當前稱號" )
+          , React.createElement('button', { onClick: ()=>setTitleModal(true), style: {background:"rgba(139,92,246,.2)",border:"1px solid rgba(139,92,246,.3)",color:"#a78bfa",padding:"4px 10px",borderRadius:6,fontSize:10,cursor:"pointer"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1227}}, "切換")
+        )
+        , currentTitle?(
+          React.createElement('div', { style: {display:"flex",gap:10,alignItems:"center",padding:10,background:"rgba(139,92,246,.08)",borderRadius:8}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1230}}
+            , React.createElement('span', { style: {fontSize:22}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1231}}, currentTitle.icon)
+            , React.createElement('div', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 1232}}, React.createElement('p', { style: {color:"#a78bfa",fontSize:13,fontWeight:600}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1232}}, currentTitle.name), React.createElement('p', { style: {color:"rgba(226,232,240,.4)",fontSize:10}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1232}}, currentTitle.desc))
+          )
+        ):React.createElement('p', { style: {fontSize:12,color:"rgba(226,232,240,.4)",padding:"8px 0"}, __self: this, __source: {fileName: _jsxFileName, lineNumber: 1234}}, "未配戴稱號")
+      )
 
-      {/* 已學魔法 */}
-      {Object.keys(magicMap).length>0&&(
-        <div className="card" style={{marginBottom:10}}>
-          <p className="sec-title">✦ 已學魔法</p>
-          <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-            {Object.entries(magicMap).map(([name,count])=>(
-              <span key={name} className="tag" style={{background:"rgba(139,92,246,.1)",border:"1px solid rgba(139,92,246,.25)",color:"#a78bfa",padding:"4px 10px"}}>
-                {name} {count>1?`×${count}`:""}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* 已解鎖其他 */}
-      {otherOwned.length>0&&(
-        <div className="card" style={{marginBottom:10}}>
-          <p className="sec-title">✦ 已解鎖技能</p>
-          <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-            {otherOwned.map(item=>(
-              <span key={item.id} className="tag" style={{background:"rgba(139,92,246,.1)",border:"1px solid rgba(139,92,246,.25)",color:"#a78bfa"}}>
-                {item.icon} {item.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* 帳號資訊 */}
-      <div className="card" style={{marginBottom:12,fontSize:12}}>
-        <p className="sec-title">✦ 帳號資訊</p>
-        {[
-          {l:"帳號",v:role==="admin"?"管理員":"@@"},
-          {l:"身份",v:role==="admin"?"管理員":"一般用戶"},
-          {l:"加入日期",v:data.joinDate||"—"},
-          {l:"登入次數",v:data.loginCount},
-          {l:"上傳總數",v:data.uploads.length},
-          {l:"繪圖總數",v:data.drawings.length},
-        ].map((s,i)=>(
-          <p key={i} style={{color:"rgba(226,232,240,.6)",marginBottom:6,display:"flex",justifyContent:"space-between"}}>
-            <span>{s.l}</span><span style={{color:"#e2e8f0"}}>{s.v}</span>
-          </p>
-        ))}
-      </div>
-
-      <button className="mbtn mbtn-cancel" style={{marginBottom:8}} onClick={onLogout}>🚪 登出</button>
-      <button className="mbtn mbtn-danger" onClick={reset}>⚠️ 重置所有數據</button>
-
-      {/* 稱號選擇 Modal */}
-      {titleModal&&(
-        <div className="modal-overlay" onClick={()=>setTitleModal(false)}>
-          <div className="modal-box" onClick={e=>e.stopPropagation()} style={{textAlign:"left",maxWidth:360}}>
-            <h3 style={{fontSize:15,marginBottom:14,textAlign:"center",color:"#a78bfa"}}>選擇配戴稱號</h3>
-            {ownedTitles.length===0?(
-              <p style={{textAlign:"center",color:"rgba(226,232,240,.4)",fontSize:12,padding:"20px 0"}}>尚未擁有任何稱號</p>
-            ):(
-              <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:14,maxHeight:"55vh",overflowY:"auto"}}>
-                {ownedTitles.map(item=>(
-                  <div key={item.id} onClick={()=>setTitle(item.id)} style={{
-                    padding:10,background:data.currentTitle===item.id?"rgba(139,92,246,.2)":"rgba(139,92,246,.06)",
-                    border:`1px solid ${data.currentTitle===item.id?"#a78bfa":"rgba(139,92,246,.2)"}`,
-                    borderRadius:8,cursor:"pointer",display:"flex",alignItems:"center",gap:10
-                  }}>
-                    <span style={{fontSize:22}}>{item.icon}</span>
-                    <div style={{flex:1}}>
-                      <p style={{color:"#a78bfa",fontSize:12,fontWeight:600}}>{item.name}</p>
-                      <p style={{color:"rgba(226,232,240,.4)",fontSize:10}}>{item.desc}</p>
-                    </div>
-                    {data.currentTitle===item.id&&<span style={{color:"#34d399",fontSize:14}}>✓</span>}
-                  </div>
-                ))}
-              </div>
-            )}
-            <div style={{display:"flex",gap:8}}>
-              <button className="mbtn mbtn-cancel" style={{flex:1,padding:10,fontSize:12}} onClick={()=>setTitleModal(false)}>取消</button>
-              <button className="mbtn mbtn-cancel" style={{flex:1,padding:10,fontSize:12}} onClick={clearTitle}>卸下稱號</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 更改名稱 Modal */}
-      {nameModal&&(
-        <div className="modal-overlay" onClick={()=>setNameModal(false)}>
-          <div className="modal-box" onClick={e=>e.stopPropagation()}>
-            <h3 style={{fontSize:15,marginBottom:14,color:"#a78bfa"}}>更改術士名號</h3>
-            <input type="text" placeholder="輸入新名號（最多12字）" value={newName} onChange={e=>setNewName(e.target.value)} onKeyDown={e=>e.key==="Enter"&&changeName()} maxLength={12} style={{marginBottom:14}} autoFocus/>
-            <div style={{display:"flex",gap:8}}>
-              <button className="mbtn" style={{flex:1,padding:10,fontSize:12}} onClick={changeName}>確定</button>
-              <button className="mbtn mbtn-cancel" style={{flex:1,padding:10,fontSize:12}} onClick={()=>setNameModal(false)}>取消</button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-</body>
-</html>
+      /* 已學魔法 */
+      , Object.keys(magicMap).length>0&&(
+        React.createElement('div', { className: "card", style: {ma
