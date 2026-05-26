@@ -147,7 +147,7 @@ const SHOP = [
   {id:28,name:'兵馬召喚',cost:1000,icon:'⚔️',desc:'召喚古代兵馬陣列之力',type:'summon'},
   {id:29,name:'亡靈召喚',cost:1000,icon:'💀',desc:'呼喚亡靈界的冥界使者',type:'summon'},
   {id:30,name:'東方符籙',cost:100,icon:'🧧',desc:'繪製東方玄學靈符',type:'item'},
-  {id:31,name:'西方符文',cost:100,icon:'ᚱ',desc:'刻寫北歐古代盧恩符文',type:'item'}
+  {id:31,name:'西方符文',cost:100,icon:'ᚱ',desc:'星辰與神的密名',type:'item'}
 ];
 function checkReq(req, data) {
   if (!req) return {ok:true,msg:""};
@@ -205,8 +205,11 @@ function renderDiscuss(){
   const displayName=state.data.customName||(state.role==='admin'?'管理員':'見習術士');
 
   // 頭像 + 名稱
-  const authorRow=E('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px'}});
-  authorRow.innerHTML=`<span style="font-size:20px">${state.role==='admin'?'⚔️':'🧙'}</span><span style="font-family:'Cinzel',serif;color:#a78bfa;font-size:12px">${displayName}</span>`;
+  const level=Math.floor(state.data.points/250)+1;
+  const allItemsD=SHOP.concat(getAutoTitles(state.data));
+  const curTitle=state.data.currentTitle?allItemsD.find(s=>s.id===state.data.currentTitle):null;
+  const authorRow=E('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px',flexWrap:'wrap'}});
+  authorRow.innerHTML=`<span style="font-size:20px">${state.role==='admin'?'⚔️':'🧙'}</span><span style="font-family:'Cinzel',serif;color:#a78bfa;font-size:12px">${displayName}</span><span style="font-family:'Cinzel',serif;color:rgba(167,139,250,.6);font-size:10px">Lv.${level}</span>${curTitle?`<span style="font-family:'Cinzel',serif;color:rgba(167,139,250,.5);font-size:10px">${curTitle.icon} ${curTitle.name}</span>`:''}`;
   postCard.appendChild(authorRow);
 
   // Textarea
@@ -236,7 +239,10 @@ function renderDiscuss(){
     const txt=ta.value.trim();
     if(!txt){showNotif('請輸入內容');return;}
     const tc=DISC_TAGS.find(t=>t.name===discussTag).c;
-    const newPost={id:Date.now(),user:displayName,avatar:state.role==='admin'?'⚔️':'🧙',title:txt,replies:0,likes:0,liked:false,time:'剛剛',tag:discussTag,tc,isMine:true};
+    const postLevel=Math.floor(state.data.points/250)+1;
+    const postAllItems=SHOP.concat(getAutoTitles(state.data));
+    const postTitle=state.data.currentTitle?postAllItems.find(s=>s.id===state.data.currentTitle):null;
+    const newPost={id:Date.now(),user:displayName,avatar:state.role==='admin'?'⚔️':'🧙',title:txt,replies:0,likes:0,liked:false,time:'剛剛',tag:discussTag,tc,isMine:true,level:postLevel,titleName:postTitle?postTitle.icon+' '+postTitle.name:null};
     updateData(d=>({...d,posts:[newPost,...d.posts]}));
     ta.value='';
     showNotif('貼文已發布！');
@@ -254,7 +260,7 @@ function renderDiscuss(){
   }
   posts.forEach(post=>{
     const card=E('div',{class:'disc-card',style:{marginBottom:'10px',cursor:'pointer'}});
-    card.innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:20px">${post.avatar}</span><div style="flex:1"><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-family:'Cinzel',serif;color:#e2e8f0;font-size:11px">${post.user}</span><span class="tag" style="background:${post.tc}20;border:1px solid ${post.tc}40;color:${post.tc}">${post.tag}</span>${post.isMine?'<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">我的</span>':''}</div><span style="color:rgba(226,232,240,.32);font-size:10px">${post.time}</span></div></div><p style="color:rgba(226,232,240,.83);font-size:12px;margin-bottom:10px;line-height:1.5">${post.title}</p><div style="display:flex;gap:14px"><span style="color:rgba(226,232,240,.38);font-size:11px">💬 ${post.replies}</span><span class="like-btn" style="color:${post.liked?'#ef4444':'rgba(226,232,240,.38)'};font-size:11px;cursor:pointer">❤️ ${post.likes}</span></div>`;
+    card.innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:20px">${post.avatar}</span><div style="flex:1"><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-family:'Cinzel',serif;color:#e2e8f0;font-size:11px">${post.user}</span>${post.level?`<span style="font-family:'Cinzel',serif;color:rgba(167,139,250,.6);font-size:10px">Lv.${post.level}</span>`:''} ${post.titleName?`<span style="font-family:'Cinzel',serif;color:rgba(167,139,250,.5);font-size:10px">${post.titleName}</span>`:''}<span class="tag" style="background:${post.tc}20;border:1px solid ${post.tc}40;color:${post.tc}">${post.tag}</span>${post.isMine?'<span class="tag" style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3);color:#fbbf24">我的</span>':''}</div><span style="color:rgba(226,232,240,.32);font-size:10px">${post.time}</span></div></div><p style="color:rgba(226,232,240,.83);font-size:12px;margin-bottom:10px;line-height:1.5">${post.title}</p><div style="display:flex;gap:14px"><span style="color:rgba(226,232,240,.38);font-size:11px">💬 ${post.replies}</span><span class="like-btn" style="color:${post.liked?'#ef4444':'rgba(226,232,240,.38)'};font-size:11px;cursor:pointer">❤️ ${post.likes}</span></div>`;
     card.querySelector('.like-btn').onclick=e=>{
       e.stopPropagation();
       updateData(d=>({...d,posts:d.posts.map(p=>p.id===post.id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p)}));
